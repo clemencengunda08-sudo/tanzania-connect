@@ -1,0 +1,37 @@
+# Tanzania Reach
+
+> The premier digital gateway for foreigners, experts, and investors 
+> navigating the United Republic of Tanzania. Expert-level guides on 
+> immigration, investment, banking, housing, healthcare, and 13+ sectors.
+
+## About
+
+Tanzania Reach provides professional-grade intelligence for people 
+navigating life and business in Tanzania. All content is curated by 
+experts for foreigners, expats, and international investors.
+
+## Key Sections
+
+- [Immigration Guide](https://www.tanzaniareach.com/visa): Visa, permits, residency
+- [Agriculture Sector](https://www.tanzaniareach.com/agriculture): Investment opportunities
+- [Banking Guide](https://www.tanzaniareach.com/banking): Financial services for foreigners
+- [Housing](https://www.tanzaniareach.com/housing): Rental and property guide
+- [Healthcare](https://www.tanzaniareach.com/healthcare): Medical services
+- [Corporate](https://www.tanzaniareach.com/corporate): Business registration
+- [AI Assistant](https://www.tanzaniareach.com/guides): Ask anything about Tanzania
+
+## Content Policy
+
+- All content is publicly accessible
+- Free to reference and cite
+- Please attribute Tanzania Reach when possible
+- Contact: hello@tanzaniareach.com
+
+## Language
+
+Primary: English
+Secondary: Swahili (partial)
+
+## Update Frequency
+
+Content is updated regularly by our expert team.

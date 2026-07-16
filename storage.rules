@@ -1,0 +1,77 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isAuthenticated()
+        && firestore.exists(/databases/(default)/documents/admin_users/$(request.auth.uid));
+    }
+
+    function isOwner() {
+      return isAdmin()
+        && firestore.get(/databases/(default)/documents/admin_users/$(request.auth.uid)).data.role == "owner";
+    }
+
+    // File size limits
+    function isUnder10MB() {
+      return request.resource.size < 10 * 1024 * 1024;
+    }
+
+    function isUnder2MB() {
+      return request.resource.size < 2 * 1024 * 1024;
+    }
+
+    // Content type checks
+    function isImage() {
+      return request.resource.contentType.matches('image/.*');
+    }
+
+    function isPDF() {
+      return request.resource.contentType == 'application/pdf';
+    }
+
+    function isAllowedType() {
+      return isImage() || isPDF();
+    }
+
+    // ── Public assets ─────────────────────────
+    match /public/{filename} {
+      allow read: if true;
+      allow write: if isOwner() && isUnder2MB() && isImage();
+    }
+
+    // ── Sector images ─────────────────────────
+    match /sectors/{sectorId}/{filename} {
+      allow read: if true;
+      allow create: if isAdmin() && isUnder10MB() && isAllowedType();
+      allow delete: if isAdmin();
+      allow update: if false;
+    }
+
+    // ── Guide attachments ─────────────────────
+    match /guides/{guideId}/{filename} {
+      allow read: if true;
+      allow create: if isAdmin() && isUnder10MB() && isAllowedType();
+      allow delete: if isAdmin();
+      allow update: if false;
+    }
+
+    // ── Admin uploads ─────────────────────────
+    match /admin/{adminId}/{filename} {
+      allow read: if isAdmin();
+      allow create: if isAdmin() && request.auth.uid == adminId && isUnder10MB() && isAllowedType();
+      allow delete: if isOwner() || request.auth.uid == adminId;
+      allow update: if false;
+    }
+
+    // ── Block everything else ─────────────────
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

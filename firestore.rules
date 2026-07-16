@@ -1,0 +1,91 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ═══════════════════════════════════════════
+    // HELPER FUNCTIONS
+    // ═══════════════════════════════════════════
+
+    function isAuthenticated() {
+      return request.auth != null && request.auth.uid != null;
+    }
+
+    function isEmailVerified() {
+      return isAuthenticated() && request.auth.token.email_verified == true;
+    }
+
+    function isAdmin() {
+      return isEmailVerified()
+        && exists(/databases/$(database)/documents/admin_users/$(request.auth.uid))
+        && get(/databases/$(database)/documents/admin_users/$(request.auth.uid)).data.active == true;
+    }
+
+    function getAdminRole() {
+      return get(/databases/$(database)/documents/admin_users/$(request.auth.uid)).data.role;
+    }
+
+    function isOwner() {
+      return isAdmin() && getAdminRole() == "owner";
+    }
+
+    function isEditor() {
+      return isAdmin() && (getAdminRole() in ["owner", "admin", "editor"]);
+    }
+
+    // ═══════════════════════════════════════════
+    // PUBLIC COLLECTIONS
+    // ═══════════════════════════════════════════
+
+    // SECTORS
+    match /sectors/{sectorId} {
+      allow read: if true; 
+      allow create: if isEditor();
+      allow update: if isEditor();
+      allow delete: if isOwner();
+    }
+
+    // GUIDES
+    match /guides/{guideId} {
+      allow read: if true;
+      allow create: if isEditor();
+      allow update: if isEditor();
+      allow delete: if isOwner();
+    }
+
+    // PUBLIC USER PROFILES
+    match /users/{userId} {
+      allow read, write: if isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // ═══════════════════════════════════════════
+    // ADMIN & CONFIG COLLECTIONS
+    // ═══════════════════════════════════════════
+
+    // ADMIN USERS - Users can read their own profile
+    match /admin_users/{userId} {
+      allow read: if isAuthenticated() && (request.auth.uid == userId || isAdmin());
+      allow create: if isOwner();
+      allow update: if isOwner();
+      allow delete: if isOwner() && request.auth.uid != userId;
+    }
+
+    // SITE SETTINGS - Public read for global config
+    match /settings/{settingId} {
+      allow read: if settingId in ["global", "media_slots"];
+      allow read: if isAdmin();
+      allow write: if isOwner();
+    }
+
+    // LOGS & MEDIA
+    match /ai_queries/{logId} { allow read: if isAdmin(); allow create: if true; }
+    match /media/{mediaId} {
+      allow read: if true;
+      allow create: if isEditor();
+      allow delete: if isOwner();
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

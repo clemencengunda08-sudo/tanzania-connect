@@ -1,0 +1,42 @@
+
+{
+  "entities": {
+    "AIQuery": {
+      "title": "AI Assistant Query",
+      "description": "Logs of user queries and AI responses for analytics.",
+      "type": "object",
+      "properties": {
+        "query": { "type": "string" },
+        "sector": { "type": "string" },
+        "confidence": { "type": "string", "enum": ["high", "medium", "low"] },
+        "relatedSectors": { "type": "array", "items": { "type": "string" } },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["query", "timestamp"]
+    },
+    "AdminUser": {
+      "title": "Admin User",
+      "description": "User with access to the admin panel.",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "format": "email" },
+        "role": { "type": "string", "enum": ["super_admin", "editor", "owner"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["email", "role"]
+    }
+  },
+  "auth": {
+    "providers": ["google.com", "password"]
+  },
+  "firestore": {
+    "/ai_queries/{queryId}": {
+      "schema": "AIQuery",
+      "description": "Collection of natural language queries made to the AI assistant."
+    },
+    "/admin_users/{uid}": {
+      "schema": "AdminUser",
+      "description": "Registration of users allowed to access the admin portal."
+    }
+  }
+}

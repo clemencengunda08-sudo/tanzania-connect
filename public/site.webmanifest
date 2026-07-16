@@ -1,0 +1,79 @@
+{
+  "name": "Tanzania Reach",
+  "short_name": "TZ Reach",
+  "description": "Expert portal for investors and professionals navigating Tanzania",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#3b82f6",
+  "background_color": "#0f172a",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": [
+    "business",
+    "finance",
+    "education",
+    "travel"
+  ],
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/og-image.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "label": "Tanzania Reach Home Screen"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Immigration Guide",
+      "short_name": "Immigration",
+      "url": "/visa",
+      "description": "Tanzania visa and work permit guide"
+    },
+    {
+      "name": "Investment Sectors",
+      "short_name": "Sectors",
+      "url": "/guides",
+      "description": "Browse all investment sectors"
+    },
+    {
+      "name": "Admin Portal",
+      "short_name": "Admin",
+      "url": "/p-access/login",
+      "description": "Tanzania Reach admin access"
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}

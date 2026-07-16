@@ -1,0 +1,28 @@
+# apphosting.yaml
+# Tanzania Reach — Firebase App Hosting Config
+
+runConfig:
+  memoryMiB: 512
+  cpu: 1
+  concurrency: 80
+  minInstances: 0
+  maxInstances: 10
+
+env:
+  - variable: NEXT_PUBLIC_SITE_URL
+    value: https://www.tanzaniareach.com
+    availability:
+      - BUILD
+      - RUNTIME
+
+  - variable: NEXT_PUBLIC_SITE_NAME
+    value: Tanzania Reach
+    availability:
+      - BUILD
+      - RUNTIME
+
+  - variable: GOOGLE_GENAI_API_KEY
+    secret: GOOGLE_GENAI_API_KEY
+    availability:
+      - BUILD
+      - RUNTIME
