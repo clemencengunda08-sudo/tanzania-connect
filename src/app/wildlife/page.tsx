@@ -139,10 +139,10 @@ export default function WildlifePage() {
           >
             <source src="/videos/section.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex items-end p-8 md:p-16">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex items-end p-6 sm:p-12">
             <div className="space-y-4">
               <Badge className="bg-secondary text-secondary-foreground font-black px-4 py-1">Natural Heritage</Badge>
-              <h1 className="text-4xl md:text-6xl font-headline font-bold text-white tracking-tight">Wildlife & Safaris</h1>
+              <h1 className="text-2xl sm:text-4xl md:text-6xl font-headline font-bold text-white tracking-tight break-words">Wildlife & Safaris</h1>
               <div className="flex items-center gap-3 text-white/90 text-lg md:text-2xl font-display">
                 <span className="font-semibold tracking-wide">Beyond the horizon:</span>
                 <SectorTypewriter

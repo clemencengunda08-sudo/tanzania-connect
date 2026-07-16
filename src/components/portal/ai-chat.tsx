@@ -39,6 +39,58 @@ All transactions must go through the Ministry of Lands and TIC facilitation.`,
 Ensure all applications are submitted through the e-Immigration portal.`,
 };
 
+function parseInlineMarkdown(text: string) {
+  const parts = text.split(/(\*\*\*|\*\*)/);
+  let isBold = false;
+  let isBoldItalic = false;
+
+  return parts.map((part, partIdx) => {
+    if (part === "***") {
+      isBoldItalic = !isBoldItalic;
+      return null;
+    }
+    if (part === "**") {
+      isBold = !isBold;
+      return null;
+    }
+    if (isBoldItalic) {
+      return <strong key={partIdx} className="font-extrabold text-tanzania-400 italic">{part}</strong>;
+    }
+    if (isBold) {
+      return <strong key={partIdx} className="font-black text-tanzania-300">{part}</strong>;
+    }
+    return part;
+  }).filter(Boolean);
+}
+
+function renderMessageContent(content: string) {
+  const lines = content.split("\n");
+  return lines.map((line, lineIdx) => {
+    const headerMatch = line.match(/^(#{2,4})\s*(.*)$/);
+    if (headerMatch) {
+      const depth = headerMatch[1].length;
+      const text = headerMatch[2];
+      const parsedText = parseInlineMarkdown(text);
+      if (depth === 2) {
+        return <h4 key={lineIdx} className="text-base font-bold text-white mt-3 mb-1">{parsedText}</h4>;
+      }
+      return <h5 key={lineIdx} className="text-sm font-bold text-white mt-2 mb-1">{parsedText}</h5>;
+    }
+
+    const bulletMatch = line.match(/^[-*]\s*(.*)$/);
+    if (bulletMatch) {
+      const text = bulletMatch[1];
+      return (
+        <ul key={lineIdx} className="list-disc pl-5 my-1">
+          <li className="text-tanzania-100">{parseInlineMarkdown(text)}</li>
+        </ul>
+      );
+    }
+
+    return <p key={lineIdx} className="mb-2 leading-relaxed">{parseInlineMarkdown(line)}</p>;
+  });
+}
+
 export function AIChat() {
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
@@ -166,10 +218,10 @@ export function AIChat() {
                     className={`max-w-[75%] p-4 rounded-3xl leading-relaxed ${
                       m.role === "user"
                         ? "bg-tanzania-500 text-white rounded-br-none"
-                        : "bg-kilimanjaro-900/40 border border-tanzania-500/10 text-tanzania-100 rounded-bl-none whitespace-pre-line"
+                        : "bg-kilimanjaro-900/40 border border-tanzania-500/10 text-tanzania-100 rounded-bl-none"
                     }`}
                   >
-                    {m.content}
+                    {m.role === "user" ? m.content : renderMessageContent(m.content)}
                   </div>
                   {m.role === "user" && (
                     <div className="w-8 h-8 rounded-lg bg-tanzania-500 flex items-center justify-center text-white shrink-0">

@@ -86,13 +86,13 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrains.variable} dark`} suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} ${jetbrains.variable} light`} suppressHydrationWarning>
       <body className="antialiased selection:bg-tanzania-500/30 selection:text-white" suppressHydrationWarning>
         <JsonLd data={organizationSchema} />
         <JsonLd data={websiteSchema} />
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="light"
           enableSystem={false}
           disableTransitionOnChange
           themes={["light", "dark"]}

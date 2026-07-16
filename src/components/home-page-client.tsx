@@ -282,10 +282,10 @@ export function HomePageClient() {
                         {meta.ogDescription}
                       </p>
                       <div className="mt-4 pt-3 border-t border-kilimanjaro-900/5 dark:border-tanzania-50/5 flex items-center justify-between">
-                        <span className="font-mono text-[10px] text-kilimanjaro-500 dark:text-tanzania-300">
+                        <span className="font-mono text-[12px] text-kilimanjaro-500 dark:text-tanzania-300">
                           {String(i + 1).padStart(2, "0")} / {TOP_SECTORS.length}
                         </span>
-                        <span className="font-mono text-[9px] text-tanzania-500/80">
+                        <span className="font-mono text-[11px] text-tanzania-500/80">
                           #{meta.keywords[0].toLowerCase()}
                         </span>
                       </div>
@@ -356,12 +356,12 @@ export function HomePageClient() {
             font={{
               fontFamily: "var(--font-inter)",
               fontWeight: 700,
-              fontSize: 18,
-              letterSpacing: "1px",
+              fontSize: 48,
+              letterSpacing: "2px",
             }}
             color="currentColor"
             curveAmount={0}
-            gap={5}
+            gap={6}
             baseVelocity={12}
             className="text-kilimanjaro-800 dark:text-tanzania-200"
           />

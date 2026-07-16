@@ -130,10 +130,10 @@ export default function CulturePage() {
             quality={85}
             data-ai-hint="Tanzania Savannah Culture"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex items-end p-12">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex items-end p-6 sm:p-12">
             <div className="space-y-4">
               <Badge className="bg-secondary text-secondary-foreground font-bold">National Heritage</Badge>
-              <h1 className="text-4xl md:text-6xl font-headline font-bold text-white uppercase tracking-tight">
+              <h1 className="text-2xl sm:text-4xl md:text-6xl font-headline font-bold text-white uppercase tracking-tight break-words">
                 Culture & History
               </h1>
               <div className="flex items-center gap-3 text-white/90 text-lg md:text-2xl font-display">

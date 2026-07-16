@@ -156,7 +156,6 @@ button, a, [role="button"] { min-height: 44px; min-width: 44px; }
 .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
 
 @media (max-width: 768px) {
-  body { padding-bottom: calc(4.5rem + env(safe-area-inset-bottom)); }
   ::-webkit-scrollbar { display: none; }
   * { scrollbar-width: none; }
 }

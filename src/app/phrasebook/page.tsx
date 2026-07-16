@@ -52,37 +52,37 @@ const phrases = {
 const tabMediaMap = {
   greetings: {
     image: "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201971/tanzania_connect/static/arusha-town.jpg",
-    label: "Local Community, Arusha",
+    label: "Savanna Landscapes, Arusha",
     title: "The Art of Swahili Welcoming",
     desc: "Greetings are not a transaction but a social duty in Swahili culture. Even when asking directions or ordering food, start with 'Habari!' or 'Mambo!'. Respectful greetings lay the foundation for smooth interactions.",
   },
   business: {
     image: "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201983/tanzania_connect/static/corporate.jpg",
-    label: "Dar Trade District",
+    label: "Dar es Salaam Business District",
     title: "Corporate & Formal Etiquette",
     desc: "When dealing with BRELA or government officials, formal Swahili terms show respect and seriousness. Ensure you use standard terms like 'Mkataba' (Contract) and start meetings with a polite check-in.",
   },
   legal: {
     image: "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201989/tanzania_connect/static/dar-es-salaam.jpg",
-    label: "Dar es Salaam Court",
+    label: "Waterfront & Administrative Skyline, Dar es Salaam",
     title: "Navigating Regulations",
     desc: "Understanding legal terminology protects your business interest. Terms like 'Kibali cha kazi' (Work permit) are vital during interactions with the Ministry of Labor and Immigration services.",
   },
   finance: {
     image: "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201976/tanzania_connect/static/banking.jpg",
-    label: "Corporate Bank HQ",
+    label: "Bank of Tanzania HQ, Dar es Salaam",
     title: "Financial Integration",
     desc: "Tanzania's financial sector blends modern banking with mobile money ecosystems. Learning transaction vocabulary helps in setting up local commercial and investment accounts.",
   },
   logistics: {
     image: "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202051/tanzania_connect/static/transport-banner.jpg",
-    label: "SGR Inter-city Station",
+    label: "TAZARA Transit Station, Dar es Salaam",
     title: "Travel & Transit",
     desc: "Navigating cities or long-distance travel via the SGR train requires basic directional vocabulary. Local transport systems are highly social hubs where Swahili is essential.",
   },
   emergency: {
     image: "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202006/tanzania_connect/static/healthcare-banner.jpg",
-    label: "National Hospital",
+    label: "Mloganzila Hospital, Dar es Salaam",
     title: "Safety & Emergency Response",
     desc: "Keep emergency phrases handy. If calling public police or seeking medical assistance, clear and direct Swahili phrases are the fastest way to obtain local support.",
   },
@@ -118,12 +118,19 @@ export default function PhrasebookPage() {
               className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent flex items-end p-6">
-              <span className="text-[10px] font-black uppercase tracking-widest text-white">Dar es Salaam Market</span>
+              <span className="text-[10px] font-black uppercase tracking-widest text-white">Maasai Culture, Ngorongoro</span>
             </div>
           </div>
         </div>
 
-        <Tabs defaultValue="greetings" className="w-full">
+        <div className="space-y-2">
+          {/* Scroll swipe indicator for mobile triggers list */}
+          <div className="flex items-center justify-between w-full px-1 md:hidden">
+            <span className="text-[10px] uppercase tracking-wider font-black text-muted-foreground/60">Categories</span>
+            <span className="text-[10px] uppercase tracking-wider font-black text-primary animate-pulse">Swipe left for more (SOS) ➔</span>
+          </div>
+
+          <Tabs defaultValue="greetings" className="w-full">
           <TabsList className="flex items-center justify-start md:justify-center overflow-x-auto whitespace-nowrap scrollbar-none w-full bg-muted/30 p-1.5 h-auto rounded-3xl border border-border/40 gap-1.5">
             <TabsTrigger value="greetings" className="flex items-center gap-2 text-sm font-bold rounded-2xl px-5 py-3 data-[state=active]:bg-background data-[state=active]:shadow-lg shrink-0">
               <MessageCircle className="h-4 w-4" />
@@ -215,6 +222,7 @@ export default function PhrasebookPage() {
             );
           })}
         </Tabs>
+        </div>
 
         <section className="bg-primary/5 rounded-[3rem] p-10 md:p-16 border border-primary/10 grid grid-cols-1 lg:grid-cols-3 gap-10">
           <div className="space-y-6">
