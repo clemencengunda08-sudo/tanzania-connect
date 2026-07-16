@@ -43,3 +43,16 @@ next-env.d.ts
 # firebase
 firebase-debug.log
 firestore-debug.log
+
+# large assets
+public/images/**
+public/videos/**
+screenshots/**
+sgr pic.jpeg
+truesgrpic.jpg
+*.jpg
+*.png
+*.jpeg
+*.mp4
+*.pdf
+assets/**
