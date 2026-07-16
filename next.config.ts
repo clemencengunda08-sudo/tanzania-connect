@@ -16,7 +16,7 @@ const securityHeaders = [
       "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://apis.google.com",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com",
-      "img-src 'self' data: blob: https://firebasestorage.googleapis.com https://lh3.googleusercontent.com https://storage.googleapis.com https://images.unsplash.com https://picsum.photos https://upload.wikimedia.org https://*.spline.design https://my.spline.design",
+      "img-src 'self' data: blob: https://res.cloudinary.com https://firebasestorage.googleapis.com https://lh3.googleusercontent.com https://storage.googleapis.com https://images.unsplash.com https://picsum.photos https://upload.wikimedia.org https://*.spline.design https://my.spline.design",
       "connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.cloudfunctions.net https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com wss://*.firebaseio.com https://*.spline.design https://my.spline.design",
       "frame-src 'self' https://*.firebaseapp.com https://accounts.google.com https://my.spline.design https://*.spline.design",
       "media-src 'self' data: blob:",
@@ -40,6 +40,7 @@ const nextConfig: NextConfig = {
   },
   images: {
     remotePatterns: [
+      { protocol: "https", hostname: "res.cloudinary.com" },
       { protocol: "https", hostname: "firebasestorage.googleapis.com" },
       { protocol: "https", hostname: "lh3.googleusercontent.com" },
       { protocol: "https", hostname: "storage.googleapis.com" },

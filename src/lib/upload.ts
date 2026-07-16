@@ -1,9 +1,3 @@
-import {
-  ref,
-  uploadBytesResumable,
-  getDownloadURL,
-} from "firebase/storage";
-import { storage } from "@/firebase";
 import type { MediaCategory } from "@/types";
 import { saveMediaMetadataAction } from "@/actions/media";
 
@@ -118,52 +112,44 @@ export async function uploadFile(
     }
 
     const filename = generateFilename(file.name);
-    const storagePath = `${category}/${filename}`;
-    const storageRef = ref(storage, storagePath);
+    
+    onProgress?.(10);
 
-    const uploadTask = uploadBytesResumable(storageRef, uploadFile, {
-      contentType: file.type,
-      customMetadata: {
-        originalName: file.name,
-        category,
-      },
+    const formData = new FormData();
+    formData.append("file", uploadFile, filename);
+
+    onProgress?.(30);
+
+    const { uploadToCloudinaryAction } = await import("@/actions/cloudinary");
+    const uploadRes = await uploadToCloudinaryAction(formData, category);
+
+    if (!uploadRes.success || !uploadRes.url || !uploadRes.publicId) {
+      return { success: false, error: uploadRes.error || "Cloudinary upload failed" };
+    }
+
+    onProgress?.(80);
+
+    const result = await saveMediaMetadataAction({
+      filename,
+      originalName: file.name,
+      url: uploadRes.url,
+      type: fileType,
+      category,
+      mimeType: file.type,
+      size: uploadFile.size,
+      width: dimensions.width,
+      height: dimensions.height,
+      alt,
+      storagePath: uploadRes.publicId,
     });
 
-    return new Promise((resolve) => {
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          onProgress?.(progress);
-        },
-        (error) => {
-          resolve({ success: false, error: error.message });
-        },
-        async () => {
-          const url = await getDownloadURL(uploadTask.snapshot.ref);
+    onProgress?.(100);
 
-          const result = await saveMediaMetadataAction({
-            filename,
-            originalName: file.name,
-            url,
-            type: fileType,
-            category,
-            mimeType: file.type,
-            size: uploadFile.size,
-            width: dimensions.width,
-            height: dimensions.height,
-            alt,
-            storagePath,
-          });
-
-          if (result.success) {
-            resolve({ success: true, url });
-          } else {
-            resolve({ success: false, error: result.error });
-          }
-        }
-      );
-    });
+    if (result.success) {
+      return { success: true, url: uploadRes.url };
+    } else {
+      return { success: false, error: result.error };
+    }
   } catch (error: any) {
     return { success: false, error: error.message };
   }

@@ -46,7 +46,7 @@ service firebase.storage {
     }
 
     // ── Sector images ─────────────────────────
-    match /sectors/{sectorId}/{filename} {
+    match /sectors/{allPaths=**} {
       allow read: if true;
       allow create: if isAdmin() && isUnder10MB() && isAllowedType();
       allow delete: if isAdmin();
@@ -54,7 +54,31 @@ service firebase.storage {
     }
 
     // ── Guide attachments ─────────────────────
-    match /guides/{guideId}/{filename} {
+    match /guides/{allPaths=**} {
+      allow read: if true;
+      allow create: if isAdmin() && isUnder10MB() && isAllowedType();
+      allow delete: if isAdmin();
+      allow update: if false;
+    }
+
+    // ── Downloads ─────────────────────────────
+    match /downloads/{allPaths=**} {
+      allow read: if true;
+      allow create: if isAdmin() && isUnder10MB() && isAllowedType();
+      allow delete: if isAdmin();
+      allow update: if false;
+    }
+
+    // ── Branding ──────────────────────────────
+    match /branding/{allPaths=**} {
+      allow read: if true;
+      allow create: if isAdmin() && isUnder10MB() && isAllowedType();
+      allow delete: if isAdmin();
+      allow update: if false;
+    }
+
+    // ── General uploads ───────────────────────
+    match /general/{allPaths=**} {
       allow read: if true;
       allow create: if isAdmin() && isUnder10MB() && isAllowedType();
       allow delete: if isAdmin();

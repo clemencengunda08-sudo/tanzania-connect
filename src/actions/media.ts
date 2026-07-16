@@ -120,12 +120,8 @@ export async function deleteMediaAction(mediaId: string, storagePath: string): P
   await verifyAdmin();
   try {
     await deleteDoc(doc(db, "media", mediaId));
-    const { adminApp } = await import("@/firebase/admin");
-    if (adminApp) {
-      const { getStorage } = await import("firebase-admin/storage");
-      const bucket = getStorage(adminApp).bucket();
-      await bucket.file(storagePath).delete();
-    }
+    const { deleteFromCloudinaryAction } = await import("./cloudinary");
+    await deleteFromCloudinaryAction(storagePath);
     return { success: true };
   } catch (error: any) {
     return { success: false, error: error.message };
