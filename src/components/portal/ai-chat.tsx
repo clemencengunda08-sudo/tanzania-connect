@@ -6,6 +6,8 @@ import { MessageSquare, X, Send, Sparkles, User, ShieldCheck } from "lucide-reac
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
+import { aiChatCompletion } from "@/ai/client";
+
 interface Message {
   role: "user" | "assistant";
   content: string;
@@ -119,49 +121,94 @@ export function AIChat() {
     window.dispatchEvent(new CustomEvent("ai-chat-state", { detail: { open } }));
   }, [open]);
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (!input.trim() || isTyping) return;
 
     const userMessage = input.trim();
-    setMessages((prev) => [...prev, { role: "user", content: userMessage }]);
+    const updatedMessages = [...messages, { role: "user" as const, content: userMessage }];
+    setMessages(updatedMessages);
     setInput("");
     setIsTyping(true);
 
-    // Analyze keywords
-    const lower = userMessage.toLowerCase();
-    let response = "I do not have specific details for that query. Please ask about tax, land tenure, company registration, or visa permits.";
-    
-    if (lower.includes("tax") || lower.includes("revenue") || lower.includes("tra")) {
-      response = EXPERT_KNOWLEDGE.tax;
-    } else if (lower.includes("land") || lower.includes("tenure") || lower.includes("derivative")) {
-      response = EXPERT_KNOWLEDGE.land;
-    } else if (lower.includes("company") || lower.includes("incorporat") || lower.includes("brela")) {
-      response = EXPERT_KNOWLEDGE.company;
-    } else if (lower.includes("visa") || lower.includes("permit") || lower.includes("residence") || lower.includes("work")) {
-      response = EXPERT_KNOWLEDGE.visa;
-    }
+    try {
+      const apiMessages = updatedMessages.map(m => ({
+        role: m.role,
+        content: m.content
+      }));
 
-    // Stream simulator
-    let currentText = "";
-    const words = response.split(" ");
-    let i = 0;
+      const response = await aiChatCompletion({
+        messages: [
+          {
+            role: "system",
+            content: `You are "Tanzania Connect Regulatory Advisor", a helpful, professional AI assistant specializing in Tanzania regulations, business, investment, taxation, immigration, and daily life.
+Always be polite, professional, and friendly. Respond warmly to greetings (like "hi", "hello", etc.) and introduce yourself as the regulatory advisor.
+Refer to official authorities such as BRELA (business registration), TRA (taxation), TIC (investment center), and the Immigration Department when relevant.
+Format your responses using clean markdown (e.g. use **bold** or lists where appropriate). Do not use HTML tags. Keep responses concise and focused on accurate information.`
+          },
+          ...apiMessages
+        ]
+      });
 
-    setMessages((prev) => [...prev, { role: "assistant", content: "" }]);
+      let currentText = "";
+      const words = response.content.split(" ");
+      let i = 0;
 
-    const interval = setInterval(() => {
-      if (i < words.length) {
-        currentText += (i === 0 ? "" : " ") + words[i];
-        setMessages((prev) => {
-          const next = [...prev];
-          next[next.length - 1] = { role: "assistant", content: currentText };
-          return next;
-        });
-        i++;
-      } else {
-        clearInterval(interval);
-        setIsTyping(false);
+      setMessages((prev) => [...prev, { role: "assistant", content: "" }]);
+
+      const interval = setInterval(() => {
+        if (i < words.length) {
+          currentText += (i === 0 ? "" : " ") + words[i];
+          setMessages((prev) => {
+            const next = [...prev];
+            next[next.length - 1] = { role: "assistant", content: currentText };
+            return next;
+          });
+          i++;
+        } else {
+          clearInterval(interval);
+          setIsTyping(false);
+        }
+      }, 25);
+
+    } catch (apiError) {
+      console.warn("AI API request failed, falling back to local search rules:", apiError);
+      
+      const lower = userMessage.toLowerCase();
+      let fallbackResponse = "I do not have specific details for that query. Please ask about tax, land tenure, company registration, or visa permits.";
+      
+      if (lower.includes("hi") || lower.includes("hello") || lower.includes("hey") || lower.includes("habari")) {
+        fallbackResponse = "Hello! I am your Tanzania regulatory advisor. How can I help you today? You can ask me about tax rules, company incorporation via BRELA, land derivative rights, or visa permits.";
+      } else if (lower.includes("tax") || lower.includes("revenue") || lower.includes("tra")) {
+        fallbackResponse = EXPERT_KNOWLEDGE.tax;
+      } else if (lower.includes("land") || lower.includes("tenure") || lower.includes("derivative")) {
+        fallbackResponse = EXPERT_KNOWLEDGE.land;
+      } else if (lower.includes("company") || lower.includes("incorporat") || lower.includes("brela")) {
+        fallbackResponse = EXPERT_KNOWLEDGE.company;
+      } else if (lower.includes("visa") || lower.includes("permit") || lower.includes("residence") || lower.includes("work")) {
+        fallbackResponse = EXPERT_KNOWLEDGE.visa;
       }
-    }, 45);
+
+      let currentText = "";
+      const words = fallbackResponse.split(" ");
+      let i = 0;
+
+      setMessages((prev) => [...prev, { role: "assistant", content: "" }]);
+
+      const interval = setInterval(() => {
+        if (i < words.length) {
+          currentText += (i === 0 ? "" : " ") + words[i];
+          setMessages((prev) => {
+            const next = [...prev];
+            next[next.length - 1] = { role: "assistant", content: currentText };
+            return next;
+          });
+          i++;
+        } else {
+          clearInterval(interval);
+          setIsTyping(false);
+        }
+      }, 35);
+    }
   };
 
   return (
