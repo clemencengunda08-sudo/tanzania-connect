@@ -23,30 +23,46 @@ export interface AIProvidersConfig {
 }
 
 /**
+ * Get all available keys for a provider (primary + fallbacks).
+ * Rotates through keys if one gets rate-limited.
+ */
+export function getProviderKeys(envVar: string, fallbackEnvVar: string): string[] {
+  const primary = process.env[envVar] || '';
+  const fallbackStr = process.env[fallbackEnvVar] || '';
+  const fallbacks = fallbackStr.split(',').filter(k => k.trim().length > 0);
+  return [primary, ...fallbacks].filter(k => k.length > 0);
+}
+
+/**
  * Load API keys from environment variables and build provider config.
  */
 export function getAIProvidersConfig(): AIProvidersConfig {
+  const openrouterKeys = getProviderKeys('OPENROUTER_API_KEY', 'OPENROUTER_FALLBACK_KEYS');
+  const groqKeys = getProviderKeys('GROQ_API_KEY', 'GROQ_FALLBACK_KEYS');
+  const cerebrasKeys = getProviderKeys('CEREBRAS_API_KEY', 'CEREBRAS_FALLBACK_KEYS');
+  const ollamaKeys = getProviderKeys('OLLAMA_API_KEY', 'OLLAMA_FALLBACK_KEYS');
+
   const providers: Record<AIProvider, ProviderConfig> = {
     openrouter: {
       name: 'openrouter',
-      apiKey: process.env.OPENROUTER_API_KEY || '',
+      apiKey: openrouterKeys[0] || '',
       baseUrl: 'https://openrouter.ai/api/v1',
       models: ['openai/gpt-4o', 'anthropic/claude-3.5-sonnet', 'google/gemini-2.5-flash'],
-      enabled: !!process.env.OPENROUTER_API_KEY,
+      enabled: openrouterKeys.length > 0,
     },
     groq: {
       name: 'groq',
-      apiKey: process.env.GROQ_API_KEY || '',
+      apiKey: groqKeys[0] || '',
       baseUrl: 'https://api.groq.com/openai/v1',
       models: ['llama-3.3-70b-versatile', 'mixtral-8x7b-32768', 'gemma2-9b-it'],
-      enabled: !!process.env.GROQ_API_KEY,
+      enabled: groqKeys.length > 0,
     },
     cerebras: {
       name: 'cerebras',
-      apiKey: process.env.CEREBRAS_API_KEY || '',
+      apiKey: cerebrasKeys[0] || '',
       baseUrl: 'https://api.cerebras.ai/v1',
       models: ['llama3.1-8b', 'llama3.1-70b'],
-      enabled: !!process.env.CEREBRAS_API_KEY,
+      enabled: cerebrasKeys.length > 0,
     },
     google: {
       name: 'google',
@@ -57,10 +73,10 @@ export function getAIProvidersConfig(): AIProvidersConfig {
     },
     ollama: {
       name: 'ollama',
-      apiKey: process.env.OLLAMA_API_KEY || '',
+      apiKey: ollamaKeys[0] || '',
       baseUrl: process.env.OLLAMA_BASE_URL || 'http://localhost:11434',
       models: ['llama3', 'mistral'],
-      enabled: !!process.env.OLLAMA_API_KEY,
+      enabled: ollamaKeys.length > 0,
     },
   };
 

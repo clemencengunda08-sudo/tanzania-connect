@@ -26,6 +26,44 @@ const config = {
 
 const DEFAULT_TITLE = ["Tanzania Reach"];
 
+function SpotlightImage({ src }: { src: string }) {
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  return (
+    <div className="relative w-full h-full bg-neutral-900/60 flex items-center justify-center">
+      {/* Pulse skeleton */}
+      {loading && (
+        <div className="absolute inset-0 bg-gradient-to-r from-neutral-800/80 via-neutral-700/80 to-neutral-800/80 animate-pulse" />
+      )}
+
+      {/* Error state fallback */}
+      {error ? (
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-tanzania-950/40 to-kilimanjaro-950/40 p-4 text-center">
+          <svg className="w-8 h-8 text-tanzania-500/40 mb-2 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+          <span className="text-[9px] text-muted-foreground uppercase tracking-widest font-mono select-none">Tanzania Connect</span>
+        </div>
+      ) : (
+        <img
+          src={src}
+          alt="Tanzania spotlight visual"
+          onLoad={() => setLoading(false)}
+          onError={() => {
+            setLoading(false);
+            setError(true);
+          }}
+          className={cn(
+            "w-full h-full object-cover select-none pointer-events-none transition-all duration-700 ease-out-expo",
+            loading ? "opacity-0 scale-95" : "opacity-100 scale-100"
+          )}
+        />
+      )}
+    </div>
+  );
+}
+
 export function MagneticSpotlightMarquee({
   className,
   images = [],
@@ -65,8 +103,8 @@ export function MagneticSpotlightMarquee({
          gsap.to(marqueeTrack, {
            x: `-${oneSetWidth}px`,
            duration: oneSetWidth / 120, // balanced speed
-           ease: "none",
            repeat: -1,
+           ease: "none",
            modifiers: {
              x: (x) => `${gsap.utils.wrap(-oneSetWidth, 0, parseFloat(x))}px`
            }
@@ -99,57 +137,50 @@ export function MagneticSpotlightMarquee({
     let rafId: number;
 
     const measureGeometry = () => {
-      if (!spotlightSection || !marqueeStrip) return;
-      sectionHeight = spotlightSection.getBoundingClientRect().height;
-      stripBaseTop = marqueeStrip.offsetTop;
-      stripHeight = marqueeStrip.offsetHeight;
+      if (!containerRef.current || !marqueeStripRef.current || !contentWrapperRef.current) return;
       
-      stripRestCenterY = config.stripEdgeInset;
+      const rect = spotlightSection.getBoundingClientRect();
+      sectionHeight = rect.height;
       
-      const elements = Array.from(spotlightSection.querySelectorAll('.wake-target')) as HTMLElement[];
+      const stripRect = marqueeStrip.getBoundingClientRect();
+      stripHeight = stripRect.height;
       
-      let blockTop = Infinity;
-      targets = elements.map(el => {
-        let y = 0;
-        let node: HTMLElement | null = el;
-        while (node && node !== spotlightSection) {
-          y += node.offsetTop;
-          node = node.offsetParent as HTMLElement;
-        }
-        const restCenterY = y + el.offsetHeight / 2;
-        blockTop = Math.min(blockTop, restCenterY - el.offsetHeight / 2);
-        
+      stripRestCenterY = sectionHeight * 0.55;
+      stripBaseTop = stripRestCenterY - stripHeight * 0.5;
+      
+      marqueeStrip.style.top = `${stripBaseTop}px`;
+      
+      const wakeTargets = contentWrapperRef.current.querySelectorAll('.wake-target');
+      targets = Array.from(wakeTargets).map((el: any) => {
+        const elRect = el.getBoundingClientRect();
+        const elRelativeCenter = elRect.top - rect.top + elRect.height * 0.5;
         return {
           el,
-          restCenterY,
-          currentY: 0
+          restCenterY: elRelativeCenter,
+          currentY: 0,
         };
       });
-
-      contentTopAtRest = isFinite(blockTop) ? blockTop : sectionHeight * 0.4;
       
-      if (!hasPointerMoved) {
-        const restY = config.stripEdgeInset - stripHeight / 2;
-        stripTargetY = restY;
-        stripCurrentY = restY;
-        stripPrevY = restY;
-        gsap.set(marqueeStrip, { y: stripCurrentY });
-      }
+      contentTopAtRest = sectionHeight * 0.5;
     };
 
-    setTimeout(measureGeometry, 150);
+    setTimeout(measureGeometry, 200);
     window.addEventListener('resize', measureGeometry);
 
     const handlePointerMove = (e: MouseEvent) => {
       const rect = spotlightSection.getBoundingClientRect();
-      const pointerY = e.clientY - rect.top;
+      const relativeY = e.clientY - rect.top;
+      
+      const normY = relativeY / sectionHeight;
+      const margin = config.stripEdgeInset / sectionHeight;
+      const clampedNormY = Math.max(margin, Math.min(1 - margin, normY));
+      
+      stripTargetY = (clampedNormY - 0.5) * sectionHeight * 0.85;
       hasPointerMoved = true;
-      stripTargetY = pointerY - stripHeight / 2;
     };
 
     const handlePointerLeave = () => {
-      hasPointerMoved = false;
-      stripTargetY = config.stripEdgeInset - stripHeight / 2;
+      stripTargetY = 0;
     };
 
     spotlightSection.addEventListener('mousemove', handlePointerMove);
@@ -159,24 +190,19 @@ export function MagneticSpotlightMarquee({
       stripCurrentY += (stripTargetY - stripCurrentY) * config.stripFollowEase;
       gsap.set(marqueeStrip, { y: stripCurrentY });
 
-      const stripCenterY = stripBaseTop + stripCurrentY + stripHeight / 2;
       const stripVelocityY = stripCurrentY - stripPrevY;
       stripPrevY = stripCurrentY;
 
-      const descentBelowRest = Math.max(0, stripCenterY - stripRestCenterY);
-      const maxRise = Math.max(0, contentTopAtRest - config.risenTopGap);
-      const contentRise = -Math.min(
-        descentBelowRest * config.contentRiseRate,
-        maxRise
-      );
+      const stripCenterY = stripRestCenterY + stripCurrentY;
 
-      targets.forEach(line => {
-        const gapToStrip = line.restCenterY - stripCenterY;
-        const reachedLine = stripCenterY + config.liftHeadStart >= line.restCenterY;
+      targets.forEach((line) => {
+        const distanceToStrip = line.restCenterY - stripCenterY;
+        const reachedLine = Math.abs(distanceToStrip) < config.wakeReach;
         
-        const wakeInfluence = Math.exp(
-          -(gapToStrip * gapToStrip) / (2 * config.wakeReach * config.wakeReach)
-        );
+        const riseRatio = Math.max(0, 1 - (stripCenterY / contentTopAtRest));
+        const contentRise = -riseRatio * config.risenTopGap * config.contentRiseRate;
+        
+        const wakeInfluence = Math.exp(-Math.pow(distanceToStrip / (config.wakeReach * 0.6), 2));
         const wakeOffset = stripVelocityY * wakeInfluence * config.wakeStrength;
         
         const lineTarget = (reachedLine ? contentRise : 0) + wakeOffset;
@@ -225,12 +251,7 @@ export function MagneticSpotlightMarquee({
         >
           {clonedImages.map((img, idx) => (
             <div key={idx} className="w-[130px] h-[190px] md:w-[200px] md:h-[280px] shrink-0 rounded-3xl overflow-hidden shadow-2xl bg-neutral-900 border border-white/5">
-              <img
-                src={img}
-                alt="Tanzania spotlight visual"
-                className="w-full h-full object-cover select-none pointer-events-none"
-                loading="lazy"
-              />
+              <SpotlightImage src={img} />
             </div>
           ))}
         </div>
