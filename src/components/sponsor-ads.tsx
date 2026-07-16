@@ -37,7 +37,7 @@ export const SPONSOR_ADS: SponsorAd[] = [
     highlights: ["Fiscal Incentive Clearance", "TIC Strategic Certificates", "One-Stop Facilitation Centre"],
     actionText: "TIC Investment Guide",
     actionUrl: "/corporate",
-    imageUrl: "/images/tanzania/dar-es-salaam.jpg"
+    imageUrl: "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201989/tanzania_connect/static/dar-es-salaam.jpg"
   },
   {
     brand: "Tanzania National Parks",
@@ -48,7 +48,7 @@ export const SPONSOR_ADS: SponsorAd[] = [
     highlights: ["Official Reserve Management", "National Park E-Permits", "Conservation Directives"],
     actionText: "TANAPA Park Manual",
     actionUrl: "/wildlife",
-    imageUrl: "/images/tanzania/serengeti-safari.jpg"
+    imageUrl: "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202034/tanzania_connect/static/serengeti-safari.jpg"
   },
   {
     brand: "Air Tanzania",
@@ -59,7 +59,7 @@ export const SPONSOR_ADS: SponsorAd[] = [
     highlights: ["Daily Flights to Serengeti", "Dar-to-Zanzibar Connections", "Official National Flag Carrier"],
     actionText: "Flight Connections Guide",
     actionUrl: "/transport",
-    imageUrl: "/images/tanzania/transport-banner.jpg"
+    imageUrl: "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202051/tanzania_connect/static/transport-banner.jpg"
   },
   {
     brand: "Zanzibar Investment Authority",
@@ -70,7 +70,7 @@ export const SPONSOR_ADS: SponsorAd[] = [
     highlights: ["Zanzibar Free Zone Setup", "Blue Economy Tax Incentives", "Strategic Real Estate Permits"],
     actionText: "ZIPA Investment Manual",
     actionUrl: "/corporate",
-    imageUrl: "/images/tanzania/zanzibar-beach.jpg"
+    imageUrl: "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202052/tanzania_connect/static/zanzibar-beach.jpg"
   },
   {
     brand: "BRELA Registry",
@@ -81,7 +81,7 @@ export const SPONSOR_ADS: SponsorAd[] = [
     highlights: ["Online Registration System (ORS)", "Business Name Clearance", "Industrial License Clearances"],
     actionText: "BRELA Compliance Manual",
     actionUrl: "/corporate",
-    imageUrl: "/images/tanzania/dar-es-salaam.jpg"
+    imageUrl: "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201989/tanzania_connect/static/dar-es-salaam.jpg"
   },
   {
     brand: "Featured Business Slot",
@@ -92,7 +92,7 @@ export const SPONSOR_ADS: SponsorAd[] = [
     highlights: ["Direct Expat/Investor Outreach", "Verified Platform Presence", "Brand Listing Compliance Review"],
     actionText: "Request Partnership Specs",
     actionUrl: "/mwijay",
-    imageUrl: "/images/tanzania/safari-camp.jpg"
+    imageUrl: "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202023/tanzania_connect/static/safari-camp.jpg"
   }
 ];
 

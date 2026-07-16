@@ -90,7 +90,7 @@ export default function VisaPage() {
 
         <div className="relative h-[400px] rounded-[3rem] overflow-hidden shadow-2xl mb-12 border border-border/50">
           <Image
-            src="/images/tanzania/zanzibar-beach.jpg"
+            src="https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202052/tanzania_connect/static/zanzibar-beach.jpg"
             alt="Tanzania Immigration & Entry"
             fill
             priority

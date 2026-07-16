@@ -120,7 +120,7 @@ export default function CulturePage() {
 
         <div className="relative h-[400px] rounded-[3rem] overflow-hidden shadow-2xl mb-12 border border-border/50">
           <Image
-            src="/images/tanzania/culture-banner.jpg"
+            src="https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201984/tanzania_connect/static/culture-banner.jpg"
             alt="Tanzania Culture & History"
             fill
             priority

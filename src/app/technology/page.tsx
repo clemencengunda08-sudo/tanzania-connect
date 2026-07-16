@@ -116,7 +116,7 @@ export default function TechnologyPage() {
           {/* Fallback Real Image */}
           <div className="absolute inset-0 -z-20 bg-kilimanjaro-950">
             <Image
-              src="/images/tanzania/tanzania-tech-hub.png"
+              src="https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202048/tanzania_connect/static/tanzania-tech-hub.png"
               alt="Technology Hub Backdrop"
               fill
               priority
@@ -209,7 +209,7 @@ export default function TechnologyPage() {
           </div>
           <div className="lg:col-span-5 relative h-72 md:h-80 rounded-[3rem] overflow-hidden border border-border/50 shadow-xl bg-muted">
             <Image
-              src="/images/tanzania/tanzania-tech-hub.png"
+              src="https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202048/tanzania_connect/static/tanzania-tech-hub.png"
               alt="Tech Incubator Hub in Tanzania"
               fill
               sizes="(max-width: 768px) 100vw, 33vw"

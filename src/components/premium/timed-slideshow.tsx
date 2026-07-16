@@ -13,42 +13,42 @@ const destinationData = [
     title: 'THE ROOF',
     title2: 'OF AFRICA',
     description: 'Mount Kilimanjaro, the highest peak in Africa, stands as an iconic symbol of natural wonder. Rising 5,895 meters above the savannah, its snow-capped peak challenges climbers and inspires travelers from around the globe.',
-    image: '/images/tanzania/mount-kilimanjaro.jpg'
+    image: 'https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202019/tanzania_connect/static/mount-kilimanjaro.jpg'
   },
   {
     place: 'Serengeti National Park',
     title: 'THE GREAT',
     title2: 'WILD MIGRATION',
     description: 'Witness the world\'s most spectacular wildlife event. Millions of wildebeest, zebras, and gazelles traverse the Serengeti plains in an endless circle of life, followed closely by Africa\'s apex predators.',
-    image: '/images/tanzania/serengeti-safari.jpg'
+    image: 'https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202034/tanzania_connect/static/serengeti-safari.jpg'
   },
   {
     place: 'Zanzibar Stone Town',
     title: 'THE SPICE',
     title2: 'ISLAND COAST',
     description: 'Stroll through the narrow labyrinth of Stone Town, a UNESCO World Heritage site rich in culture and history. Enjoy the pristine beaches and turquoise waters of Nungwi and Kendwa.',
-    image: '/images/tanzania/zanzibar-beach.jpg'
+    image: 'https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202052/tanzania_connect/static/zanzibar-beach.jpg'
   },
   {
     place: 'Ngorongoro Crater',
     title: 'THE INTACT',
     title2: 'VOLCANIC CALDERA',
     description: 'Explore the world\'s largest inactive and unfilled volcanic caldera. A natural sanctuary hosting over 25,000 large mammals, including the rare black rhino, living in ecological harmony.',
-    image: '/images/tanzania/ngorongoro-crater.jpg'
+    image: 'https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202021/tanzania_connect/static/ngorongoro-crater.jpg'
   },
   {
     place: 'Mafia Island',
     title: 'MARINE',
     title2: 'RESERVE HAVEN',
     description: 'A secluded paradise for divers and snorkelers. Mafia Island hosts vibrant coral reefs, green turtle nesting sites, and seasonal congregations of whale sharks in crystal clear waters.',
-    image: '/images/tanzania/mafia-island.jpg'
+    image: 'https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202015/tanzania_connect/static/mafia-island.jpg'
   },
   {
     place: 'Arusha Highlands',
     title: 'GATEWAY TO',
     title2: 'NORTHERN SAFARI',
     description: 'Nestled under Mount Meru, Arusha offers lush coffee plantations, temperate highland climates, and serves as the primary base for expeditions to Kilimanjaro and the Serengeti.',
-    image: '/images/tanzania/arusha-town.jpg'
+    image: 'https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201971/tanzania_connect/static/arusha-town.jpg'
   }
 ];
 

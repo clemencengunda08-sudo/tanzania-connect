@@ -122,7 +122,7 @@ export default function EntertainmentPage() {
         {/* Hero Banner Section */}
         <div className="relative h-[400px] rounded-[3rem] overflow-hidden shadow-2xl mb-12 border border-border/50">
           <Image
-            src="/images/tanzania/arusha-town.jpg"
+            src="https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201971/tanzania_connect/static/arusha-town.jpg"
             alt="Vibrant streets in Arusha Town, Tanzania"
             fill
             priority
@@ -163,7 +163,7 @@ export default function EntertainmentPage() {
                 {(sector.title.includes("Bongo Flava") || sector.title.includes("Football")) && (
                   <div className={`relative w-full md:w-[350px] h-[220px] rounded-3xl overflow-hidden shadow-md border shrink-0 ${idx === 1 ? 'order-last md:order-first' : ''}`}>
                     <Image
-                      src={sector.title.includes("Bongo Flava") ? "/images/tanzania/bongo-flava.png" : "/images/tanzania/sports-stadium.png"}
+                      src={sector.title.includes("Bongo Flava") ? "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201979/tanzania_connect/static/bongo-flava.png" : "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202039/tanzania_connect/static/sports-stadium.png"}
                       alt={sector.title}
                       fill
                       className="object-cover"

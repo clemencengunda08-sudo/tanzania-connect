@@ -57,7 +57,7 @@ export function ScrollExpandSection() {
         {/* Background Image */}
         <div className="absolute inset-0 -z-10">
           <Image
-            src="/images/tanzania/serengeti-safari.jpg"
+            src="https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202034/tanzania_connect/static/serengeti-safari.jpg"
             alt="Serengeti Safari Wilderness"
             fill
             sizes="100vw"

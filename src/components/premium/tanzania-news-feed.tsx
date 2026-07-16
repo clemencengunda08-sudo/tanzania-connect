@@ -82,52 +82,52 @@ function getNewsImage(title: string, category: string): string {
   const t = title.toLowerCase();
   
   if (t.includes('serengeti') || t.includes('safari') || t.includes('lion') || t.includes('elephant') || t.includes('wildlife') || t.includes('census') || t.includes('animal') || t.includes('park') || t.includes('conservation')) {
-    const wild = ['/images/tanzania/serengeti-safari.jpg', '/images/tanzania/serengeti-migration.jpg', '/images/tanzania/safari-elephant.jpg', '/images/tanzania/giraffe-tarangire.jpg', '/images/tanzania/ngorongoro-crater.jpg'];
+    const wild = ['https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202034/tanzania_connect/static/serengeti-safari.jpg', 'https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202027/tanzania_connect/static/serengeti-migration.jpg', 'https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202024/tanzania_connect/static/safari-elephant.jpg', 'https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202001/tanzania_connect/static/giraffe-tarangire.jpg', 'https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202021/tanzania_connect/static/ngorongoro-crater.jpg'];
     return wild[Math.abs(hashString(title)) % wild.length];
   }
   
   if (t.includes('zanzibar') || t.includes('beach') || t.includes('tourism') || t.includes('tourist') || t.includes('resort') || t.includes('island') || t.includes('stone town') || t.includes('pemba') || t.includes('mafia')) {
-    const zanzibar = ['/images/tanzania/zanzibar-beach.jpg', '/images/tanzania/zanzibar-rooftop.jpg', '/images/tanzania/mafia-island.jpg'];
+    const zanzibar = ['https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202052/tanzania_connect/static/zanzibar-beach.jpg', 'https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202054/tanzania_connect/static/zanzibar-rooftop.jpg', 'https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202015/tanzania_connect/static/mafia-island.jpg'];
     return zanzibar[Math.abs(hashString(title)) % zanzibar.length];
   }
   
   if (t.includes('kilimanjaro') || t.includes('mountain') || t.includes('hike') || t.includes('climb') || t.includes('peak')) {
-    return '/images/tanzania/mount-kilimanjaro.jpg';
+    return 'https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202019/tanzania_connect/static/mount-kilimanjaro.jpg';
   }
   
   if (t.includes('sgr') || t.includes('rail') || t.includes('train') || t.includes('infrastructure') || t.includes('road') || t.includes('bridge') || t.includes('construction') || t.includes('port') || t.includes('harbour') || t.includes('energy') || t.includes('power') || t.includes('electricity') || t.includes('utility')) {
-    return '/images/tanzania/infrastructure-banner.jpg';
+    return 'https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202013/tanzania_connect/static/infrastructure-banner.jpg';
   }
   
   if (t.includes('agriculture') || t.includes('coffee') || t.includes('farm') || t.includes('crop') || t.includes('harvest') || t.includes('cashew') || t.includes('tea') || t.includes('cotton')) {
-    return '/images/tanzania/agriculture-tanzania.jpg';
+    return 'https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201969/tanzania_connect/static/agriculture-tanzania.jpg';
   }
   
   if (t.includes('mining') || t.includes('gold') || t.includes('tanzanite') || t.includes('diamond') || t.includes('mine') || t.includes('mineral')) {
-    const mining = ['/images/tanzania/mining-banner.png', '/images/tanzania/gold-mining.png', '/images/tanzania/tanzanite-mine.png', '/images/tanzania/diamond-mining.png'];
+    const mining = ['https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202018/tanzania_connect/static/mining-banner.png', 'https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202004/tanzania_connect/static/gold-mining.png', 'https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202050/tanzania_connect/static/tanzanite-mine.png', 'https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201991/tanzania_connect/static/diamond-mining.png'];
     return mining[Math.abs(hashString(title)) % mining.length];
   }
   
   if (t.includes('bank') || t.includes('inflation') || t.includes('finance') || t.includes('economy') || t.includes('economic') || t.includes('shilling') || t.includes('currency') || t.includes('money') || t.includes('revenue') || t.includes('tax') || t.includes('tra')) {
-    return '/images/tanzania/banking.jpg';
+    return 'https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201976/tanzania_connect/static/banking.jpg';
   }
   
   if (t.includes('dar') || t.includes('salaam') || t.includes('city') || t.includes('corporate') || t.includes('hq') || t.includes('headquarters') || t.includes('office')) {
-    return '/images/tanzania/dar-es-salaam.jpg';
+    return 'https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201989/tanzania_connect/static/dar-es-salaam.jpg';
   }
 
   if (category === 'business') {
-    return '/images/tanzania/corporate.jpg';
+    return 'https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201983/tanzania_connect/static/corporate.jpg';
   }
   if (category === 'culture') {
-    return '/images/tanzania/culture-banner.jpg';
+    return 'https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201984/tanzania_connect/static/culture-banner.jpg';
   }
   
   const generic = [
-    '/images/tanzania/dar-es-salaam.jpg',
-    '/images/tanzania/arusha-town.jpg',
-    '/images/tanzania/mount-kilimanjaro.jpg',
-    '/images/tanzania/serengeti-safari.jpg'
+    'https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201989/tanzania_connect/static/dar-es-salaam.jpg',
+    'https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201971/tanzania_connect/static/arusha-town.jpg',
+    'https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202019/tanzania_connect/static/mount-kilimanjaro.jpg',
+    'https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202034/tanzania_connect/static/serengeti-safari.jpg'
   ];
   return generic[Math.abs(hashString(title)) % generic.length];
 }

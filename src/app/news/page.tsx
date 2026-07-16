@@ -30,7 +30,7 @@ export default function NewsPage() {
           {/* Fallback Real Image */}
           <div className="absolute inset-0 -z-20 bg-kilimanjaro-950">
             <Image
-              src="/images/tanzania/dar-es-salaam-housing.png"
+              src="https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201988/tanzania_connect/static/dar-es-salaam-housing.png"
               alt="Tanzania Skyline Backdrop"
               fill
               priority
@@ -185,10 +185,10 @@ export default function NewsPage() {
                 </p>
                 <div className="grid grid-cols-2 gap-2">
                   {[
-                    { id: "mount-kilimanjaro", name: "Mt. Kilimanjaro", path: "/images/tanzania/mount-kilimanjaro.jpg" },
-                    { id: "zanzibar-beach", name: "Zanzibar Beaches", path: "/images/tanzania/zanzibar-beach.jpg" },
-                    { id: "serengeti-safari", name: "Serengeti Savanna", path: "/images/tanzania/serengeti-safari.jpg" },
-                    { id: "dar-es-salaam", name: "Dar es Salaam", path: "/images/tanzania/dar-es-salaam.jpg" },
+                    { id: "mount-kilimanjaro", name: "Mt. Kilimanjaro", path: "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202019/tanzania_connect/static/mount-kilimanjaro.jpg" },
+                    { id: "zanzibar-beach", name: "Zanzibar Beaches", path: "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202052/tanzania_connect/static/zanzibar-beach.jpg" },
+                    { id: "serengeti-safari", name: "Serengeti Savanna", path: "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202034/tanzania_connect/static/serengeti-safari.jpg" },
+                    { id: "dar-es-salaam", name: "Dar es Salaam", path: "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201989/tanzania_connect/static/dar-es-salaam.jpg" },
                   ].map((img) => (
                     <div key={img.id} className="relative group aspect-square rounded-2xl overflow-hidden border border-kilimanjaro-900/10 dark:border-tanzania-50/10 bg-muted">
                       <Image

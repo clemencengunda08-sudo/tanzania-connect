@@ -3,79 +3,79 @@
     {
       "id": "serengeti-safari",
       "description": "Serengeti National Park landscape at golden hour",
-      "imageUrl": "/images/tanzania/serengeti-safari.jpg",
+      "imageUrl": "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202034/tanzania_connect/static/serengeti-safari.jpg",
       "imageHint": "Tanzania Safari"
     },
     {
       "id": "mount-kilimanjaro",
       "description": "Mount Kilimanjaro snow cap at sunrise",
-      "imageUrl": "/images/tanzania/mount-kilimanjaro.jpg",
+      "imageUrl": "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202019/tanzania_connect/static/mount-kilimanjaro.jpg",
       "imageHint": "Mount Kilimanjaro"
     },
     {
       "id": "zanzibar-beach",
       "description": "Pristine white sand beaches of Zanzibar",
-      "imageUrl": "/images/tanzania/zanzibar-beach.jpg",
+      "imageUrl": "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202052/tanzania_connect/static/zanzibar-beach.jpg",
       "imageHint": "Zanzibar Beach"
     },
     {
       "id": "dar-es-salaam",
       "description": "Stone Town architecture, Zanzibar",
-      "imageUrl": "/images/tanzania/dar-es-salaam.jpg",
+      "imageUrl": "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201989/tanzania_connect/static/dar-es-salaam.jpg",
       "imageHint": "Dar es Salaam"
     },
     {
       "id": "agriculture-tanzania",
       "description": "Tanzanian highlands coffee farm",
-      "imageUrl": "/images/tanzania/agriculture-tanzania.jpg",
+      "imageUrl": "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201969/tanzania_connect/static/agriculture-tanzania.jpg",
       "imageHint": "Tanzania Agriculture"
     },
     {
       "id": "arusha-town",
       "description": "Acacia tree at sunset on the savanna",
-      "imageUrl": "/images/tanzania/arusha-town.jpg",
+      "imageUrl": "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201971/tanzania_connect/static/arusha-town.jpg",
       "imageHint": "Arusha Tanzania"
     },
     {
       "id": "ngorongoro-crater",
       "description": "Ngorongoro Crater landscape",
-      "imageUrl": "/images/tanzania/ngorongoro-crater.jpg",
+      "imageUrl": "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202021/tanzania_connect/static/ngorongoro-crater.jpg",
       "imageHint": "Ngorongoro Crater"
     },
     {
       "id": "mafia-island",
       "description": "Tropical coast, Mafia Island",
-      "imageUrl": "/images/tanzania/mafia-island.jpg",
+      "imageUrl": "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202015/tanzania_connect/static/mafia-island.jpg",
       "imageHint": "Mafia Island"
     },
     {
       "id": "serengeti-migration",
       "description": "Wildebeest migration in Serengeti",
-      "imageUrl": "/images/tanzania/serengeti-migration.jpg",
+      "imageUrl": "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202027/tanzania_connect/static/serengeti-migration.jpg",
       "imageHint": "Serengeti Migration"
     },
     {
       "id": "safari-elephant",
       "description": "African elephant in the wild",
-      "imageUrl": "/images/tanzania/safari-elephant.jpg",
+      "imageUrl": "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202024/tanzania_connect/static/safari-elephant.jpg",
       "imageHint": "African Elephant"
     },
     {
       "id": "giraffe-tarangire",
       "description": "Giraffe in Tarangire National Park",
-      "imageUrl": "/images/tanzania/giraffe-tarangire.jpg",
+      "imageUrl": "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202001/tanzania_connect/static/giraffe-tarangire.jpg",
       "imageHint": "Tarangire Giraffe"
     },
     {
       "id": "safari-camp",
       "description": "Luxury safari camp under the stars",
-      "imageUrl": "/images/tanzania/safari-camp.jpg",
+      "imageUrl": "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202023/tanzania_connect/static/safari-camp.jpg",
       "imageHint": "Safari Camp"
     },
     {
       "id": "zanzibar-rooftop",
       "description": "Zanzibar rooftop with ocean view",
-      "imageUrl": "/images/tanzania/zanzibar-rooftop.jpg",
+      "imageUrl": "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202054/tanzania_connect/static/zanzibar-rooftop.jpg",
       "imageHint": "Zanzibar Rooftop"
     }
   ]

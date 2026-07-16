@@ -141,7 +141,7 @@ export function ScrollSyncedText() {
             </span>
             <div className="relative inline-block w-16 h-12 sm:w-24 sm:h-16 md:w-32 md:h-20 bg-muted rounded-2xl overflow-hidden shadow-xl border border-white/10 scroll-img shrink-0">
               <Image
-                src="/images/tanzania/serengeti-safari.jpg"
+                src="https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202034/tanzania_connect/static/serengeti-safari.jpg"
                 alt="Serengeti Safari"
                 fill
                 className="object-cover"
@@ -153,7 +153,7 @@ export function ScrollSyncedText() {
             </span>
             <div className="relative inline-block w-16 h-12 sm:w-24 sm:h-16 md:w-32 md:h-20 bg-muted rounded-2xl overflow-hidden shadow-xl border border-white/10 scroll-img shrink-0">
               <Image
-                src="/images/tanzania/zanzibar-beach.jpg"
+                src="https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202052/tanzania_connect/static/zanzibar-beach.jpg"
                 alt="Zanzibar Beach"
                 fill
                 className="object-cover"
@@ -166,7 +166,7 @@ export function ScrollSyncedText() {
           <div ref={row2Ref} className="flex flex-nowrap items-center justify-center gap-4 sm:gap-6 whitespace-nowrap will-change-transform">
             <div className="relative inline-block w-20 h-12 sm:w-28 sm:h-16 md:w-36 md:h-20 bg-muted rounded-2xl overflow-hidden shadow-xl border border-white/10 scroll-img shrink-0">
               <Image
-                src="/images/tanzania/mount-kilimanjaro.jpg"
+                src="https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202019/tanzania_connect/static/mount-kilimanjaro.jpg"
                 alt="Mount Kilimanjaro"
                 fill
                 className="object-cover"
@@ -178,7 +178,7 @@ export function ScrollSyncedText() {
             </span>
             <div className="relative inline-block w-16 h-12 sm:w-24 sm:h-16 md:w-32 md:h-20 bg-muted rounded-2xl overflow-hidden shadow-xl border border-white/10 scroll-img shrink-0">
               <Image
-                src="/images/tanzania/dar-es-salaam.jpg"
+                src="https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201989/tanzania_connect/static/dar-es-salaam.jpg"
                 alt="Dar es Salaam"
                 fill
                 className="object-cover"

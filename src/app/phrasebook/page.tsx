@@ -1,14 +1,14 @@
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+"use client";
+
+import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { 
   MessageCircle, Briefcase, Languages, Gavel, 
-  Coins, Landmark, ShieldAlert, ArrowLeft, Coffee, Zap,
-  AlertTriangle, Phone
+  Coins, Landmark, ShieldAlert, Coffee, Zap
 } from "lucide-react"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import Image from "next/image"
+import { motion } from "framer-motion"
 
 const phrases = {
   greetings: [
@@ -51,37 +51,37 @@ const phrases = {
 
 const tabMediaMap = {
   greetings: {
-    image: "/images/tanzania/arusha-town.jpg",
+    image: "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201971/tanzania_connect/static/arusha-town.jpg",
     label: "Local Community, Arusha",
     title: "The Art of Swahili Welcoming",
     desc: "Greetings are not a transaction but a social duty in Swahili culture. Even when asking directions or ordering food, start with 'Habari!' or 'Mambo!'. Respectful greetings lay the foundation for smooth interactions.",
   },
   business: {
-    image: "/images/tanzania/corporate.jpg",
+    image: "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201983/tanzania_connect/static/corporate.jpg",
     label: "Dar Trade District",
     title: "Corporate & Formal Etiquette",
     desc: "When dealing with BRELA or government officials, formal Swahili terms show respect and seriousness. Ensure you use standard terms like 'Mkataba' (Contract) and start meetings with a polite check-in.",
   },
   legal: {
-    image: "/images/tanzania/dar-es-salaam.jpg",
+    image: "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201989/tanzania_connect/static/dar-es-salaam.jpg",
     label: "Dar es Salaam Court",
     title: "Navigating Regulations",
     desc: "Understanding legal terminology protects your business interest. Terms like 'Kibali cha kazi' (Work permit) are vital during interactions with the Ministry of Labor and Immigration services.",
   },
   finance: {
-    image: "/images/tanzania/banking.jpg",
+    image: "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201976/tanzania_connect/static/banking.jpg",
     label: "Corporate Bank HQ",
     title: "Financial Integration",
     desc: "Tanzania's financial sector blends modern banking with mobile money ecosystems. Learning transaction vocabulary helps in setting up local commercial and investment accounts.",
   },
   logistics: {
-    image: "/images/tanzania/transport-banner.jpg",
+    image: "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202051/tanzania_connect/static/transport-banner.jpg",
     label: "SGR Inter-city Station",
     title: "Travel & Transit",
     desc: "Navigating cities or long-distance travel via the SGR train requires basic directional vocabulary. Local transport systems are highly social hubs where Swahili is essential.",
   },
   emergency: {
-    image: "/images/tanzania/healthcare-banner.jpg",
+    image: "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202006/tanzania_connect/static/healthcare-banner.jpg",
     label: "National Hospital",
     title: "Safety & Emergency Response",
     desc: "Keep emergency phrases handy. If calling public police or seeking medical assistance, clear and direct Swahili phrases are the fastest way to obtain local support.",
@@ -111,7 +111,7 @@ export default function PhrasebookPage() {
           </div>
           <div className="lg:col-span-4 relative h-48 md:h-56 rounded-[2rem] overflow-hidden border border-border/50 shadow-xl bg-muted">
             <Image
-              src="/images/tanzania/culture-banner.jpg"
+              src="https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201984/tanzania_connect/static/culture-banner.jpg"
               alt="Swahili Culture"
               fill
               sizes="(max-width: 768px) 100vw, 33vw"
@@ -124,28 +124,28 @@ export default function PhrasebookPage() {
         </div>
 
         <Tabs defaultValue="greetings" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 md:grid-cols-6 bg-muted/50 p-1.5 h-20 md:h-14 rounded-2xl md:rounded-full border border-border/50">
-            <TabsTrigger value="greetings" className="flex items-center gap-2 text-xs font-bold rounded-xl md:rounded-full data-[state=active]:bg-background data-[state=active]:shadow-lg">
+          <TabsList className="flex items-center justify-start md:justify-center overflow-x-auto whitespace-nowrap scrollbar-none w-full bg-muted/30 p-1.5 h-auto rounded-3xl border border-border/40 gap-1.5">
+            <TabsTrigger value="greetings" className="flex items-center gap-2 text-sm font-bold rounded-2xl px-5 py-3 data-[state=active]:bg-background data-[state=active]:shadow-lg shrink-0">
               <MessageCircle className="h-4 w-4" />
               <span>Hello</span>
             </TabsTrigger>
-            <TabsTrigger value="business" className="flex items-center gap-2 text-xs font-bold rounded-xl md:rounded-full data-[state=active]:bg-background data-[state=active]:shadow-lg">
+            <TabsTrigger value="business" className="flex items-center gap-2 text-sm font-bold rounded-2xl px-5 py-3 data-[state=active]:bg-background data-[state=active]:shadow-lg shrink-0">
               <Briefcase className="h-4 w-4" />
               <span>Work</span>
             </TabsTrigger>
-            <TabsTrigger value="legal" className="flex items-center gap-2 text-xs font-bold rounded-xl md:rounded-full data-[state=active]:bg-background data-[state=active]:shadow-lg">
+            <TabsTrigger value="legal" className="flex items-center gap-2 text-sm font-bold rounded-2xl px-5 py-3 data-[state=active]:bg-background data-[state=active]:shadow-lg shrink-0">
               <Gavel className="h-4 w-4" />
               <span>Legal</span>
             </TabsTrigger>
-            <TabsTrigger value="finance" className="flex items-center gap-2 text-xs font-bold rounded-xl md:rounded-full data-[state=active]:bg-background data-[state=active]:shadow-lg">
+            <TabsTrigger value="finance" className="flex items-center gap-2 text-sm font-bold rounded-2xl px-5 py-3 data-[state=active]:bg-background data-[state=active]:shadow-lg shrink-0">
               <Coins className="h-4 w-4" />
               <span>Money</span>
             </TabsTrigger>
-            <TabsTrigger value="logistics" className="flex items-center gap-2 text-xs font-bold rounded-xl md:rounded-full data-[state=active]:bg-background data-[state=active]:shadow-lg">
+            <TabsTrigger value="logistics" className="flex items-center gap-2 text-sm font-bold rounded-2xl px-5 py-3 data-[state=active]:bg-background data-[state=active]:shadow-lg shrink-0">
               <Landmark className="h-4 w-4" />
               <span>Travel</span>
             </TabsTrigger>
-            <TabsTrigger value="emergency" className="flex items-center gap-2 text-xs font-bold rounded-xl md:rounded-full data-[state=active]:bg-background data-[state=active]:shadow-lg text-rose-500">
+            <TabsTrigger value="emergency" className="flex items-center gap-2 text-sm font-bold rounded-2xl px-5 py-3 data-[state=active]:bg-background data-[state=active]:shadow-lg shrink-0 text-rose-500 data-[state=active]:text-rose-600 dark:data-[state=active]:text-rose-400">
               <ShieldAlert className="h-4 w-4" />
               <span>SOS</span>
             </TabsTrigger>
@@ -160,23 +160,31 @@ export default function PhrasebookPage() {
                   {/* Left Column: Phrases List */}
                   <div className="lg:col-span-8 space-y-4">
                     {list.map((item, i) => (
-                      <Card key={i} className="border-none shadow-sm rounded-[2rem] bg-card hover:shadow-md transition-all border border-border/30 group overflow-hidden">
-                        <CardContent className="p-8 md:p-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-                          <div className="space-y-4">
-                            <div className="flex items-center gap-3">
-                              <div className="w-2 h-10 bg-primary/20 rounded-full group-hover:bg-primary transition-colors" />
-                              <p className="text-3xl md:text-5xl font-black font-headline text-foreground tracking-tight">{item.sw}</p>
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-5%" }}
+                        transition={{ duration: 0.4, delay: i * 0.05 }}
+                      >
+                        <Card className="border-none shadow-sm rounded-[2rem] bg-card hover:shadow-md transition-all border border-border/30 group overflow-hidden">
+                          <CardContent className="p-6 md:p-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                            <div className="space-y-3">
+                              <div className="flex items-center gap-3">
+                                <div className="w-2 h-10 bg-primary/20 rounded-full group-hover:bg-primary transition-colors" />
+                                <p className="text-xl md:text-3.5xl font-black font-headline text-foreground tracking-tight leading-tight">{item.sw}</p>
+                              </div>
+                              <p className="text-sm md:text-lg text-muted-foreground font-medium pl-3 md:pl-5">{item.en}</p>
                             </div>
-                            <p className="text-lg md:text-xl text-muted-foreground font-medium pl-5">{item.en}</p>
-                          </div>
-                          {item.response !== "-" && (
-                            <div className="px-8 py-5 rounded-3xl bg-secondary/10 text-secondary-foreground font-bold text-base border border-secondary/20 flex flex-col">
-                              <span className="text-[10px] uppercase tracking-widest opacity-60 mb-2 font-black">Common Response</span>
-                              {item.response}
-                            </div>
-                          )}
-                        </CardContent>
-                      </Card>
+                            {item.response !== "-" && (
+                              <div className="px-6 py-4 md:px-8 md:py-5 rounded-3xl bg-secondary/10 text-secondary font-bold text-sm md:text-base border border-secondary/20 flex flex-col shrink-0">
+                                <span className="text-[10px] uppercase tracking-widest opacity-60 mb-2 font-black">Common Response</span>
+                                {item.response}
+                              </div>
+                            )}
+                          </CardContent>
+                        </Card>
+                      </motion.div>
                     ))}
                   </div>
 
@@ -229,7 +237,7 @@ export default function PhrasebookPage() {
           </div>
           <div className="relative rounded-[2rem] overflow-hidden border border-primary/10 min-h-[220px] bg-muted shadow-lg">
             <Image
-              src="/images/tanzania/swahili-cuisine.png"
+              src="https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202041/tanzania_connect/static/swahili-cuisine.png"
               alt="Swahili Hospitality & Food"
               fill
               sizes="(max-width: 768px) 100vw, 33vw"

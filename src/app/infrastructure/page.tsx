@@ -152,7 +152,7 @@ export default function InfrastructurePage() {
 
         <div className="relative h-[400px] rounded-[3rem] overflow-hidden shadow-2xl mb-12 border border-border/50">
           <Image
-            src="/images/tanzania/infrastructure-banner.jpg"
+            src="https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202013/tanzania_connect/static/infrastructure-banner.jpg"
             alt="Tanzania Infrastructure & Utilities"
             fill
             priority

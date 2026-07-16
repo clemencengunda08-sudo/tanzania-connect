@@ -35,8 +35,8 @@ export function MobileBottomNav() {
     );
   }
 
-  // Hide completely on admin routes after mount
-  if (pathname?.startsWith("/p-access")) return null;
+  // Hide completely on admin routes and phrasebook page after mount
+  if (pathname?.startsWith("/p-access") || pathname === "/phrasebook") return null;
 
   return (
     <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-background border-t border-border/50 pb-[env(safe-area-inset-bottom)] px-4">

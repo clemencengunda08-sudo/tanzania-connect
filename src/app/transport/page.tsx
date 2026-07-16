@@ -145,7 +145,7 @@ export default function TransportPage() {
 
         <div className="relative h-[400px] rounded-[3rem] overflow-hidden shadow-2xl mb-12 border border-border/50">
           <Image
-            src="/images/tanzania/transport-banner.jpg"
+            src="https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202051/tanzania_connect/static/transport-banner.jpg"
             alt="Tanzania Transport & Navigation"
             fill
             priority
@@ -256,7 +256,7 @@ export default function TransportPage() {
             </div>
             <div className="lg:col-span-5 relative h-56 md:h-64 rounded-[2rem] overflow-hidden border border-white/10 shadow-xl bg-black/20">
               <Image
-                src="/images/tanzania/sgr-pic-user.jpeg"
+                src="https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202036/tanzania_connect/static/sgr-pic-user.jpg"
                 alt="Modern Standard Gauge Railway (SGR) Electric Train in Tanzania"
                 fill
                 sizes="(max-width: 1024px) 100vw, 30vw"

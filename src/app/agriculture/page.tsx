@@ -138,7 +138,7 @@ export default function AgriculturePage() {
 
         <div className="relative h-[400px] rounded-[3rem] overflow-hidden shadow-2xl mb-12 border border-border/50">
           <Image
-            src="/images/tanzania/agriculture-tanzania.jpg"
+            src="https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201969/tanzania_connect/static/agriculture-tanzania.jpg"
             alt="Tanzania Agriculture"
             fill
             priority

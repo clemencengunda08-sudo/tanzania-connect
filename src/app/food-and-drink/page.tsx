@@ -101,7 +101,7 @@ export default function FoodAndDrinkPage() {
         {/* Hero Banner Section */}
         <div className="relative h-[400px] rounded-[3rem] overflow-hidden shadow-2xl mb-12 border border-border/50">
           <Image
-            src="/images/tanzania/zanzibar-rooftop.jpg"
+            src="https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202054/tanzania_connect/static/zanzibar-rooftop.jpg"
             alt="Traditional Swahili Dining on Zanzibar Rooftop"
             fill
             priority
@@ -145,7 +145,7 @@ export default function FoodAndDrinkPage() {
                 </div>
                 <div className={`relative h-[300px] rounded-3xl overflow-hidden shadow-md border ${idx === 1 ? 'order-last md:order-first' : ''}`}>
                   <Image
-                    src={cat.title === "Coastal Swahili Cuisine" ? "/images/tanzania/swahili-cuisine.png" : "/images/tanzania/chipsi-mayai.png"}
+                    src={cat.title === "Coastal Swahili Cuisine" ? "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202041/tanzania_connect/static/swahili-cuisine.png" : "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201982/tanzania_connect/static/chipsi-mayai.png"}
                     alt={cat.title}
                     fill
                     className="object-cover"

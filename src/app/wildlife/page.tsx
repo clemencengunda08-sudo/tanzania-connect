@@ -135,7 +135,7 @@ export default function WildlifePage() {
             muted
             playsInline
             className="absolute inset-0 w-full h-full object-cover"
-            poster="/images/tanzania/serengeti-safari.jpg"
+            poster="https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202034/tanzania_connect/static/serengeti-safari.jpg"
           >
             <source src="/videos/section.mp4" type="video/mp4" />
           </video>
@@ -250,7 +250,7 @@ export default function WildlifePage() {
                   muted
                   playsInline
                   className="absolute inset-0 w-full h-full object-cover"
-                  poster="/images/tanzania/ngorongoro-crater.jpg"
+                  poster="https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202021/tanzania_connect/static/ngorongoro-crater.jpg"
                 >
                   <source src="/videos/video2.mp4" type="video/mp4" />
                 </video>

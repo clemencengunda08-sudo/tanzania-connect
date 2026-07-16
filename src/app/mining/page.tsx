@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "https://www.tanzaniareach.com/images/tanzania/mining-banner.png",
+        url: "https://www.tanzaniareach.comhttps://res.cloudinary.com/dwykuhmp5/image/upload/v1784202018/tanzania_connect/static/mining-banner.png",
         width: 1200,
         height: 630,
         alt: meta.ogTitle,
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     site: "@tanzaniareach",
     title: meta.ogTitle,
     description: meta.ogDescription,
-    images: ["https://www.tanzaniareach.com/images/tanzania/mining-banner.png"],
+    images: ["https://www.tanzaniareach.comhttps://res.cloudinary.com/dwykuhmp5/image/upload/v1784202018/tanzania_connect/static/mining-banner.png"],
   },
   robots: {
     index: true,
@@ -106,7 +106,7 @@ export default function MiningPage() {
         {/* Hero Section */}
         <div className="relative h-[400px] rounded-[3rem] overflow-hidden shadow-2xl mb-12 border border-border/50">
           <Image
-            src="/images/tanzania/mining-banner.png"
+            src="https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202018/tanzania_connect/static/mining-banner.png"
             alt="Tanzania Mining & Minerals"
             fill
             priority
@@ -157,7 +157,7 @@ export default function MiningPage() {
             </div>
             <div className="relative h-[250px] rounded-3xl overflow-hidden shadow-md border">
               <Image
-                src="/images/tanzania/gold-mining.png"
+                src="https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202004/tanzania_connect/static/gold-mining.png"
                 alt="Gold processing in Tanzania"
                 fill
                 className="object-cover"
@@ -178,7 +178,7 @@ export default function MiningPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="relative h-[250px] rounded-3xl overflow-hidden shadow-md border order-last md:order-first">
               <Image
-                src="/images/tanzania/tanzanite-mine.png"
+                src="https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202050/tanzania_connect/static/tanzanite-mine.png"
                 alt="Raw Tanzanite Crystal"
                 fill
                 className="object-cover"
@@ -215,7 +215,7 @@ export default function MiningPage() {
             </div>
             <div className="relative h-[250px] rounded-3xl overflow-hidden shadow-md border">
               <Image
-                src="/images/tanzania/diamond-mining.png"
+                src="https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201991/tanzania_connect/static/diamond-mining.png"
                 alt="Tanzanian mineral sorting facility"
                 fill
                 className="object-cover"

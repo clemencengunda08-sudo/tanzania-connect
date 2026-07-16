@@ -130,7 +130,7 @@ export default function CorporatePage() {
 
           <div className="relative h-[400px] rounded-[3rem] overflow-hidden shadow-2xl mb-12 border border-border/50">
             <Image
-              src="/images/tanzania/corporate.jpg"
+              src="https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201983/tanzania_connect/static/corporate.jpg"
               alt="Tanzania Corporate & Regulatory"
               fill
               priority

@@ -134,7 +134,7 @@ export default function HousingPage() {
 
         <div className="relative h-[400px] rounded-[3rem] overflow-hidden shadow-2xl mb-12 border border-border/50">
           <Image
-            src="/images/tanzania/dar-es-salaam-housing.png"
+            src="https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201988/tanzania_connect/static/dar-es-salaam-housing.png"
             alt="Tanzania Housing & Real Estate Skyline in Dar es Salaam"
             fill
             priority
@@ -194,7 +194,7 @@ export default function HousingPage() {
             <div className="space-y-6">
               <div className="relative h-[220px] rounded-3xl overflow-hidden shadow-md border bg-card">
                 <Image
-                  src="/images/tanzania/dalali-system.png"
+                  src="https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201986/tanzania_connect/static/dalali-system.png"
                   alt="Tanzania Dalali System Key Handover"
                   fill
                   className="object-cover"

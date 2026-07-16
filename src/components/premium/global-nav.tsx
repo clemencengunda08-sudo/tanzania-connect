@@ -30,6 +30,7 @@ const NAV_LINKS = [
       { href: '/infrastructure', label: 'Infrastructure & Energy' },
     ],
   },
+  { href: '/phrasebook', label: 'Swahili' },
   { href: '/news', label: 'News' },
   { href: '/about', label: 'About' },
 ];
