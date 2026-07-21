@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Card } from "@/components/ui/card"
 import { 
   Landmark, Coins, ArrowLeft, ArrowRight,
@@ -35,9 +36,17 @@ const staticSectors = [
   { title: "Entertainment", desc: "Music, sports, nightlife, and cinema.", icon: Tv, href: "/entertainment", tag: "Lifestyle" },
 ]
 
-export default function GuidesPage() {
+function GuidesContent() {
   const { sectors, loading } = useSectors();
+  const searchParams = useSearchParams();
   const [search, setSearch] = useState('');
+
+  useEffect(() => {
+    const q = searchParams.get('q');
+    if (q) {
+      setSearch(q);
+    }
+  }, [searchParams]);
 
   const filteredStatic = staticSectors.filter(s => 
     s.title.toLowerCase().includes(search.toLowerCase()) || 
@@ -187,5 +196,17 @@ export default function GuidesPage() {
         </section>
       </main>
     </div>
-  )
+  );
+}
+
+export default function GuidesPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <Loader2 className="w-8 h-8 text-primary animate-spin" />
+      </div>
+    }>
+      <GuidesContent />
+    </Suspense>
+  );
 }

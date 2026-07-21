@@ -166,8 +166,8 @@ export function HomePageClient() {
         </section>
 
         {/* ============== INTRO STATEMENT & INLINE STATS ============== */}
-        <section className="relative px-6 md:px-12 lg:px-24 pt-12 pb-16 md:pt-16 md:pb-24 max-w-[1600px] mx-auto">
-          <div className="h-32 md:h-44 flex items-center justify-start max-w-5xl text-kilimanjaro-900 dark:text-tanzania-50">
+        <section className="relative px-6 md:px-12 lg:px-24 py-8 md:py-14 max-w-[1600px] mx-auto">
+          <div className="min-h-[5rem] md:min-h-[7rem] flex items-center justify-start max-w-5xl text-kilimanjaro-900 dark:text-tanzania-50">
             <SmokyText
               text="Tanzania is vast, intricate, and quietly one of Africa's most rewarding frontiers."
               color="currentColor"
@@ -177,21 +177,21 @@ export function HomePageClient() {
               font={{
                 fontFamily: "var(--font-inter)",
                 fontWeight: 800,
-                fontSize: "clamp(2rem, 4vw, 4.5rem)",
-                lineHeight: "1.1",
+                fontSize: "clamp(1.75rem, 3.2vw, 3.5rem)",
+                lineHeight: "1.15",
                 textAlign: "left",
               }}
             />
           </div>
-          <RevealOnScroll delay={0.6}>
-            <p className="mt-6 max-w-2xl text-lg text-kilimanjaro-600 dark:text-tanzania-200 leading-relaxed mb-10">
+          <RevealOnScroll delay={0.4}>
+            <p className="mt-4 max-w-2xl text-base md:text-lg text-kilimanjaro-600 dark:text-tanzania-200 leading-relaxed mb-6">
               We curate licensing requirements, regulations, agency contacts, and timelines so that
               investors, executives, and explorers spend their first 90 days building, not searching.
             </p>
           </RevealOnScroll>
 
-          <RevealOnScroll delay={0.8}>
-            <div className="border-t border-kilimanjaro-900/10 dark:border-tanzania-50/10 pt-10">
+          <RevealOnScroll delay={0.6}>
+            <div className="border-t border-kilimanjaro-900/10 dark:border-tanzania-50/10 pt-6">
               <StatsBlock
                 stats={[
                   { value: 31, label: "Regions administered", suffix: "" },
@@ -206,23 +206,23 @@ export function HomePageClient() {
         </section>
 
         {/* ============== PILLARS ============== */}
-        <section className="relative px-6 md:px-12 lg:px-24 py-20 md:py-28 max-w-[1600px] mx-auto">
-          <ScrollReveal variant="slide-left" duration={1} distance={60}>
-            <h3 className="font-display text-3xl md:text-4xl font-medium tracking-tight text-kilimanjaro-900 dark:text-tanzania-50 mb-16 max-w-2xl">
+        <section className="relative px-6 md:px-12 lg:px-24 py-10 md:py-16 max-w-[1600px] mx-auto">
+          <ScrollReveal variant="slide-left" duration={0.8} distance={40}>
+            <h3 className="font-display text-2xl md:text-3xl font-medium tracking-tight text-kilimanjaro-900 dark:text-tanzania-50 mb-8 max-w-2xl">
               Three commitments to every professional who lands here.
             </h3>
           </ScrollReveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 border-t border-kilimanjaro-900/10 dark:border-tanzania-50/10 pt-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 border-t border-kilimanjaro-900/10 dark:border-tanzania-50/10 pt-8">
             {PILLARS.map((p, i) => (
               <RevealOnScroll key={p.title} delay={i * 0.1}>
                 <div className="flex flex-col h-full">
-                  <div className="w-10 h-10 rounded-xl bg-tanzania-500/10 text-tanzania-600 dark:text-tanzania-400 flex items-center justify-center mb-6">
-                    <p.icon className="w-5 h-5" strokeWidth={1.5} />
+                  <div className="w-9 h-9 rounded-xl bg-tanzania-500/10 text-tanzania-600 dark:text-tanzania-400 flex items-center justify-center mb-4">
+                    <p.icon className="w-4 h-4" strokeWidth={1.5} />
                   </div>
-                  <h4 className="font-display text-xl font-medium tracking-tight text-kilimanjaro-900 dark:text-tanzania-50 mb-3">
+                  <h4 className="font-display text-lg font-medium tracking-tight text-kilimanjaro-900 dark:text-tanzania-50 mb-2">
                     {p.title}
                   </h4>
-                  <p className="text-sm text-kilimanjaro-600 dark:text-tanzania-200 leading-relaxed">
+                  <p className="text-xs md:text-sm text-kilimanjaro-600 dark:text-tanzania-200 leading-relaxed">
                     {p.desc}
                   </p>
                 </div>
@@ -233,72 +233,119 @@ export function HomePageClient() {
 
         <ScrollExpandSection />
 
-        {/* ============== SECTOR GRID ============== */}
-        <section className="relative px-6 md:px-12 lg:px-24 py-24 md:py-32 max-w-[1600px] mx-auto">
-          <ScrollReveal variant="fade-up" distance={30}>
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mb-16">
-            <RevealOnScroll>
-              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-tanzania-600 dark:text-tanzania-400 mb-4">
-                Sector library
-              </p>
-              <h3 className="font-display text-3xl md:text-5xl font-medium tracking-tightest text-kilimanjaro-900 dark:text-tanzania-50">
-                Eighteen sectors. <span className="italic text-tanzania-500">One</span> source of truth.
-              </h3>
-            </RevealOnScroll>
-            <RevealOnScroll delay={0.2}>
+        {/* ============== STREAMLINED FEATURED SECTORS HUB ============== */}
+        <section className="relative px-6 md:px-12 lg:px-24 py-10 md:py-16 max-w-[1600px] mx-auto">
+          <ScrollReveal variant="fade-up" distance={20}>
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-6">
+              <RevealOnScroll>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-tanzania-500/10 border border-tanzania-500/20 mb-2">
+                  <Sparkles className="w-3.5 h-3.5 text-tanzania-500" />
+                  <span className="font-mono text-[11px] font-semibold uppercase tracking-wider text-tanzania-600 dark:text-tanzania-400">
+                    Curated Intelligence
+                  </span>
+                </div>
+                <h3 className="font-display text-2xl md:text-4xl font-medium tracking-tightest text-kilimanjaro-900 dark:text-tanzania-50">
+                  Priority Sectors & <span className="italic text-tanzania-500">Expert</span> Guides.
+                </h3>
+              </RevealOnScroll>
+              <RevealOnScroll delay={0.15}>
+                <Link
+                  href="/guides"
+                  className="group inline-flex items-center gap-2 px-4 py-2 rounded-full bg-kilimanjaro-900 dark:bg-tanzania-100 text-tanzania-50 dark:text-kilimanjaro-950 font-medium text-xs sm:text-sm hover:scale-105 transition-all shadow-md shrink-0"
+                >
+                  Browse all 18 Sector Manuals <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </Link>
+              </RevealOnScroll>
+            </div>
+
+            {/* Quick Sector Filter Chips Bar */}
+            <div className="flex items-center gap-2 overflow-x-auto pb-3 mb-6 no-scrollbar scroll-smooth">
+              {[
+                { label: "Agriculture", slug: "agriculture", icon: Sprout },
+                { label: "Mining & Minerals", slug: "mining", icon: Mountain },
+                { label: "Visa & Immigration", slug: "immigration", icon: Globe2 },
+                { label: "Tourism & Hotels", slug: "tourism", icon: Compass },
+                { label: "Real Estate", slug: "real-estate", icon: Building2 },
+                { label: "Banking & Forex", slug: "banking", icon: Banknote },
+                { label: "Energy & Utilities", slug: "energy", icon: Zap },
+                { label: "Legal Framework", slug: "legal", icon: Landmark },
+                { label: "Technology & ICT", slug: "technology", icon: Wifi },
+              ].map((chip) => {
+                const ChipIcon = chip.icon;
+                return (
+                  <Link
+                    key={chip.slug}
+                    href={getSectorUrl(chip.slug)}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-kilimanjaro-900/10 dark:border-tanzania-50/10 bg-tanzania-50/60 dark:bg-kilimanjaro-900/60 text-xs font-medium text-kilimanjaro-800 dark:text-tanzania-200 hover:border-tanzania-500/50 hover:bg-tanzania-500/10 hover:text-tanzania-600 dark:hover:text-tanzania-400 transition-all whitespace-nowrap shrink-0"
+                  >
+                    <ChipIcon className="w-3 h-3 text-tanzania-500" />
+                    <span>{chip.label}</span>
+                  </Link>
+                );
+              })}
               <Link
                 href="/guides"
-                className="inline-flex items-center gap-2 text-tanzania-600 dark:text-tanzania-400 font-medium hover:gap-3 transition-all shrink-0"
+                className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-tanzania-500/15 border border-tanzania-500/30 text-xs font-semibold text-tanzania-600 dark:text-tanzania-400 hover:bg-tanzania-500/25 transition-all whitespace-nowrap shrink-0"
               >
-                Browse all 18 <ArrowUpRight className="w-4 h-4" />
+                <span>+9 More</span>
+                <ChevronRight className="w-3 h-3" />
               </Link>
-            </RevealOnScroll>
-          </div>
+            </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {TOP_SECTORS.map((slug, i) => {
-              const meta = sectorMetaMap[slug];
-              if (!meta) return null;
-              const Icon = sectorIconMap[slug] ?? Compass;
-              return (
-                <ScrollReveal key={slug} variant="fade-up" delay={(i % 6) * 0.05} distance={30}>
-                  <SpotlightCard
-                    href={getSectorUrl(slug)}
-                    ariaLabel={meta.title.split(" — ")[0]}
-                    className="group h-full p-6 bg-card border-kilimanjaro-900/10 dark:border-tanzania-50/10 rounded-3xl"
-                    glowColor="200, 149, 25"
-                  >
-                    <div className="flex flex-col h-full min-h-[160px]">
-                      <div className="flex justify-between items-start mb-4">
-                        <div className="w-10 h-10 rounded-2xl bg-tanzania-500/10 text-tanzania-600 dark:text-tanzania-400 flex items-center justify-center transition-transform group-hover:scale-110 group-hover:rotate-3 duration-500">
-                          <Icon className="w-5 h-5" strokeWidth={1.5} />
+            {/* Compact 4-Card Spotlight Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {[
+                { slug: "agriculture", tag: "Agribusiness & Land" },
+                { slug: "mining", tag: "Gold, Lithium & TMAA" },
+                { slug: "immigration", tag: "Work Permits & Visas" },
+                { slug: "tourism", tag: "Safaris & Hospitality" },
+              ].map(({ slug, tag }, i) => {
+                const meta = sectorMetaMap[slug];
+                if (!meta) return null;
+                const Icon = sectorIconMap[slug] ?? Compass;
+                return (
+                  <ScrollReveal key={slug} variant="fade-up" delay={i * 0.06} distance={15}>
+                    <SpotlightCard
+                      href={getSectorUrl(slug)}
+                      ariaLabel={meta.title.split(" — ")[0]}
+                      className="group h-full p-5 bg-card border-kilimanjaro-900/10 dark:border-tanzania-50/10 rounded-2xl hover:border-tanzania-500/40 transition-all"
+                      glowColor="200, 149, 25"
+                    >
+                      <div className="flex flex-col h-full justify-between min-h-[150px]">
+                        <div>
+                          <div className="flex justify-between items-start mb-3">
+                            <div className="w-9 h-9 rounded-xl bg-tanzania-500/10 text-tanzania-600 dark:text-tanzania-400 flex items-center justify-center transition-transform group-hover:scale-110 group-hover:rotate-3 duration-300">
+                              <Icon className="w-4 h-4" strokeWidth={1.5} />
+                            </div>
+                            <span className="font-mono text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-full bg-tanzania-500/10 text-tanzania-600 dark:text-tanzania-400 border border-tanzania-500/20">
+                              {tag}
+                            </span>
+                          </div>
+                          <h4 className="font-display text-lg font-semibold tracking-tight text-kilimanjaro-900 dark:text-tanzania-50 mb-1.5 group-hover:text-tanzania-500 transition-colors">
+                            {meta.title.split(" — ")[0]}
+                          </h4>
+                          <p className="text-xs text-kilimanjaro-600 dark:text-tanzania-200 leading-relaxed line-clamp-2">
+                            {meta.ogDescription}
+                          </p>
                         </div>
-                        <ArrowUpRight className="w-4 h-4 text-kilimanjaro-400 dark:text-tanzania-400 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-tanzania-500" />
+                        <div className="mt-4 pt-2.5 border-t border-kilimanjaro-900/5 dark:border-tanzania-50/5 flex items-center justify-between">
+                          <span className="text-xs font-medium text-tanzania-600 dark:text-tanzania-400 flex items-center gap-1 group-hover:gap-1.5 transition-all">
+                            View Guide <ArrowRight className="w-3 h-3" />
+                          </span>
+                          <span className="font-mono text-[10px] text-kilimanjaro-400 dark:text-tanzania-400">
+                            0{i + 1}
+                          </span>
+                        </div>
                       </div>
-                      <h4 className="font-display text-lg md:text-xl font-medium tracking-tight text-kilimanjaro-900 dark:text-tanzania-50 mb-2">
-                        {meta.title.split(" — ")[0]}
-                      </h4>
-                      <p className="text-xs md:text-sm text-kilimanjaro-600 dark:text-tanzania-200 leading-relaxed flex-1">
-                        {meta.ogDescription}
-                      </p>
-                      <div className="mt-4 pt-3 border-t border-kilimanjaro-900/5 dark:border-tanzania-50/5 flex items-center justify-between">
-                        <span className="font-mono text-[12px] text-kilimanjaro-500 dark:text-tanzania-300">
-                          {String(i + 1).padStart(2, "0")} / {TOP_SECTORS.length}
-                        </span>
-                        <span className="font-mono text-[11px] text-tanzania-500/80">
-                          #{meta.keywords[0].toLowerCase()}
-                        </span>
-                      </div>
-                    </div>
-                  </SpotlightCard>
-                </ScrollReveal>
-              );
-            })}
-          </div>
+                    </SpotlightCard>
+                  </ScrollReveal>
+                );
+              })}
+            </div>
           </ScrollReveal>
 
           {/* Premium Photo Marquee Wake Showcase */}
-          <div className="mt-16">
+          <div className="mt-8">
             <MagneticSpotlightMarquee images={spotlightImages} />
           </div>
         </section>
@@ -310,23 +357,23 @@ export function HomePageClient() {
         <VerticalColumnsSlider />
 
         {/* ============== DARK BAND — ABOUT ============== */}
-        <section className="relative my-20 overflow-hidden">
+        <section className="relative my-10 overflow-hidden">
           <div className="absolute inset-0 bg-kilimanjaro-950" />
           <div className="absolute inset-0 opacity-15">
             <ParticleField count={30} color="212, 175, 55" />
           </div>
-          <div className="relative px-6 md:px-12 lg:px-24 py-28 md:py-40 max-w-[1600px] mx-auto text-tanzania-50">
+          <div className="relative px-6 md:px-12 lg:px-24 py-16 md:py-24 max-w-[1600px] mx-auto text-tanzania-50">
             <BlurText
               as="h2"
               text="An independent intelligence hub, built so the country can speak for itself."
-              className="font-display text-3xl md:text-5xl lg:text-6xl font-medium leading-[1.08] tracking-tightest max-w-4xl"
+              className="font-display text-2xl md:text-4xl lg:text-5xl font-medium leading-[1.1] tracking-tightest max-w-3xl"
               step={0.025}
               delay={0.15}
               by="word"
             />
-            <RevealOnScroll delay={0.5}>
-              <div className="mt-14 flex flex-col md:flex-row items-start gap-10">
-                <p className="text-tanzania-200 text-lg leading-relaxed max-w-2xl">
+            <RevealOnScroll delay={0.4}>
+              <div className="mt-8 flex flex-col md:flex-row items-start gap-6">
+                <p className="text-tanzania-200 text-base leading-relaxed max-w-2xl">
                   We are not the government. We are not a law firm. We are a private editorial team
                   that organizes 30 ministries, 90+ regulators, and 18 priority sectors into a single,
                   navigable surface.
@@ -345,9 +392,9 @@ export function HomePageClient() {
         </section>
 
         {/* ============== INSTITUTIONS — scrolling marquee strip ============== */}
-        <section className="relative border-y border-kilimanjaro-900/10 dark:border-tanzania-50/10 bg-tanzania-100/30 dark:bg-kilimanjaro-900/30 overflow-hidden">
-          <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-24 pt-6">
-            <p className="text-center text-xs font-medium text-kilimanjaro-400 dark:text-tanzania-400/70">
+        <section className="relative border-y border-kilimanjaro-900/10 dark:border-tanzania-50/10 bg-tanzania-100/30 dark:bg-kilimanjaro-900/30 overflow-hidden py-2">
+          <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-24 pt-3">
+            <p className="text-center text-[11px] font-medium text-kilimanjaro-400 dark:text-tanzania-400/70 uppercase tracking-widest">
               Indexing the institutions that move Tanzania
             </p>
           </div>
@@ -356,7 +403,7 @@ export function HomePageClient() {
             font={{
               fontFamily: "var(--font-inter)",
               fontWeight: 700,
-              fontSize: 48,
+              fontSize: 32,
               letterSpacing: "2px",
             }}
             color="currentColor"
@@ -368,22 +415,22 @@ export function HomePageClient() {
         </section>
 
         {/* ============== CTA ============== */}
-        <section className="relative px-6 md:px-12 lg:px-24 py-28 md:py-40 max-w-[1600px] mx-auto">
+        <section className="relative px-6 md:px-12 lg:px-24 py-16 md:py-24 max-w-[1600px] mx-auto">
           <RevealOnScroll>
             <div className="text-center max-w-3xl mx-auto">
               <BlurText
                 as="h2"
                 text="Your first 90 days in Tanzania, mapped before you board the flight."
-                className="font-display text-3xl md:text-5xl lg:text-6xl font-medium leading-[1.08] tracking-tightest text-kilimanjaro-900 dark:text-tanzania-50 mb-8"
+                className="font-display text-2xl md:text-4xl lg:text-5xl font-medium leading-[1.1] tracking-tightest text-kilimanjaro-900 dark:text-tanzania-50 mb-6"
                 step={0.025}
                 delay={0.15}
                 by="word"
               />
-              <p className="text-lg text-kilimanjaro-600 dark:text-tanzania-200 max-w-xl mx-auto mb-10">
+              <p className="text-base text-kilimanjaro-600 dark:text-tanzania-200 max-w-xl mx-auto mb-8">
                 Open the immigration briefing, the mining license roadmap, or the SAGCOT corridor overview.
                 No paywall. No email gate.
               </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                 <MagnetButton href="/visa" variant="primary">
                   Start with immigration
                   <ArrowRight className="w-4 h-4 ml-2" />

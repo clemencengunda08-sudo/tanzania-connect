@@ -110,29 +110,29 @@ export function VerticalColumnsSlider() {
   return (
     <section
       ref={containerRef}
-      className="vertical-columns-section relative px-6 md:px-12 lg:px-24 py-24 overflow-hidden max-w-[1400px] mx-auto bg-tanzania-50/50 dark:bg-kilimanjaro-950/20"
+      className="vertical-columns-section relative px-6 md:px-12 lg:px-24 py-12 md:py-16 overflow-hidden max-w-[1400px] mx-auto bg-tanzania-50/50 dark:bg-kilimanjaro-950/20"
     >
-      <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
+      <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
         <Badge variant="outline" className="border-primary/20 text-primary bg-primary/5 uppercase tracking-[0.2em] font-black text-[9px]">
           Scenic Parallax
         </Badge>
-        <h3 className="font-display text-3xl md:text-5xl font-medium tracking-tight text-kilimanjaro-900 dark:text-tanzania-50 leading-tight">
+        <h3 className="font-display text-2xl md:text-4xl font-medium tracking-tight text-kilimanjaro-900 dark:text-tanzania-50 leading-tight">
           A Symphony of <span className="italic text-tanzania-500">Nature & Progress</span>
         </h3>
-        <p className="text-sm md:text-base text-muted-foreground font-light leading-relaxed">
+        <p className="text-xs md:text-sm text-muted-foreground font-light leading-relaxed">
           Experience the transition from pristine wildlife reserves to modern electric transit as you scroll through Tanzania's signature trade and tourism landmarks.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 md:max-h-[1000px] overflow-hidden pt-8 pb-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 md:max-h-[750px] overflow-hidden pt-4 pb-10">
         {/* Left Column (scrolls up) */}
-        <div className="scroll-col-left space-y-8 flex flex-col will-change-transform">
+        <div className="scroll-col-left space-y-5 flex flex-col will-change-transform">
           {columnLeftItems.map((item) => (
             <Card
               key={item.title}
-              className="border-none shadow-xl rounded-[2.5rem] bg-card overflow-hidden transition-all hover:shadow-2xl hover:scale-[1.01] duration-300"
+              className="border-none shadow-lg rounded-2xl bg-card overflow-hidden transition-all hover:shadow-xl hover:scale-[1.01] duration-300"
             >
-              <div className="relative h-64 md:h-72 w-full bg-muted">
+              <div className="relative h-44 md:h-52 w-full bg-muted">
                 <Image
                   src={item.image}
                   alt={item.title}
@@ -140,33 +140,33 @@ export function VerticalColumnsSlider() {
                   sizes="(max-width: 768px) 100vw, 45vw"
                   className="object-cover"
                 />
-                <div className="absolute top-4 left-4 z-10">
-                  <Badge className="bg-black/60 backdrop-blur-md text-white font-semibold text-[10px] px-3 py-1 uppercase tracking-wider rounded-full">
+                <div className="absolute top-3 left-3 z-10">
+                  <Badge className="bg-black/60 backdrop-blur-md text-white font-semibold text-[9px] px-2.5 py-0.5 uppercase tracking-wider rounded-full">
                     {item.badge}
                   </Badge>
                 </div>
               </div>
-              <CardContent className="p-8 space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-primary/10 rounded-xl text-primary">
-                    <item.icon className="h-5 w-5" />
+              <CardContent className="p-5 space-y-2">
+                <div className="flex items-center gap-2.5">
+                  <div className="p-1.5 bg-primary/10 rounded-lg text-primary">
+                    <item.icon className="h-4 w-4" />
                   </div>
-                  <h4 className="font-display text-2xl font-bold tracking-tight">{item.title}</h4>
+                  <h4 className="font-display text-lg font-bold tracking-tight">{item.title}</h4>
                 </div>
-                <p className="text-sm text-muted-foreground leading-relaxed font-light">{item.desc}</p>
+                <p className="text-xs text-muted-foreground leading-relaxed font-light">{item.desc}</p>
               </CardContent>
             </Card>
           ))}
         </div>
 
         {/* Right Column (scrolls down) */}
-        <div className="scroll-col-right space-y-8 flex flex-col will-change-transform">
+        <div className="scroll-col-right space-y-5 flex flex-col will-change-transform">
           {columnRightItems.map((item) => (
             <Card
               key={item.title}
-              className="border-none shadow-xl rounded-[2.5rem] bg-card overflow-hidden transition-all hover:shadow-2xl hover:scale-[1.01] duration-300"
+              className="border-none shadow-lg rounded-2xl bg-card overflow-hidden transition-all hover:shadow-xl hover:scale-[1.01] duration-300"
             >
-              <div className="relative h-64 md:h-72 w-full bg-muted">
+              <div className="relative h-44 md:h-52 w-full bg-muted">
                 <Image
                   src={item.image}
                   alt={item.title}
@@ -174,20 +174,20 @@ export function VerticalColumnsSlider() {
                   sizes="(max-width: 768px) 100vw, 45vw"
                   className="object-cover"
                 />
-                <div className="absolute top-4 left-4 z-10">
-                  <Badge className="bg-black/60 backdrop-blur-md text-white font-semibold text-[10px] px-3 py-1 uppercase tracking-wider rounded-full">
+                <div className="absolute top-3 left-3 z-10">
+                  <Badge className="bg-black/60 backdrop-blur-md text-white font-semibold text-[9px] px-2.5 py-0.5 uppercase tracking-wider rounded-full">
                     {item.badge}
                   </Badge>
                 </div>
               </div>
-              <CardContent className="p-8 space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-primary/10 rounded-xl text-primary">
-                    <item.icon className="h-5 w-5" />
+              <CardContent className="p-5 space-y-2">
+                <div className="flex items-center gap-2.5">
+                  <div className="p-1.5 bg-primary/10 rounded-lg text-primary">
+                    <item.icon className="h-4 w-4" />
                   </div>
-                  <h4 className="font-display text-2xl font-bold tracking-tight">{item.title}</h4>
+                  <h4 className="font-display text-lg font-bold tracking-tight">{item.title}</h4>
                 </div>
-                <p className="text-sm text-muted-foreground leading-relaxed font-light">{item.desc}</p>
+                <p className="text-xs text-muted-foreground leading-relaxed font-light">{item.desc}</p>
               </CardContent>
             </Card>
           ))}
