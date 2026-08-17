@@ -10,6 +10,7 @@ import { ScrollProgress } from '@/components/scroll-progress';
 import { FirebaseErrorListener } from '@/components/FirebaseErrorListener';
 import { JsonLd } from "@/components/json-ld";
 import { ProtectionProvider } from "@/components/protection-provider";
+import { Analytics } from '@vercel/analytics/next';
 import { MobileBottomNav } from '@/components/mobile-bottom-nav';
 import { FloatingActionButton } from '@/components/floating-action';
 import { ToastProvider } from '@/components/toast';
@@ -126,6 +127,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             </ToastProvider>
           </ProtectionProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
