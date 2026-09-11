@@ -61,7 +61,7 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
   experimental: {
-    optimizePackageImports: ["framer-motion", "motion", "lucide-react", "date-fns", "@radix-ui/react-icons"],
+    optimizePackageImports: ["framer-motion", "lucide-react", "date-fns", "@radix-ui/react-icons"],
   },
   allowedDevOrigins: [
     "http://localhost:9002",
