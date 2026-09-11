@@ -60,19 +60,8 @@ const nextConfig: NextConfig = {
     // Allow production build even with TS errors
     ignoreBuildErrors: true,
   },
-  eslint: {
-    // Allow production build even with ESLint errors
-    ignoreDuringBuilds: true,
-  },
   experimental: {
     optimizePackageImports: ["framer-motion", "motion", "lucide-react", "date-fns", "@radix-ui/react-icons"],
-  },
-  webpack: (config) => {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      "motion/react": "framer-motion",
-    };
-    return config;
   },
   allowedDevOrigins: [
     "http://localhost:9002",
