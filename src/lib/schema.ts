@@ -2,7 +2,7 @@
 // Optimized for 2026 AI Overviews
 
 const BASE_URL = "https://www.tanzaniareach.com";
-const LOGO_URL = `${BASE_URL}/favicon.svg`;
+const LOGO_URL = `${BASE_URL}/android-chrome-512x512.png`;
 const OG_IMAGE = `${BASE_URL}/og-image.png`;
 
 // 1. ORGANIZATION
@@ -38,6 +38,7 @@ export const websiteSchema = {
   "@id": `${BASE_URL}/#website`,
   url: BASE_URL,
   name: "Tanzania Reach",
+  alternateName: ["Tanzania Reach Portal", "TZ Reach", "tanzaniareach.com"],
   publisher: { "@id": `${BASE_URL}/#organization` },
   inLanguage: ["en", "sw"],
 };
@@ -50,6 +51,11 @@ export const homePageSchema = {
   url: BASE_URL,
   name: "Tanzania Reach | Expert Portal for Investors & Professionals",
   description: "One-stop digital gateway for experts and investors navigating life and business in Tanzania.",
+  image: OG_IMAGE,
+  primaryImageOfPage: {
+    "@type": "ImageObject",
+    url: OG_IMAGE,
+  },
   isPartOf: { "@id": `${BASE_URL}/#website` },
   about: { "@id": `${BASE_URL}/#organization` },
 };
@@ -60,13 +66,16 @@ export function sectorArticleSchema({
   title,
   description,
   dateModified,
+  image,
 }: {
   slug: string;
   title: string;
   description: string;
   dateModified?: string;
+  image?: string;
 }) {
   const url = `${BASE_URL}/${slug}`;
+  const featuredImage = image || OG_IMAGE;
   return {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -78,7 +87,12 @@ export function sectorArticleSchema({
     dateModified: dateModified ?? new Date().toISOString(),
     author: { "@id": `${BASE_URL}/#organization` },
     publisher: { "@id": `${BASE_URL}/#organization` },
-    image: OG_IMAGE,
+    image: [featuredImage],
+    thumbnailUrl: featuredImage,
+    primaryImageOfPage: {
+      "@type": "ImageObject",
+      url: featuredImage,
+    },
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
   };
 }

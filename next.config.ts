@@ -29,9 +29,33 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'tanzaniareach.com' }],
+        destination: 'https://www.tanzaniareach.com/:path*',
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       { source: "/(.*)", headers: securityHeaders },
+      {
+        source: "/p-access/:path*",
+        headers: [
+          { key: "Cache-Control", value: "no-store, no-cache, must-revalidate, private" },
+          { key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" },
+        ],
+      },
+      {
+        source: "/mwijay/:path*",
+        headers: [
+          { key: "Cache-Control", value: "no-store, no-cache, must-revalidate, private" },
+          { key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" },
+        ],
+      },
       {
         source: "/(_next/static|favicon|android|apple)(.*)",
         headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
@@ -49,6 +73,16 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: 'upload.wikimedia.org' },
       { protocol: 'https', hostname: 'commons.wikimedia.org' },
       { protocol: 'https', hostname: '*.wikimedia.org' },
+      { protocol: 'https', hostname: 'dailynews.co.tz' },
+      { protocol: 'https', hostname: '*.dailynews.co.tz' },
+      { protocol: 'https', hostname: 'www.thecitizen.co.tz' },
+      { protocol: 'https', hostname: 'thecitizen.co.tz' },
+      { protocol: 'https', hostname: 'www.mwananchi.co.tz' },
+      { protocol: 'https', hostname: 'mwananchi.co.tz' },
+      { protocol: 'https', hostname: 'www.ippmedia.com' },
+      { protocol: 'https', hostname: 'ippmedia.com' },
+      { protocol: 'https', hostname: 'www.theeastafrican.co.ke' },
+      { protocol: 'https', hostname: 'theeastafrican.co.ke' },
     ],
     formats: ["image/avif", "image/webp"],
     qualities: [75, 85],

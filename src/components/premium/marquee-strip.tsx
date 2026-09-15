@@ -73,7 +73,7 @@ export function MarqueeStrip({
   return (
     <section
       className={cn(
-        'relative overflow-hidden py-5',
+        'relative overflow-hidden py-5 mask-fade-x',
         variantClasses[variant],
         className
       )}

@@ -4,7 +4,7 @@ import { ShieldCheck, Lock, Eye, ArrowLeft, Landmark, FileText, Globe } from "lu
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Tanzania Reach",
+  title: "Privacy Policy",
   description: "Learn how Tanzania Reach collects, uses, and protects your data in accordance with 2025 international and local standards.",
   alternates: {
     canonical: "https://www.tanzaniareach.com/privacy",

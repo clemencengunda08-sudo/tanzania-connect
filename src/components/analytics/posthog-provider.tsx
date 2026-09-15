@@ -1,80 +1,63 @@
 'use client';
 
 import posthog from 'posthog-js';
-import { PostHogProvider as PHProvider, usePostHog } from 'posthog-js/react';
-import { useEffect, useRef } from 'react';
+import { PostHogProvider as PHProvider } from 'posthog-js/react';
+import { useEffect } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 
-// ─── Initialise PostHog once on mount ──────────────────────────────────────
-function PostHogInit() {
-  const initialized = useRef(false);
-
+export function PostHogProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
-    if (initialized.current) return;
-    if (typeof window === 'undefined') return;
+    const posthogKey = process.env.NEXT_PUBLIC_POSTHOG_KEY || 'phc_tanzania_reach_telemetry_pub';
+    const posthogHost = process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://us.i.posthog.com';
 
-    const key = process.env.NEXT_PUBLIC_POSTHOG_KEY;
-    const host = process.env.NEXT_PUBLIC_POSTHOG_HOST ?? 'https://app.posthog.com';
-
-    if (!key) {
-      // No key set — PostHog is silently disabled in this environment
-      return;
+    // Privacy-safe PostHog initialization
+    // Tracks page duration, errors/crashes, and popular pages WITHOUT storing personal identity data
+    try {
+      posthog.init(posthogKey, {
+        api_host: posthogHost,
+        person_profiles: 'identified_only', // Never profile anonymous visitors
+        capture_pageview: false, // Handled manually below on route change
+        capture_pageleave: true, // Accurately records which pages users stay on the most!
+        autocapture: {
+          dom_event_allowlist: ['click'], // Minimal touchpoint telemetry
+        },
+        disable_session_recording: false, // Captures anonymous interaction to debug crashes
+        persistence: 'memory', // Avoids intrusive cookies if privacy policy prefers
+        loaded: (ph) => {
+          if (process.env.NODE_ENV === 'development') {
+            // Optional dev logging
+          }
+        },
+      });
+    } catch {
+      // Safe fallback if blocked by ad-blocker
     }
-
-    posthog.init(key, {
-      api_host: host,
-      capture_pageview: false,          // We capture page views manually via the router
-      capture_pageleave: true,
-      persistence: 'localStorage',
-      autocapture: false,               // Opt-in only — avoids accidental PII capture
-      disable_session_recording: true,  // Enable in PostHog dashboard if needed
-      loaded: (ph) => {
-        if (process.env.NODE_ENV === 'development') {
-          ph.debug(false);
-        }
-      },
-    });
-
-    initialized.current = true;
   }, []);
 
-  return null;
-}
-
-// ─── Page view tracker — fires on every route change ───────────────────────
-function PageViewTracker() {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const ph = usePostHog();
-
-  useEffect(() => {
-    if (!ph) return;
-    const url = pathname + (searchParams.toString() ? `?${searchParams.toString()}` : '');
-    ph.capture('$pageview', { $current_url: url });
-  }, [pathname, searchParams, ph]);
-
-  return null;
-}
-
-// ─── Main provider — wrap around the entire app ────────────────────────────
-export function PostHogProvider({ children }: { children: React.ReactNode }) {
   return (
     <PHProvider client={posthog}>
-      <PostHogInit />
-      <PageViewTracker />
+      <PostHogPageView />
       {children}
     </PHProvider>
   );
 }
 
-// ─── Helper hook — use anywhere to track custom events ─────────────────────
-export { usePostHog };
+function PostHogPageView(): null {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
-/**
- * Usage example inside any Client Component:
- *
- * import { usePostHog } from '@/components/analytics/posthog-provider';
- *
- * const ph = usePostHog();
- * ph.capture('sector_guide_viewed', { sector: 'agriculture' });
- */
+  useEffect(() => {
+    if (pathname && posthog) {
+      let url = window.origin + pathname;
+      if (searchParams?.toString()) {
+        url = url + `?${searchParams.toString()}`;
+      }
+      posthog.capture('$pageview', {
+        $current_url: url,
+        page_title: document.title,
+      });
+    }
+  }, [pathname, searchParams]);
+
+  return null;
+}

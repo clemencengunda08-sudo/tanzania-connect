@@ -176,41 +176,6 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Interactive Quick Search Jump Bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.6 }}
-          className="max-w-xl mx-auto mb-6"
-        >
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              const form = e.target as HTMLFormElement;
-              const input = form.elements.namedItem("hero-search") as HTMLInputElement;
-              if (input?.value.trim()) {
-                window.location.href = `/guides?q=${encodeURIComponent(input.value.trim())}`;
-              }
-            }}
-            className="relative flex items-center group"
-          >
-            <div className="absolute left-4 flex items-center gap-2 pointer-events-none text-white/50 group-focus-within:text-tanzania-300 transition-colors">
-              <ArrowRight className="w-4 h-4 text-tanzania-400" />
-            </div>
-            <input
-              name="hero-search"
-              type="text"
-              placeholder="Search work permits, BRELA, mining royalties, tax laws..."
-              className="w-full h-12 pl-11 pr-28 rounded-full bg-white/10 border border-white/20 text-white placeholder-white/50 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-tanzania-400/50 focus:border-tanzania-400 backdrop-blur-md transition-all shadow-xl"
-            />
-            <button
-              type="submit"
-              className="absolute right-1.5 px-4 py-2 rounded-full bg-gradient-to-r from-tanzania-400 to-tanzania-500 text-kilimanjaro-950 text-[11px] font-bold uppercase tracking-wider hover:brightness-110 transition-all shadow-md"
-            >
-              Search
-            </button>
-          </form>
-        </motion.div>
 
         {/* CTA Buttons */}
         <motion.div

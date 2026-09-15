@@ -166,22 +166,14 @@ export function HomePageClient() {
         </section>
 
         {/* ============== INTRO STATEMENT & INLINE STATS ============== */}
-        <section className="relative px-6 md:px-12 lg:px-24 py-8 md:py-14 max-w-[1600px] mx-auto">
-          <div className="min-h-[5rem] md:min-h-[7rem] flex items-center justify-start max-w-5xl text-kilimanjaro-900 dark:text-tanzania-50">
-            <SmokyText
-              text="Tanzania is vast, intricate, and quietly one of Africa's most rewarding frontiers."
-              color="currentColor"
-              intensity={8}
-              appearTrigger="scroll"
-              animationMode="multiLine"
-              font={{
-                fontFamily: "var(--font-inter)",
-                fontWeight: 800,
-                fontSize: "clamp(1.75rem, 3.2vw, 3.5rem)",
-                lineHeight: "1.15",
-                textAlign: "left",
-              }}
-            />
+        <section className="relative px-6 md:px-12 lg:px-24 pt-6 pb-8 md:pt-8 md:pb-12 max-w-[1600px] mx-auto">
+          <div className="max-w-4xl text-kilimanjaro-950 dark:text-tanzania-50">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-headline font-black tracking-tight text-kilimanjaro-950 dark:text-white leading-[1.12]">
+              Tanzania is vast, intricate, and quietly one of Africa's most{" "}
+              <span className="bg-gradient-to-r from-tanzania-500 via-tanzania-400 to-zanzibar-400 bg-clip-text text-transparent italic">
+                rewarding frontiers.
+              </span>
+            </h2>
           </div>
           <RevealOnScroll delay={0.4}>
             <p className="mt-4 max-w-2xl text-base md:text-lg text-kilimanjaro-600 dark:text-tanzania-200 leading-relaxed mb-6">
@@ -415,29 +407,70 @@ export function HomePageClient() {
         </section>
 
         {/* ============== CTA ============== */}
-        <section className="relative px-6 md:px-12 lg:px-24 py-16 md:py-24 max-w-[1600px] mx-auto">
+        {/* ============== FURSA ZA UWEKEZAJI (OPPORTUNITIES) & CTA ============== */}
+        <section className="relative px-6 md:px-12 lg:px-24 py-12 md:py-20 max-w-[1600px] mx-auto">
           <RevealOnScroll>
-            <div className="text-center max-w-3xl mx-auto">
-              <BlurText
-                as="h2"
-                text="Your first 90 days in Tanzania, mapped before you board the flight."
-                className="font-display text-2xl md:text-4xl lg:text-5xl font-medium leading-[1.1] tracking-tightest text-kilimanjaro-900 dark:text-tanzania-50 mb-6"
-                step={0.025}
-                delay={0.15}
-                by="word"
-              />
-              <p className="text-base text-kilimanjaro-600 dark:text-tanzania-200 max-w-xl mx-auto mb-8">
-                Open the immigration briefing, the mining license roadmap, or the SAGCOT corridor overview.
-                No paywall. No email gate.
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                <MagnetButton href="/visa" variant="primary">
-                  Start with immigration
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </MagnetButton>
-                <MagnetButton href="/guides" variant="outline">
-                  All sector guides
-                </MagnetButton>
+            <div className="rounded-3xl border border-kilimanjaro-900/10 dark:border-tanzania-50/10 bg-gradient-to-b from-white via-tanzania-50/40 to-white dark:from-kilimanjaro-900/60 dark:via-kilimanjaro-900/40 dark:to-kilimanjaro-950 p-8 md:p-14 shadow-2xl overflow-hidden relative">
+              {/* Subtle ambient corner glow */}
+              <div className="absolute top-0 right-0 w-80 h-80 bg-tanzania-500/10 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-80 h-80 bg-zanzibar-500/10 rounded-full blur-3xl pointer-events-none" />
+
+              <div className="relative z-10 text-center max-w-3xl mx-auto">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-tanzania-500/10 border border-tanzania-500/20 mb-6">
+                  <span className="w-2 h-2 rounded-full bg-tanzania-500 animate-pulse" />
+                  <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-tanzania-600 dark:text-tanzania-400">
+                    Fursa za Uwekezaji · Investment Corridors
+                  </span>
+                </div>
+
+                <h2 className="font-display text-2xl sm:text-4xl md:text-5xl font-black tracking-tight text-kilimanjaro-950 dark:text-white mb-5 leading-tight">
+                  Your first 90 days in Tanzania,{" "}
+                  <span className="bg-gradient-to-r from-tanzania-500 to-tanzania-400 bg-clip-text text-transparent italic">
+                    mapped before landing.
+                  </span>
+                </h2>
+
+                <p className="text-sm md:text-base text-kilimanjaro-600 dark:text-tanzania-200 max-w-2xl mx-auto mb-10 leading-relaxed font-normal">
+                  Whether establishing an agribusiness footprint along the SAGCOT corridor, acquiring an exploration license from TMAA, or incorporating via BRELA—our editorial roadmaps are free, verified, and updated quarterly.
+                </p>
+
+                {/* 3 Executive Opportunity Pillars */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-left mb-10">
+                  <div className="p-4 rounded-2xl bg-white/70 dark:bg-kilimanjaro-800/40 border border-kilimanjaro-900/5 dark:border-white/5 backdrop-blur-sm">
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-tanzania-600 dark:text-tanzania-400 mb-1">
+                      TIC Strategic Status
+                    </div>
+                    <div className="text-xs font-medium text-kilimanjaro-800 dark:text-tanzania-100">
+                      Zero import duty on capital goods and 10-year fiscal stability guarantees.
+                    </div>
+                  </div>
+                  <div className="p-4 rounded-2xl bg-white/70 dark:bg-kilimanjaro-800/40 border border-kilimanjaro-900/5 dark:border-white/5 backdrop-blur-sm">
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-tanzania-600 dark:text-tanzania-400 mb-1">
+                      SEZ & Corridors
+                    </div>
+                    <div className="text-xs font-medium text-kilimanjaro-800 dark:text-tanzania-100">
+                      Bagamoyo, Mkapa SEZ & Silicon Zanzibar with direct SGR electric rail links.
+                    </div>
+                  </div>
+                  <div className="p-4 rounded-2xl bg-white/70 dark:bg-kilimanjaro-800/40 border border-kilimanjaro-900/5 dark:border-white/5 backdrop-blur-sm">
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-tanzania-600 dark:text-tanzania-400 mb-1">
+                      Capital Security
+                    </div>
+                    <div className="text-xs font-medium text-kilimanjaro-800 dark:text-tanzania-100">
+                      100% foreign equity allowed and constitutionally guaranteed profit repatriation.
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5">
+                  <MagnetButton href="/guides" variant="primary" className="w-full sm:w-auto">
+                    Explore all 18 sectors
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </MagnetButton>
+                  <MagnetButton href="/visa" variant="outline" className="w-full sm:w-auto">
+                    Start with legal & entry
+                  </MagnetButton>
+                </div>
               </div>
             </div>
           </RevealOnScroll>

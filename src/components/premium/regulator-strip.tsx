@@ -39,39 +39,46 @@ type Props = {
 
 export function RegulatorStrip({
   regulators = REGULATORS,
-  caption = 'Independent educational source. Always verify with the official institution.',
+  caption = 'Official regulatory bodies. Click any institution to verify directly on their portal.',
   showBadge = true,
   variant = 'gold',
   className,
 }: Props) {
-  // Build a flat array of label items — duplicated for seamless loop
+  // Build rich items with official URLs and full agency names
   const items = regulators.filter(r => r.short && r.scope);
   const marqueeItems = items.map(r => ({
     label: r.short,
-    value: r.scope
+    value: r.scope,
+    sublabel: r.full,
+    href: r.url,
   }));
 
   return (
     <section
       className={cn(
-        'relative py-8 overflow-hidden',
-        variant === 'gold' && 'bg-gradient-to-r from-tanzania-500/[0.08] via-tanzania-500/[0.14] to-tanzania-500/[0.08] border-y border-tanzania-500/30',
-        variant === 'default' && 'bg-kilimanjaro-900/[0.04] dark:bg-tanzania-50/[0.04] border-y border-kilimanjaro-900/10 dark:border-tanzania-50/10',
+        'relative py-6 overflow-hidden',
+        variant === 'gold' && 'bg-gradient-to-r from-tanzania-500/[0.04] via-tanzania-500/[0.08] to-tanzania-500/[0.04] border-y border-tanzania-500/20',
+        variant === 'default' && 'bg-kilimanjaro-900/[0.02] dark:bg-tanzania-50/[0.02] border-y border-kilimanjaro-900/8 dark:border-tanzania-50/8',
         variant === 'glass' && 'glass-card border-y border-white/10',
         className
       )}
       aria-label="Tanzania regulatory institutions"
     >
       {/* Header row */}
-      <div className="mx-auto max-w-[1600px] px-6 md:px-12 mb-5 flex items-center justify-between gap-4">
+      <div className="mx-auto max-w-[1600px] px-6 md:px-12 mb-3.5 flex items-center justify-between gap-4">
         {showBadge && (
-          <p className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-tanzania-600 dark:text-tanzania-400">
-            <ShieldCheck className="h-3.5 w-3.5" />
-            Verified Institutions
-          </p>
+          <div className="flex items-center gap-2">
+            <span className="flex h-2 w-2 relative">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-tanzania-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-tanzania-600"></span>
+            </span>
+            <p className="font-mono text-[10px] uppercase tracking-[0.25em] font-bold text-tanzania-600 dark:text-tanzania-400">
+              Verified Institutions & Regulatory Framework
+            </p>
+          </div>
         )}
         {caption && (
-          <p className="hidden md:block text-xs text-kilimanjaro-600 dark:text-tanzania-300 italic max-w-md text-right">
+          <p className="hidden sm:block text-[11px] text-kilimanjaro-500 dark:text-tanzania-400 italic max-w-md text-right">
             {caption}
           </p>
         )}
@@ -79,10 +86,8 @@ export function RegulatorStrip({
 
       <Marquee
         items={marqueeItems}
-        separator="✦"
-        speed={35}
+        speed={40}
         pauseOnHover={true}
-        className="text-kilimanjaro-900 dark:text-tanzania-50 font-black"
       />
     </section>
   );

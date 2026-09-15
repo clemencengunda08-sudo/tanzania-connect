@@ -1,7 +1,14 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Cookie, Info, Shield, ArrowLeft } from "lucide-react"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
+import type { Metadata } from "next";
+import { Cookie, Shield, Info } from "lucide-react";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+
+export const metadata: Metadata = {
+  title: "Cookie Policy",
+  description: "How we use digital identifiers and cookies to improve your Tanzania Reach portal experience.",
+  alternates: {
+    canonical: "https://www.tanzaniareach.com/cookies",
+  },
+};
 
 export default function CookiesPage() {
   return (

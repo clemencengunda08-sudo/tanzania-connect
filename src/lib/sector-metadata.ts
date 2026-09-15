@@ -14,7 +14,7 @@ export type SectorMeta = {
 export const sectorMetaMap: Record<string, SectorMeta> = {
   agriculture: {
     slug: "agriculture",
-    title: "Agriculture & Agribusiness Investment Guide — Tanzania Reach",
+    title: "Agriculture & Agribusiness Investment Guide",
     description:
       "Complete guide to agricultural investment in Tanzania. Land acquisition, crop sectors, SAGCOT corridor, export regulations, and agribusiness licensing for foreign investors.",
     keywords: [
@@ -32,7 +32,7 @@ export const sectorMetaMap: Record<string, SectorMeta> = {
 
   mining: {
     slug: "mining",
-    title: "Mining & Minerals Investment Guide — Tanzania Reach",
+    title: "Mining & Minerals Investment Guide",
     description:
       "Expert guide to Tanzania's mining sector. Gold, tanzanite, diamonds, lithium, graphite. TMAA licensing, royalty frameworks, and investment opportunities for foreigners.",
     keywords: [
@@ -51,7 +51,7 @@ export const sectorMetaMap: Record<string, SectorMeta> = {
 
   tourism: {
     slug: "tourism",
-    title: "Tourism & Hospitality Investment Guide — Tanzania Reach",
+    title: "Tourism & Hospitality Investment Guide",
     description:
       "Invest in Tanzania's world-class tourism sector. Serengeti, Kilimanjaro, Zanzibar. Hotel licensing, TATO registration, tour operator permits, and eco-tourism opportunities.",
     keywords: [
@@ -70,7 +70,7 @@ export const sectorMetaMap: Record<string, SectorMeta> = {
 
   immigration: {
     slug: "immigration",
-    title: "Tanzania Visa & Immigration Guide for Foreigners — Tanzania Reach",
+    title: "Tanzania Visa & Immigration Guide for Foreigners",
     description:
       "Complete Tanzania immigration guide for foreigners. Work permits, residence permits, investor visas, Class G permits, TRA requirements, and step-by-step applications.",
     keywords: [
@@ -89,7 +89,7 @@ export const sectorMetaMap: Record<string, SectorMeta> = {
 
   "real-estate": {
     slug: "real-estate",
-    title: "Real Estate Investment Guide for Foreigners — Tanzania Reach",
+    title: "Real Estate & Land Investment Guide",
     description:
       "Navigate Tanzania real estate as a foreigner. Land ownership laws, CCRO titles, Right of Occupancy, property rights, Dar es Salaam market insights, and legal frameworks.",
     keywords: [
@@ -108,7 +108,7 @@ export const sectorMetaMap: Record<string, SectorMeta> = {
 
   legal: {
     slug: "legal",
-    title: "Legal Framework & Business Law Guide — Tanzania Reach",
+    title: "Legal Framework & Business Compliance Guide",
     description:
       "Tanzania business legal guide for foreigners. Company registration via BRELA, contracts, dispute resolution, intellectual property protection, and compliance frameworks.",
     keywords: [
@@ -127,7 +127,7 @@ export const sectorMetaMap: Record<string, SectorMeta> = {
 
   banking: {
     slug: "banking",
-    title: "Banking & Finance Guide for Foreigners — Tanzania Reach",
+    title: "Banking, Mobile Money & Finance Guide",
     description:
       "Open bank accounts in Tanzania as a foreigner. Bank of Tanzania regulations, mobile money systems, forex rules, investment accounts, and full financial compliance guide.",
     keywords: [
@@ -146,7 +146,7 @@ export const sectorMetaMap: Record<string, SectorMeta> = {
 
   healthcare: {
     slug: "healthcare",
-    title: "Healthcare System Guide for Foreigners — Tanzania Reach",
+    title: "Healthcare System & Medical Facilities Guide",
     description:
       "Navigate Tanzania's healthcare system as a foreigner. Private hospitals, international insurance, medical facilities in Dar es Salaam, Arusha, and Zanzibar.",
     keywords: [
@@ -165,7 +165,7 @@ export const sectorMetaMap: Record<string, SectorMeta> = {
 
   energy: {
     slug: "energy",
-    title: "Energy & Utilities Investment Guide — Tanzania Reach",
+    title: "Energy, Gas & Utilities Investment Guide",
     description:
       "Tanzania energy sector investment opportunities. Solar, natural gas, hydropower, TANESCO grid, off-grid solutions, renewable energy investment, and EWURA licensing.",
     keywords: [
@@ -184,7 +184,7 @@ export const sectorMetaMap: Record<string, SectorMeta> = {
 
   technology: {
     slug: "technology",
-    title: "Technology & ICT Investment Guide — Tanzania Reach",
+    title: "Technology & Startups Investment Guide",
     description:
       "Tanzania tech ecosystem for investors and professionals. Fintech, e-commerce, TCRA licensing, startup ecosystem, Buni Hub, and digital transformation opportunities.",
     keywords: [
@@ -203,7 +203,7 @@ export const sectorMetaMap: Record<string, SectorMeta> = {
 
   education: {
     slug: "education",
-    title: "Education Sector Guide for Foreigners — Tanzania Reach",
+    title: "Education Sector Guide for Foreigners",
     description:
       "Invest or work in Tanzania's education sector. International schools, university partnerships, NECTA framework, and private school registration guide.",
     keywords: [
@@ -221,7 +221,7 @@ export const sectorMetaMap: Record<string, SectorMeta> = {
 
   wildlife: {
     slug: "wildlife",
-    title: "Wildlife & Conservation Investment Guide — Tanzania Reach",
+    title: "Wildlife & Conservation Business Guide",
     description:
       "Tanzania wildlife and conservation business opportunities. Game reserves, TAWA regulations, conservation partnerships, photographic safari licensing, and anti-poaching frameworks.",
     keywords: [
@@ -240,7 +240,7 @@ export const sectorMetaMap: Record<string, SectorMeta> = {
 
   culture: {
     slug: "culture",
-    title: "Culture & Society Guide for Foreigners — Tanzania Reach",
+    title: "Culture & Society Guide for Foreigners",
     description:
       "Understand Tanzanian culture, customs, and society. Business etiquette, Swahili language basics, religious practices, social norms, and integration guide for expats.",
     keywords: [
@@ -258,7 +258,7 @@ export const sectorMetaMap: Record<string, SectorMeta> = {
 
   transport: {
     slug: "transport",
-    title: "Transport & Navigation Guide — Tanzania Reach",
+    title: "Transport & Navigation Guide",
     description: "Navigate Tanzania with ease. Guide to Dala-dalas, Boda Bodas, ride-hailing apps, DART bus system, and the new SGR electric train.",
     keywords: ["Tanzania transport", "DART Dar es Salaam", "SGR Tanzania train", "Bolt Uber Tanzania", "driving in Tanzania"],
     ogTitle: "Transport & Logistics in Tanzania — Expert Guide",
@@ -267,7 +267,7 @@ export const sectorMetaMap: Record<string, SectorMeta> = {
 
   "food-and-drink": {
     slug: "food-and-drink",
-    title: "Food, Drink & Culinary Heritage — Tanzania Reach",
+    title: "Food, Drink & Culinary Heritage",
     description: "Explore the flavors of Tanzania. Swahili cuisine, street food culture, dining etiquette, and local beverage guide for international visitors.",
     keywords: ["Tanzania food guide", "Swahili cuisine", "Zanzibar pizza", "Tanzania dining etiquette", "Nyama Choma"],
     ogTitle: "Tanzania Culinary Guide — Flavors & Etiquette",
@@ -276,7 +276,7 @@ export const sectorMetaMap: Record<string, SectorMeta> = {
 
   entertainment: {
     slug: "entertainment",
-    title: "Entertainment, Music & Sports Guide — Tanzania Reach",
+    title: "Entertainment, Music & Sports Guide",
     description: "The pulse of Tanzania. Bongo Flava, football rivalries, nightlife, cinema, and digital content ecosystem for residents and experts.",
     keywords: ["Bongo Flava", "Tanzania nightlife", "Simba Yanga derby", "Tanzania entertainment", "cinema Dar es Salaam"],
     ogTitle: "Entertainment & Lifestyle in Tanzania — Expert Guide",
@@ -285,7 +285,7 @@ export const sectorMetaMap: Record<string, SectorMeta> = {
 
   phrasebook: {
     slug: "phrasebook",
-    title: "Essential Swahili Phrasebook for Expats — Tanzania Reach",
+    title: "Essential Swahili Phrasebook for Expats",
     description: "Master the basics of Kiswahili. Essential greetings, market interactions, and survival phrases for foreigners living in Tanzania.",
     keywords: ["Swahili for foreigners", "Kiswahili phrases", "Tanzania language guide", "Swahili greetings", "learning Swahili"],
     ogTitle: "Master Basic Swahili — Essential Expat Phrasebook",
@@ -294,7 +294,7 @@ export const sectorMetaMap: Record<string, SectorMeta> = {
 
   directory: {
     slug: "directory",
-    title: "Essential Contacts & Emergency Directory — Tanzania Reach",
+    title: "Essential Contacts & Emergency Directory",
     description: "Verified directory of emergency services, embassies, hospitals, and key government agencies for foreigners in Tanzania.",
     keywords: ["Tanzania emergency numbers", "embassies in Dar es Salaam", "Tanzania hospital contacts", "official directory Tanzania"],
     ogTitle: "Official Contacts Directory — Tanzania Reach",

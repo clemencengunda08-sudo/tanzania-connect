@@ -79,20 +79,15 @@ function GuidesContent() {
           
           <FadeIn direction="right">
             <div className="flex items-center gap-3">
-              <div className="relative group">
+              <div className="relative group w-full sm:w-72">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 group-focus-within:text-primary transition-colors" />
                 <Input 
                   placeholder="Search manuals..." 
-                  className="pl-11 h-14 w-full md:w-64 bg-muted/50 border-primary/10 rounded-xl focus:ring-primary/20 focus:border-primary transition-all"
+                  className="pl-11 h-12 w-full bg-muted/50 border-primary/10 rounded-xl focus:ring-primary/20 focus:border-primary transition-all text-sm"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                 />
               </div>
-              <Link href="/">
-                <Button variant="outline" className="rounded-xl border-primary/20 h-14 font-bold px-6 shadow-sm hidden sm:flex">
-                  <ArrowLeft className="h-4 w-4 mr-2" /> Home
-                </Button>
-              </Link>
             </div>
           </FadeIn>
         </div>

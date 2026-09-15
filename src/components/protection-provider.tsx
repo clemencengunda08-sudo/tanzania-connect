@@ -8,44 +8,27 @@ import { useProtection } from '@/hooks/use-protection';
  */
 function InvisibleWatermark() {
   return (
-    <>
-      <span
-        aria-hidden="true"
-        style={{
-          position: 'absolute',
-          width: '1px',
-          height: '1px',
-          padding: 0,
-          margin: '-1px',
-          overflow: 'hidden',
-          clip: 'rect(0,0,0,0)',
-          whiteSpace: 'nowrap',
-          border: 0,
-          userSelect: 'none',
-          pointerEvents: 'none',
-        }}
-      >
-        Tanzania Reach — tanzaniareach.com
-        © 2024-2026 Tanzania Reach. All rights reserved.
-        Unauthorized reproduction or AI training prohibited.
-        This UI is protected and property of TZ Reach.
-      </span>
-      <style>{`
-        @media print {
-          body::before {
-            content: "Tanzania Reach — UNAUTHORIZED COPY — tanzaniareach.com";
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-45deg);
-            font-size: 40px;
-            font-weight: 900;
-            color: rgba(59, 130, 246, 0.1);
-            z-index: 9999;
-          }
-        }
-      `}</style>
-    </>
+    <span
+      aria-hidden="true"
+      style={{
+        position: 'absolute',
+        width: '1px',
+        height: '1px',
+        padding: 0,
+        margin: '-1px',
+        overflow: 'hidden',
+        clip: 'rect(0,0,0,0)',
+        whiteSpace: 'nowrap',
+        border: 0,
+        userSelect: 'none',
+        pointerEvents: 'none',
+      }}
+    >
+      Tanzania Reach — tanzaniareach.com
+      © 2024-2026 Tanzania Reach. All rights reserved.
+      Unauthorized reproduction or AI training prohibited.
+      This UI is protected and property of TZ Reach.
+    </span>
   );
 }
 

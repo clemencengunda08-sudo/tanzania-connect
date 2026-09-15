@@ -4,7 +4,7 @@ import { Scale, ShieldAlert, FileText, ArrowLeft, Bookmark, HelpCircle, Globe } 
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | Tanzania Reach",
+  title: "Terms of Service",
   description: "Terms of service and user agreements for the Tanzania Reach educational intelligence portal.",
   alternates: {
     canonical: "https://www.tanzaniareach.com/terms",

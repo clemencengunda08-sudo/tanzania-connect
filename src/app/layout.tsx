@@ -16,9 +16,9 @@ import { ToastProvider } from '@/components/toast';
 import { MaintenanceBanner } from '@/components/maintenance-banner';
 import { DisclaimerBar } from '@/components/disclaimer-bar';
 import { Footer } from '@/components/footer';
-import { CustomCursor } from '@/components/premium/cursor';
 import { GlobalNav } from '@/components/premium/global-nav';
 import { AIChat } from '@/components/portal/ai-chat';
+import { PostHogProvider } from '@/components/analytics/posthog-provider';
 import {
   organizationSchema,
   websiteSchema,
@@ -51,7 +51,14 @@ export const metadata: Metadata = {
   description: "Tanzania Reach is your independent digital gateway for navigating life, investment, and business in Tanzania. Expert manuals, legal guides, and sector insights.",
   icons: {
     icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
+      { url: "/android-chrome-512x512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],
   },
   alternates: {
@@ -67,6 +74,29 @@ export const metadata: Metadata = {
       'max-image-preview': 'large',
       'max-snippet': -1,
     },
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://www.tanzaniareach.com",
+    siteName: "Tanzania Reach",
+    title: "Tanzania Reach | Expert Portal for Investors & Professionals",
+    description: "Tanzania Reach is your independent digital gateway for navigating life, investment, and business in Tanzania. Expert manuals, legal guides, and sector insights.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Tanzania Reach - Expert Portal for Investors & Professionals",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Tanzania Reach | Expert Portal for Investors & Professionals",
+    description: "Tanzania Reach is your independent digital gateway for navigating life, investment, and business in Tanzania.",
+    images: ["/og-image.png"],
+    creator: "@tanzaniareach",
   },
   other: {
     'ai-content-declaration': 'human-authored',
@@ -87,9 +117,11 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${inter.variable} ${jetbrains.variable} light`} suppressHydrationWarning>
-      <body className="antialiased selection:bg-tanzania-500/30 selection:text-white" suppressHydrationWarning>
+      <head>
         <JsonLd data={organizationSchema} />
         <JsonLd data={websiteSchema} />
+      </head>
+      <body className="antialiased selection:bg-tanzania-500/30 selection:text-white" suppressHydrationWarning>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
@@ -97,34 +129,35 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           disableTransitionOnChange
           themes={["light", "dark"]}
         >
-          <ProtectionProvider>
-            <ToastProvider>
-              <a 
-                href="#main" 
-                className="sr-only focus:not-sr-only absolute top-4 left-4 z-[100] px-4 py-2.5 bg-tanzania-500 text-white rounded-xl font-bold border border-tanzania-400 shadow-xl focus:outline-none focus:ring-2 focus:ring-tanzania-500 transition-all uppercase tracking-wider text-xs"
-              >
-                Skip to content
-              </a>
-              <MaintenanceBanner />
-              <DisclaimerBar />
-              <GlobalNav />
-              <ScrollProgress />
-              <FirebaseErrorListener />
-              <CustomCursor />
-              <div id="main" tabIndex={-1} className="focus:outline-none">
-                <PageTransition>
-                  {children}
-                </PageTransition>
-              </div>
-              <Footer />
-              <MobileBottomNav />
-              <FloatingActionButton />
-              <InstallPrompt />
-              <CookieConsent />
-              <AIChat />
-              <Toaster />
-            </ToastProvider>
-          </ProtectionProvider>
+          <PostHogProvider>
+            <ProtectionProvider>
+              <ToastProvider>
+                <a 
+                  href="#main" 
+                  className="sr-only focus:not-sr-only absolute top-4 left-4 z-[100] px-4 py-2.5 bg-tanzania-500 text-white rounded-xl font-bold border border-tanzania-400 shadow-xl focus:outline-none focus:ring-2 focus:ring-tanzania-500 transition-all uppercase tracking-wider text-xs"
+                >
+                  Skip to content
+                </a>
+                <MaintenanceBanner />
+                <DisclaimerBar />
+                <GlobalNav />
+                <ScrollProgress />
+                <FirebaseErrorListener />
+                <div id="main" tabIndex={-1} className="focus:outline-none">
+                  <PageTransition>
+                    {children}
+                  </PageTransition>
+                </div>
+                <Footer />
+                <MobileBottomNav />
+                <FloatingActionButton />
+                <InstallPrompt />
+                <CookieConsent />
+                <AIChat />
+                <Toaster />
+              </ToastProvider>
+            </ProtectionProvider>
+          </PostHogProvider>
         </ThemeProvider>
       </body>
     </html>

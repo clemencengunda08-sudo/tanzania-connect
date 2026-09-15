@@ -1,19 +1,20 @@
 import type { Metadata } from "next";
 import { TanzaniaNewsFeed } from "@/components/premium/tanzania-news-feed";
 import { MarqueeStrip } from "@/components/premium/marquee-strip";
+import { UautConnectCard } from "@/components/education/uaut-connect-card";
 import { Radio, ArrowLeft, Newspaper, TrendingUp, Globe2 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Live News & Briefings — Tanzania Reach",
+  title: "Live News & Briefings",
   description:
     "Aggregated live news feed and daily summaries from Tanzania's leading newsrooms. Stay informed on business, immigration, and policies.",
   alternates: {
     canonical: "https://www.tanzaniareach.com/news",
   },
   openGraph: {
-    title: "Live News & Briefings — Tanzania Reach",
+    title: "Live News & Briefings | Tanzania Reach",
     description:
       "Daily summaries and aggregated live headlines from the United Republic of Tanzania.",
     url: "https://www.tanzaniareach.com/news",
@@ -26,28 +27,18 @@ export default function NewsPage() {
     <div className="min-h-screen bg-tanzania-50 dark:bg-kilimanjaro-950 text-kilimanjaro-900 dark:text-tanzania-50">
       <main>
         {/* ——— Hero header ——— */}
-        <section className="relative pt-32 md:pt-40 pb-16 px-6 md:px-12 lg:px-24 max-w-[1400px] mx-auto overflow-hidden rounded-b-[3rem] z-10">
-          {/* Fallback Real Image */}
+        <section className="relative pt-20 sm:pt-28 md:pt-40 pb-8 sm:pb-16 px-4 sm:px-8 md:px-12 lg:px-24 max-w-[1400px] mx-auto overflow-hidden rounded-b-[2rem] sm:rounded-b-[3rem] z-10">
+          {/* High-Resolution Real Backdrop */}
           <div className="absolute inset-0 -z-20 bg-kilimanjaro-950">
             <Image
               src="https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201988/tanzania_connect/static/dar-es-salaam-housing.png"
               alt="Tanzania Skyline Backdrop"
               fill
               priority
-              className="object-cover opacity-25 dark:opacity-20 select-none pointer-events-none"
+              className="object-cover opacity-30 dark:opacity-25 select-none pointer-events-none"
             />
           </div>
-          {/* Spline 3D Backdrop */}
-          <div className="spline-container absolute inset-0 z-0 pointer-events-none overflow-hidden">
-            <iframe
-              src="https://my.spline.design/crystalball-de222de54d6fc4752fa850b54fb654de/"
-              frameBorder="0"
-              width="100%"
-              height="100%"
-              id="aura-spline"
-              className="w-[102%] h-[106%] -translate-y-[3%] -translate-x-[1%] scale-[1.04] pointer-events-none"
-            ></iframe>
-          </div>
+          <div className="absolute inset-0 bg-gradient-to-tr from-tanzania-900/40 via-transparent to-zanzibar-900/30 pointer-events-none" />
           {/* Legibility overlay gradient */}
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-tanzania-50/70 to-tanzania-50 dark:via-kilimanjaro-950/80 dark:to-kilimanjaro-950 z-10 pointer-events-none" />
 
@@ -55,33 +46,33 @@ export default function NewsPage() {
           <div className="relative z-20">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-xs font-medium tracking-widest uppercase text-tanzania-600 dark:text-tanzania-400 hover:text-tanzania-700 dark:hover:text-tanzania-300 transition-colors mb-10 group"
+              className="inline-flex items-center gap-2 text-xs font-medium tracking-widest uppercase text-tanzania-600 dark:text-tanzania-400 hover:text-tanzania-700 dark:hover:text-tanzania-300 transition-colors mb-6 sm:mb-10 group"
             >
               <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-0.5" />
               Back to home
             </Link>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-end">
               <div>
                 {/* Live badge */}
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zanzibar-500/10 text-zanzibar-600 dark:text-zanzibar-400 text-[10px] font-black uppercase tracking-[0.2em] border border-zanzibar-500/20 mb-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-zanzibar-500/10 text-zanzibar-600 dark:text-zanzibar-400 text-[10px] font-black uppercase tracking-[0.2em] border border-zanzibar-500/20 mb-4 sm:mb-6">
                   <Radio className="w-3 h-3 animate-pulse" />
                   Live feed · Auto-refreshed
                 </div>
 
-                <h1 className="font-display text-4xl md:text-6xl font-medium tracking-tight leading-[0.95] text-kilimanjaro-900 dark:text-tanzania-50 mb-6">
+                <h1 className="font-display text-3xl sm:text-5xl md:text-6xl font-medium tracking-tight leading-[0.98] text-kilimanjaro-900 dark:text-tanzania-50 mb-4 sm:mb-6">
                   Today in<br />
                   <span className="text-tanzania-500">Tanzania.</span>
                 </h1>
 
-                <p className="text-lg text-kilimanjaro-600 dark:text-tanzania-200 leading-relaxed max-w-lg font-light">
+                <p className="text-base sm:text-lg text-kilimanjaro-600 dark:text-tanzania-200 leading-relaxed max-w-lg font-light">
                   Headlines aggregated from Tanzania&apos;s leading independent publishers.
                   Refreshed every 30 minutes — no paywalls, no noise.
                 </p>
               </div>
 
               {/* Stats sidebar */}
-              <div className="grid grid-cols-3 gap-4 lg:justify-end">
+              <div className="grid grid-cols-3 gap-2 sm:gap-4 lg:justify-end">
                 {[
                   { icon: Newspaper, label: "Sources", value: "4" },
                   { icon: TrendingUp, label: "Refreshed", value: "30m" },
@@ -89,13 +80,13 @@ export default function NewsPage() {
                 ].map((stat) => (
                   <div
                     key={stat.label}
-                    className="flex flex-col items-center text-center p-5 rounded-2xl bg-white/60 dark:bg-kilimanjaro-900/40 border border-kilimanjaro-900/8 dark:border-tanzania-50/8 backdrop-blur-sm"
+                    className="flex flex-col items-center text-center p-3 sm:p-5 rounded-xl sm:rounded-2xl bg-white/60 dark:bg-kilimanjaro-900/40 border border-kilimanjaro-900/8 dark:border-tanzania-50/8 backdrop-blur-sm"
                   >
-                    <stat.icon className="w-5 h-5 text-tanzania-500 mb-2" />
-                    <p className="text-2xl font-black text-kilimanjaro-900 dark:text-tanzania-50 leading-none mb-1">
+                    <stat.icon className="w-4 h-4 sm:w-5 sm:h-5 text-tanzania-500 mb-1 sm:mb-2" />
+                    <p className="text-xl sm:text-2xl font-black text-kilimanjaro-900 dark:text-tanzania-50 leading-none mb-1">
                       {stat.value}
                     </p>
-                    <p className="text-[10px] uppercase tracking-widest text-kilimanjaro-500 dark:text-tanzania-400 font-medium">
+                    <p className="text-[9px] sm:text-[10px] uppercase tracking-widest text-kilimanjaro-500 dark:text-tanzania-400 font-medium">
                       {stat.label}
                     </p>
                   </div>
@@ -107,26 +98,30 @@ export default function NewsPage() {
 
         {/* ——— Velocity marquee ——— */}
         <MarqueeStrip
-          caption="News sources"
+          caption="Verified newsrooms"
           items={[
-            { label: "Daily News", value: "Dar es Salaam" },
-            { label: "The Citizen", value: "National" },
-            { label: "Mwananchi", value: "Swahili" },
-            { label: "IPP Media", value: "Business" },
-            { label: "Business Times", value: "Finance" },
-            { label: "Tanzania Invest", value: "Investment" },
-            { label: "East African", value: "Regional" },
+            { label: "Daily News", value: "TSN · State National Daily" },
+            { label: "The Citizen", value: "NMG · English National" },
+            { label: "Mwananchi", value: "MCL · Leading Swahili Daily" },
+            { label: "IPP Media", value: "The Guardian & Financial Times" },
+            { label: "The EastAfrican", value: "Regional Policy & Markets" },
+            { label: "TanzaniaInvest", value: "FDI & Sector Intelligence" },
           ]}
           speed={2}
           variant="outline"
         />
 
+        {/* ——— Higher Education Admissions Spotlight: UAUT Connect ——— */}
+        <section className="px-4 sm:px-8 md:px-12 lg:px-24 pt-8 sm:pt-12 max-w-[1400px] mx-auto">
+          <UautConnectCard />
+        </section>
+
         {/* ——— News feed ——— */}
-        <section className="px-6 md:px-12 lg:px-24 py-16 max-w-[1400px] mx-auto">
+        <section className="px-4 sm:px-8 md:px-12 lg:px-24 py-8 sm:py-16 max-w-[1400px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Main feed */}
             <div className="lg:col-span-2">
-              <div className="rounded-3xl bg-white dark:bg-kilimanjaro-900/40 border border-kilimanjaro-900/10 dark:border-tanzania-50/10 p-8 shadow-xl">
+              <div className="rounded-2xl sm:rounded-3xl bg-white dark:bg-kilimanjaro-900/60 border border-kilimanjaro-900/10 dark:border-tanzania-50/10 p-4 sm:p-8 shadow-xl">
                 <TanzaniaNewsFeed limit={20} />
               </div>
             </div>
@@ -186,9 +181,9 @@ export default function NewsPage() {
                 <div className="grid grid-cols-2 gap-2">
                   {[
                     { id: "mount-kilimanjaro", name: "Mt. Kilimanjaro", path: "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202019/tanzania_connect/static/mount-kilimanjaro.jpg" },
-                    { id: "zanzibar-beach", name: "Zanzibar Beaches", path: "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202052/tanzania_connect/static/zanzibar-beach.jpg" },
+                    { id: "sgr-train", name: "Electric SGR Train", path: "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202036/tanzania_connect/static/sgr-pic-user.jpg" },
                     { id: "serengeti-safari", name: "Serengeti Savanna", path: "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202034/tanzania_connect/static/serengeti-safari.jpg" },
-                    { id: "dar-es-salaam", name: "Dar es Salaam", path: "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784201989/tanzania_connect/static/dar-es-salaam.jpg" },
+                    { id: "zanzibar-beach", name: "Zanzibar Coast", path: "https://res.cloudinary.com/dwykuhmp5/image/upload/v1784202052/tanzania_connect/static/zanzibar-beach.jpg" },
                   ].map((img) => (
                     <div key={img.id} className="relative group aspect-square rounded-2xl overflow-hidden border border-kilimanjaro-900/10 dark:border-tanzania-50/10 bg-muted">
                       <Image

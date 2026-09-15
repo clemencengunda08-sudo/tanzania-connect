@@ -4,7 +4,9 @@ import { homePageSchema } from "@/lib/schema";
 import { HomePageClient } from "@/components/home-page-client";
 
 export const metadata: Metadata = {
-  title: "Tanzania Reach | Expert Portal for Investors & Professionals",
+  title: {
+    absolute: "Tanzania Reach | Expert Portal for Investors & Professionals",
+  },
   description: "Your independent digital gateway for navigating life, investment, and business in the United Republic of Tanzania.",
 };
 

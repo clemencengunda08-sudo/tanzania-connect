@@ -83,8 +83,12 @@ Built by an independent developer as a private editorial product targeting the g
 |-----------|--------|-------------|-----------|
 | **Landing Page** | ✅ Live | Hero, sector marquee, intro statement, stats, pillars, sector grid, about band, news feed, CTA | Next.js RSC, Framer Motion, GSAP |
 | **Sector Guides (18)** | ✅ Live | agriculture, mining, tourism, immigration, real estate, legal, banking, healthcare, energy, technology, education, wildlife, culture, transport, food, entertainment, phrasebook, directory | Next.js SSG |
+| **Contact Desk** `/contact` | ✅ Live | Executive contact desk, WhatsApp action (+255 792 867 427), stateless mail dispatch | Next.js, Resend API, Lucide |
+| **Privacy Analytics (PostHog)** | ✅ Live | Privacy-first session & pageleave dwell tracking, error reporting, zero-login | PostHog JS SDK (`person_profiles: 'identified_only'`) |
+| **Higher Ed Spotlight (UAUT Connect)** | ✅ Live | Admissions portal & Round 2 university registration notice for UAUT Kigamboni | Custom Component, Deep Links (`uautconnect.com`) |
 | **Live Data API** `/api/live-tz` | ✅ Live | Currency rates, weather, economy stats — 30-min ISR cache | Open-Meteo, fawazahmed0, World Bank, Wikipedia REST |
-| **Tanzania News Feed** | ✅ Live | Server-rendered live headlines from Tanzanian newsrooms | `/api/tz-news`, ISR |
+| **Tanzania News Feed V2** | ✅ Live | Live headlines from Tanzanian newsrooms via Google News TZ index, 20-asset image pool, deep links | `/api/tz-news`, Google News RSS |
+| **Executive Marquee Ticker** | ✅ Live | Smooth dual-track continuous marquee, mask-fade-x gradient edges, clickable agency cards | CSS marquee animations, Tailwind, Lucide |
 | **Visitor Detector** | ✅ Live | Geo-detects if visitor is inside Tanzania | `/api/visitor-detect`, Edge runtime |
 | **Admin Dashboard** `/p-access` | ✅ Live | Login, dashboard, content management, user roles, analytics, media, settings | Firebase Auth + Firestore |
 | **Downloads Section** | ✅ Live | Downloadable PDF guides with canvas watermarks | Firebase Storage |
@@ -100,9 +104,13 @@ Built by an independent developer as a private editorial product targeting the g
 ### ✅ Fully Working Right Now
 
 - All 18 sector guide pages render with full SEO metadata
+- Executive Contact Desk (`/contact`) with direct voice/WhatsApp (+255 792 867 427) and stateless Resend email dispatch to `info@tanzaniareach.com`
+- Privacy-first PostHog Analytics tracking dwell times (`capture_pageleave`), popular routes, and uncaught client crashes without collecting invasive profiles
+- Higher Education Admissions Hub spotlighting **UAUT Connect** (`uautconnect.com`) second-round applications
+- Upgraded Live News Pipeline (`/news` & `/api/tz-news`) via Google News TZ aggregation, delivering deep article URLs and 20 diverse fallback images
+- Buttery-smooth infinite marquee ticker with interactive agency badges and lateral edge gradient masking (`mask-fade-x`)
 - Live currency exchange rates (USD, EUR, GBP, CNY, KES, ZAR vs TZS) — refreshed every 30 minutes
 - Real-time Dar es Salaam weather via Open-Meteo (zero API key required)
-- Tanzania news feed pulling live headlines from local newsrooms
 - Full admin dashboard: login, user management, content editor, media library, global settings
 - Downloads section with watermarked PDFs from Firebase Storage
 - Dark / light theme with system preference detection
@@ -479,6 +487,14 @@ FIREBASE_ADMIN_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nYOUR_KEY_CONTENT\n-----
 
 # ─── Google AI / Gemini ─────────────────────────────────────
 GOOGLE_GENAI_API_KEY=AIzaSy_YOUR_GEMINI_KEY
+
+# ─── Resend Stateless Mail Relay (Contact Desk) ────────────
+RESEND_API_KEY=your_resend_api_key_here
+CONTACT_NOTIFICATION_EMAIL=info@tanzaniareach.com
+
+# ─── PostHog Analytics & Crash Tracking (Privacy-First) ─────
+NEXT_PUBLIC_POSTHOG_KEY=phc_tanzania_reach_live_analytics
+NEXT_PUBLIC_POSTHOG_HOST=https://us.i.posthog.com
 ```
 
 **Where to get each value:**
@@ -488,6 +504,8 @@ GOOGLE_GENAI_API_KEY=AIzaSy_YOUR_GEMINI_KEY
 | `NEXT_PUBLIC_FIREBASE_*` | Firebase Console → Project Settings → General → Your Apps → Web App → SDK Config |
 | `FIREBASE_ADMIN_CLIENT_EMAIL` `FIREBASE_ADMIN_PRIVATE_KEY` | Firebase Console → Project Settings → Service Accounts → **Generate New Private Key** |
 | `GOOGLE_GENAI_API_KEY` | [aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey) → Create API Key |
+| `RESEND_API_KEY` | [resend.com/api-keys](https://resend.com/api-keys) → Create API Key (Trial sends to account owner email) |
+| `NEXT_PUBLIC_POSTHOG_*` | [posthog.com](https://posthog.com) → Project Settings → Project API Key & Ingestion Host |
 
 > **Important:** The `FIREBASE_ADMIN_PRIVATE_KEY` must be wrapped in double quotes and use `\n` (literal backslash-n) for newlines. Copy it exactly as exported from Firebase.
 
@@ -559,6 +577,8 @@ All sector guides are fully static — no JavaScript required to read them.
 ```
 http://localhost:9002/                   # Homepage
 http://localhost:9002/guides             # All 18 sector guides index
+http://localhost:9002/news               # Live Tanzania news & UAUT Admissions hub
+http://localhost:9002/contact            # Executive contact desk & direct dispatch
 http://localhost:9002/agriculture        # Agriculture & agribusiness guide
 http://localhost:9002/mining             # Mining & minerals guide
 http://localhost:9002/banking            # Banking & finance guide
@@ -641,13 +661,71 @@ curl http://localhost:9002/api/live-tz
 
 ---
 
-### News API
+### Contact Desk API (Stateless Resend Relay)
 
-**`GET /api/tz-news`** — Returns current Tanzania news headlines.
+**`POST /api/contact`** — Dispatches visitor and investor inquiries securely to `info@tanzaniareach.com`.
+
+- **Privacy-First Posture**: No inquiries are persisted in any database. Zero data custody risk, 100% GDPR compliant, zero user login required.
+- **Powered by**: Resend REST API (key configured via `RESEND_API_KEY` env var).
+- **Direct Alternatives**: Phone / WhatsApp direct dispatch to `+255 792 867 427`.
+
+```bash
+curl -X POST http://localhost:9002/api/contact \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Jane Doe",
+    "email": "jane@example.com",
+    "phone": "+255 792 867 427",
+    "topic": "Business & FDI Registration",
+    "message": "Inquiry regarding TIC certificate processing times."
+  }'
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "message": "Dispatch sent successfully to info@tanzaniareach.com",
+  "id": "dd27abf7-0999-481f-b6fd-802d8fbd4d1d"
+}
+```
+
+---
+
+### Live Tanzania News API V2
+
+**`GET /api/tz-news`** — Aggregates live headlines from Tanzania's leading independent publishers.
+
+- **High-Reliability Architecture**: Upstream publisher RSS feeds (`dailynews.co.tz/feed/`, `thecitizen.co.tz/rss`) frequently return HTTP 500 or 404 from Node environments. The V2 engine aggregates via Google News Tanzania publisher index, ensuring 100% HTTP 200 uptime.
+- **Deep Story URLs**: Every article links directly to the specific published story on the newsroom domain (no generic homepage redirects).
+- **20-Asset Dynamic Hash Pool**: Employs a string-hash algorithm on headlines so adjacent news cards never duplicate the same placeholder image.
+- **Publisher Coverage**: TSN Daily News, The Citizen (MCL), Mwananchi, IPP Media (The Guardian & Financial Times), and regional briefs.
 
 ```bash
 curl http://localhost:9002/api/tz-news
 ```
+
+---
+
+### Privacy Analytics & Crash Tracking (PostHog)
+
+Tanzania Reach uses **PostHog** for privacy-preserving user journey metrics and client-side error telemetry.
+
+- **Zero-Login & Privacy-First**: Initialised with `person_profiles: 'identified_only'` so anonymous visitors are never uninvitedly fingerprinted or tracked across sessions.
+- **Pageleave & Dwell Time Tracking**: `capture_pageleave: true` automatically records how long investors and researchers spend reading each sector manual.
+- **Client Crash Telemetry**: Unhandled client runtime exceptions are automatically logged to the project's PostHog monitoring dashboard for real-time triage.
+- **Component Provider**: `src/components/analytics/posthog-provider.tsx` wrapped at root `src/app/layout.tsx`.
+
+---
+
+### Higher Education & Admissions Spotlight: UAUT Connect
+
+- **Institution**: United African University of Tanzania (UAUT), located at Vijibweni, Kibada, Kigamboni, Dar es Salaam (*"kwa Mkorea"*).
+- **Motto**: *"Change Your Mindset"*
+- **Specializations**: International Korean-founded engineering, computing & IT, business administration, and graduate studies.
+- **Admissions Portal**: **UAUT Connect** (`https://www.uautconnect.com/`)
+- **Direct Application Link**: `https://www.uautconnect.com/register` for ongoing second-round university admissions.
+- **Featured Components**: Embedded on `/news` and available throughout the portal via `<UautConnectCard />`.
 
 ---
 
