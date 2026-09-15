@@ -1,12 +1,16 @@
 'use client';
 
 import { useState } from 'react';
-import { Send, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Send, CheckCircle2, AlertCircle, Mail, MessageCircle } from 'lucide-react';
+
+const DESK_EMAIL = 'info@tanzaniareach.com';
+const DESK_WHATSAPP = '255792867427';
 
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showFallback, setShowFallback] = useState(false);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -16,10 +20,18 @@ export function ContactForm() {
     message: '',
   });
 
+  // Pre-filled handoff links — used when the automated relay is unavailable
+  const fallbackSubject = `[Tanzania Reach Inquiry] ${formData.topic}: ${formData.name}`;
+  const fallbackBody = `Name: ${formData.name}\nEmail: ${formData.email}\nPhone/WhatsApp: ${formData.phone || 'N/A'}\nTopic: ${formData.topic}\n\n${formData.message}`;
+  const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${DESK_EMAIL}&su=${encodeURIComponent(fallbackSubject)}&body=${encodeURIComponent(fallbackBody)}`;
+  const mailtoUrl = `mailto:${DESK_EMAIL}?subject=${encodeURIComponent(fallbackSubject)}&body=${encodeURIComponent(fallbackBody)}`;
+  const whatsappUrl = `https://wa.me/${DESK_WHATSAPP}?text=${encodeURIComponent(fallbackBody)}`;
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
+    setShowFallback(false);
 
     try {
       const res = await fetch('/api/contact', {
@@ -32,11 +44,13 @@ export function ContactForm() {
         setSubmitted(true);
       } else {
         const data = await res.json();
-        setError(data?.error || 'Failed to dispatch message. Please try calling or emailing directly.');
+        setError(data?.error || 'Failed to dispatch message. Please use the direct channels below.');
+        setShowFallback(true);
       }
     } catch {
-      // Graceful fallback
-      setSubmitted(true);
+      // Network failure — surface direct channels instead of a fake success
+      setError('Network error while dispatching. Please use the direct channels below.');
+      setShowFallback(true);
     } finally {
       setLoading(false);
     }
@@ -71,9 +85,43 @@ export function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       {error && (
-        <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-xs text-red-600 dark:text-red-400 flex items-center gap-2">
-          <AlertCircle className="w-4 h-4 shrink-0" />
-          <span>{error}</span>
+        <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-xs text-red-600 dark:text-red-400 space-y-3">
+          <div className="flex items-start gap-2">
+            <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+            <span>{error}</span>
+          </div>
+
+          {showFallback && (
+            <div className="space-y-2 pt-1">
+              <p className="font-bold uppercase tracking-wider text-[10px] text-kilimanjaro-600 dark:text-tanzania-300">
+                Send directly via:
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <a
+                  href={gmailUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg bg-white dark:bg-kilimanjaro-800 border border-kilimanjaro-200 dark:border-kilimanjaro-600 text-[11px] font-bold text-kilimanjaro-800 dark:text-white hover:border-tanzania-500 transition-colors"
+                >
+                  <Mail className="w-3.5 h-3.5 text-red-500" /> Gmail
+                </a>
+                <a
+                  href={mailtoUrl}
+                  className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg bg-white dark:bg-kilimanjaro-800 border border-kilimanjaro-200 dark:border-kilimanjaro-600 text-[11px] font-bold text-kilimanjaro-800 dark:text-white hover:border-tanzania-500 transition-colors"
+                >
+                  <Send className="w-3.5 h-3.5 text-tanzania-500" /> Email App
+                </a>
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg bg-white dark:bg-kilimanjaro-800 border border-kilimanjaro-200 dark:border-kilimanjaro-600 text-[11px] font-bold text-kilimanjaro-800 dark:text-white hover:border-emerald-500 transition-colors"
+                >
+                  <MessageCircle className="w-3.5 h-3.5 text-emerald-500" /> WhatsApp
+                </a>
+              </div>
+            </div>
+          )}
         </div>
       )}
 

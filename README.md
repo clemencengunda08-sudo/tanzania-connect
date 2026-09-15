@@ -491,6 +491,8 @@ GOOGLE_GENAI_API_KEY=AIzaSy_YOUR_GEMINI_KEY
 # ─── Resend Stateless Mail Relay (Contact Desk) ────────────
 RESEND_API_KEY=your_resend_api_key_here
 CONTACT_NOTIFICATION_EMAIL=info@tanzaniareach.com
+# Optional — after verifying tanzaniareach.com in Resend (DNS), set the branded sender:
+# RESEND_FROM=Tanzania Reach Desk <info@tanzaniareach.com>
 
 # ─── PostHog Analytics & Crash Tracking (Privacy-First) ─────
 NEXT_PUBLIC_POSTHOG_KEY=phc_tanzania_reach_live_analytics

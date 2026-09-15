@@ -3,9 +3,20 @@ import { Resend } from 'resend';
 
 const resendApiKey = process.env.RESEND_API_KEY;
 
+// Recipient of all contact dispatches (set in Vercel env for production)
+const CONTACT_TO = process.env.CONTACT_NOTIFICATION_EMAIL || 'info@tanzaniareach.com';
+
+// Sender identity. NOTE: Resend's shared sandbox sender (onboarding@resend.dev)
+// can ONLY deliver to the email that owns the Resend account. To deliver to
+// info@tanzaniareach.com (and allow any recipient), verify tanzaniareach.com in
+// the Resend dashboard (Domains → add DNS records), then set in Vercel:
+//   RESEND_FROM=Tanzania Reach Desk <info@tanzaniareach.com>
+const RESEND_FROM = process.env.RESEND_FROM || 'Tanzania Reach Desk <onboarding@resend.dev>';
+
 if (!resendApiKey) {
   console.error('RESEND_API_KEY is not set — contact form dispatch will fail.');
 }
+
 const resend = new Resend(resendApiKey);
 
 /**
@@ -66,8 +77,8 @@ export async function POST(request: Request) {
 
     try {
       const response = await resend.emails.send({
-        from: 'Tanzania Reach Desk <onboarding@resend.dev>',
-        to: ['info@tanzaniareach.com'],
+        from: RESEND_FROM,
+        to: [CONTACT_TO],
         replyTo: email,
         subject: `[Tanzania Reach Inquiry] ${topic || 'General'}: ${name}`,
         html: emailHtml,
@@ -75,21 +86,30 @@ export async function POST(request: Request) {
 
       if (response.error) {
         console.error('Resend delivery error:', response.error);
+        const msg = response.error.message || 'Unknown email delivery error';
+        // Resend sandbox: shared test sender can only reach the account owner.
         return NextResponse.json(
-          { error: `Dispatch error: ${response.error.message}` },
-          { status: 502 }
+          {
+            error: msg,
+            code: 'RESEND_TEST_RESTRICTED',
+            hint: 'Verify tanzaniareach.com in Resend, then set RESEND_FROM in Vercel.',
+          },
+          { status: 403 }
         );
       }
 
       return NextResponse.json({
         success: true,
-        message: 'Dispatch sent successfully to info@tanzaniareach.com',
+        message: `Dispatch sent successfully to ${CONTACT_TO}`,
         id: response.data?.id,
       });
     } catch (sendErr: any) {
       console.warn('Resend exception:', sendErr?.message || sendErr);
       return NextResponse.json(
-        { error: 'Email service temporary outage. Please contact directly via WhatsApp: +255 792 867 427' },
+        {
+          error: 'Email service temporary outage. Please contact directly via WhatsApp: +255 792 867 427',
+          code: 'RESEND_UNAVAILABLE',
+        },
         { status: 503 }
       );
     }
