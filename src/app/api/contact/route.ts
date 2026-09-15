@@ -1,8 +1,6 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-const resendApiKey = process.env.RESEND_API_KEY;
-
 // Recipient of all contact dispatches (set in Vercel env for production)
 const CONTACT_TO = process.env.CONTACT_NOTIFICATION_EMAIL || 'info@tanzaniareach.com';
 
@@ -13,11 +11,21 @@ const CONTACT_TO = process.env.CONTACT_NOTIFICATION_EMAIL || 'info@tanzaniareach
 //   RESEND_FROM=Tanzania Reach Desk <info@tanzaniareach.com>
 const RESEND_FROM = process.env.RESEND_FROM || 'Tanzania Reach Desk <onboarding@resend.dev>';
 
-if (!resendApiKey) {
-  console.error('RESEND_API_KEY is not set — contact form dispatch will fail.');
-}
+// Lazily-initialized client — MUST NOT throw at module scope, otherwise the
+// Next.js build ("collecting page data") fails when the env var is absent.
+let resendClient: Resend | null = null;
 
-const resend = new Resend(resendApiKey);
+function getResend(): Resend | null {
+  const key = process.env.RESEND_API_KEY;
+  if (!key) {
+    console.error('RESEND_API_KEY is not set — contact dispatch unavailable; UI will offer direct channels.');
+    return null;
+  }
+  if (!resendClient) {
+    resendClient = new Resend(key);
+  }
+  return resendClient;
+}
 
 /**
  * Stateless Contact Form Dispatcher via Resend.
@@ -76,6 +84,17 @@ export async function POST(request: Request) {
     `;
 
     try {
+      const resend = getResend();
+      if (!resend) {
+        return NextResponse.json(
+          {
+            error: 'Email relay is not configured yet. Please use the direct channels below.',
+            code: 'RESEND_NOT_CONFIGURED',
+          },
+          { status: 503 }
+        );
+      }
+
       const response = await resend.emails.send({
         from: RESEND_FROM,
         to: [CONTACT_TO],
