@@ -121,7 +121,7 @@ export default function NewsPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Main feed */}
             <div className="lg:col-span-2">
-              <div className="rounded-2xl sm:rounded-3xl bg-white dark:bg-kilimanjaro-900/60 border border-kilimanjaro-900/10 dark:border-tanzania-50/10 p-4 sm:p-8 shadow-xl">
+              <div className="rounded-2xl sm:rounded-3xl bg-white dark:bg-kilimanjaro-900/60 border border-kilimanjaro-900/10 dark:border-tanzania-50/10 p-3 sm:p-8 shadow-xl">
                 <TanzaniaNewsFeed limit={20} />
               </div>
             </div>
@@ -129,7 +129,7 @@ export default function NewsPage() {
             {/* Sidebar */}
             <aside className="space-y-6">
               {/* About the feed */}
-              <div className="rounded-3xl bg-kilimanjaro-950 text-tanzania-50 p-8">
+              <div className="rounded-3xl bg-kilimanjaro-950 text-tanzania-50 p-5 sm:p-8">
                 <h3 className="font-display text-lg font-medium mb-3 tracking-tight">
                   About this feed
                 </h3>
@@ -149,7 +149,7 @@ export default function NewsPage() {
               </div>
 
               {/* Coverage areas */}
-              <div className="rounded-3xl bg-white dark:bg-kilimanjaro-900/40 border border-kilimanjaro-900/10 dark:border-tanzania-50/10 p-8">
+              <div className="rounded-3xl bg-white dark:bg-kilimanjaro-900/40 border border-kilimanjaro-900/10 dark:border-tanzania-50/10 p-5 sm:p-8">
                 <h3 className="font-display text-base font-medium mb-4 tracking-tight">
                   Coverage areas
                 </h3>
@@ -170,7 +170,7 @@ export default function NewsPage() {
               </div>
 
               {/* Tanzania in Focus Gallery */}
-              <div className="rounded-3xl bg-white dark:bg-kilimanjaro-900/40 border border-kilimanjaro-900/10 dark:border-tanzania-50/10 p-8">
+              <div className="rounded-3xl bg-white dark:bg-kilimanjaro-900/40 border border-kilimanjaro-900/10 dark:border-tanzania-50/10 p-5 sm:p-8">
                 <h3 className="font-display text-base font-medium mb-4 tracking-tight flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-tanzania-500 animate-pulse" />
                   Tanzania in Focus
@@ -204,7 +204,7 @@ export default function NewsPage() {
               {/* CTA */}
               <Link
                 href="/guides"
-                className="block rounded-3xl p-8 bg-tanzania-500 text-white hover:bg-tanzania-600 transition-colors group"
+                className="block rounded-3xl p-5 sm:p-8 bg-tanzania-500 text-white hover:bg-tanzania-600 transition-colors group"
               >
                 <p className="text-[10px] uppercase tracking-[0.2em] font-black opacity-70 mb-3">
                   Expert portal

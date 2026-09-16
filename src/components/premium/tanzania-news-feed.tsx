@@ -396,7 +396,7 @@ export function TanzaniaNewsFeed({ className, limit = 15 }: { className?: string
   return (
     <section className={cn('relative', className)}>
       {/* Header bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
         <div className="flex items-center gap-3">
           <div className="relative">
             <Radio className="w-5 h-5 text-zanzibar-500" />
@@ -432,7 +432,7 @@ export function TanzaniaNewsFeed({ className, limit = 15 }: { className?: string
       </div>
 
       {/* Horizontal Category Pill Filter - Touch Optimized for Mobile */}
-      <div className="flex items-center gap-1.5 overflow-x-auto pb-3 mb-5 no-scrollbar scroll-smooth">
+      <div className="flex items-center gap-1.5 overflow-x-auto pb-2 mb-4 sm:pb-3 sm:mb-5 no-scrollbar scroll-smooth">
         {CATEGORIES.map((cat) => {
           const isActive = selectedCategory === cat.id;
           return (
@@ -440,7 +440,7 @@ export function TanzaniaNewsFeed({ className, limit = 15 }: { className?: string
               key={cat.id}
               onClick={() => setSelectedCategory(cat.id)}
               className={cn(
-                'whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-bold transition-all shrink-0',
+                'whitespace-nowrap px-3 py-1.5 sm:px-3.5 rounded-full text-xs font-bold transition-all shrink-0',
                 isActive
                   ? 'bg-tanzania-500 text-white shadow-md shadow-tanzania-500/25 scale-[1.02]'
                   : 'bg-kilimanjaro-100/70 dark:bg-kilimanjaro-800 text-kilimanjaro-600 dark:text-tanzania-200 hover:bg-kilimanjaro-200/60 dark:hover:bg-kilimanjaro-700'
@@ -458,7 +458,7 @@ export function TanzaniaNewsFeed({ className, limit = 15 }: { className?: string
       </div>
 
       {/* News list */}
-      <div className="space-y-3">
+      <div className="space-y-2 sm:space-y-3">
         <AnimatePresence mode="popLayout">
           {filteredNews.map((item, i) => {
             const style = CATEGORY_STYLES[item.category] || CATEGORY_STYLES.general;
@@ -473,11 +473,11 @@ export function TanzaniaNewsFeed({ className, limit = 15 }: { className?: string
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -6 }}
                 transition={{ delay: Math.min(i * 0.03, 0.2), duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="group block rounded-2xl border border-tanzania-200/70 dark:border-tanzania-50/10 bg-white dark:bg-kilimanjaro-800 p-3.5 sm:p-4 hover:border-tanzania-500/50 hover:bg-tanzania-50/40 dark:hover:bg-kilimanjaro-700 transition-all duration-200 shadow-sm"
+                className="group block rounded-2xl border border-tanzania-200/70 dark:border-tanzania-50/10 bg-white dark:bg-kilimanjaro-800 p-2.5 sm:p-4 hover:border-tanzania-500/50 hover:bg-tanzania-50/40 dark:hover:bg-kilimanjaro-700 transition-all duration-200 shadow-sm"
               >
-                <div className="flex gap-3 sm:gap-4 items-start">
+                <div className="flex gap-2.5 sm:gap-4 items-start">
                   {/* High-speed thumbnail */}
-                  <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden shrink-0 border border-tanzania-200/50 dark:border-kilimanjaro-700/50">
+                  <div className="relative w-16 h-16 sm:w-24 sm:h-24 rounded-lg sm:rounded-xl overflow-hidden shrink-0 border border-tanzania-200/50 dark:border-kilimanjaro-700/50">
                     <NewsCardThumbnail
                       key={`${item.title}-${i}-${primaryImg}`}
                       primaryUrl={primaryImg}
@@ -488,7 +488,7 @@ export function TanzaniaNewsFeed({ className, limit = 15 }: { className?: string
 
                   {/* Story details */}
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+                    <div className="flex items-center gap-1.5 sm:gap-2 mb-1 sm:mb-1.5 flex-wrap">
                       <span className={cn('w-1.5 h-1.5 rounded-full shrink-0', style.dot)} />
                       <span className={cn('px-2 py-0.5 text-[9px] font-black uppercase tracking-wider rounded-full border', style.badge)}>
                         {item.category}
@@ -500,7 +500,7 @@ export function TanzaniaNewsFeed({ className, limit = 15 }: { className?: string
                       </span>
                     </div>
 
-                    <h4 className="text-sm font-bold text-kilimanjaro-900 dark:text-white leading-snug group-hover:text-tanzania-600 dark:group-hover:text-tanzania-200 transition-colors line-clamp-2">
+                    <h4 className="text-[13px] sm:text-sm font-bold text-kilimanjaro-900 dark:text-white leading-snug group-hover:text-tanzania-600 dark:group-hover:text-tanzania-200 transition-colors line-clamp-2">
                       {item.title}
                     </h4>
 

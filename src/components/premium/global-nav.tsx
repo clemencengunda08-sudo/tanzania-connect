@@ -45,8 +45,8 @@ const MOBILE_EXTRA_LINKS = [
 
 /**
  * GlobalNav — fixed top navbar visible on EVERY page.
- * Top state: Elegant translucent banner over hero/page content.
- * Scrolled state: Morphs smoothly into the signature floating glass island pill.
+ * Top state: Elegant translucent floating pill over hero/page content.
+ * Scrolled state: Morphs smoothly into the signature compact glass island pill.
  */
 export function GlobalNav() {
   const pathname = usePathname();
@@ -79,7 +79,7 @@ export function GlobalNav() {
             'mx-auto w-full flex items-center justify-between transition-all duration-500 ease-out',
             isScrolled
               ? 'max-w-[1240px] rounded-full px-4 md:px-6 py-2 bg-white/95 border border-slate-200/90 text-slate-900 shadow-2xl shadow-slate-950/10 backdrop-blur-2xl dark:bg-kilimanjaro-950/95 dark:border-white/10 dark:text-white dark:shadow-black/70'
-              : 'max-w-[1360px] rounded-2xl md:rounded-full px-4 md:px-6 py-2.5 bg-kilimanjaro-950/75 border border-white/10 text-white backdrop-blur-md shadow-lg shadow-black/25'
+              : 'max-w-[1360px] rounded-full px-4 md:px-6 py-2.5 bg-kilimanjaro-950/75 border border-white/10 text-white backdrop-blur-md shadow-lg shadow-black/25'
           )}
         >
           {/* === LOGO === */}

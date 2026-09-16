@@ -53,14 +53,14 @@ export function UautConnectCard({ compact = false, className = '' }: UautConnect
   }
 
   return (
-    <div className={`rounded-3xl p-6 sm:p-8 bg-gradient-to-br from-kilimanjaro-950 via-tanzania-950 to-kilimanjaro-900 text-white border border-tanzania-500/30 shadow-2xl relative overflow-hidden ${className}`}>
+    <div className={`rounded-3xl p-4 sm:p-8 bg-gradient-to-br from-kilimanjaro-950 via-tanzania-950 to-kilimanjaro-900 text-white border border-tanzania-500/30 shadow-2xl relative overflow-hidden ${className}`}>
       {/* Decorative ambient glows */}
       <div className="absolute -right-16 -top-16 w-64 h-64 bg-tanzania-500/20 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -left-16 -bottom-16 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative z-10">
         {/* Top badge row */}
-        <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
+        <div className="flex flex-wrap items-center justify-between gap-2.5 mb-4 sm:mb-5">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-xs font-bold uppercase tracking-wider">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             Round 2 Admissions Open · 2026/2027
@@ -91,12 +91,12 @@ export function UautConnectCard({ compact = false, className = '' }: UautConnect
           </p>
         </div>
 
-        <p className="text-sm text-blue-100/90 leading-relaxed mb-6 font-light max-w-2xl">
+        <p className="text-[13px] sm:text-sm text-blue-100/90 leading-relaxed mb-4 sm:mb-6 font-light max-w-2xl">
           Unlock global academic opportunities at UAUT. Founded through international Korean cooperation, UAUT offers cutting-edge degree and diploma programs tailored to modern industrial and technological leadership in Africa.
         </p>
 
         {/* Highlight Pillars */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 mb-4 sm:mb-6">
           {[
             { title: 'Engineering & Computing', desc: 'Software, Computer Science, Telecom' },
             { title: 'Business & Management', desc: 'Accounting, Finance, Entrepreneurship' },
@@ -104,7 +104,7 @@ export function UautConnectCard({ compact = false, className = '' }: UautConnect
           ].map((item, idx) => (
             <div
               key={idx}
-              className="p-3.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm"
+              className="p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm"
             >
               <div className="flex items-center gap-1.5 text-xs font-bold text-tanzania-300 mb-1">
                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
@@ -123,7 +123,7 @@ export function UautConnectCard({ compact = false, className = '' }: UautConnect
             href="https://www.uautconnect.com/register"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-tanzania-500 hover:bg-tanzania-400 text-white text-sm font-bold shadow-lg shadow-tanzania-500/25 transition-all group"
+            className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl bg-tanzania-500 hover:bg-tanzania-400 text-white text-sm font-bold shadow-lg shadow-tanzania-500/25 transition-all group"
           >
             <span>Apply for Round 2 Admissions</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -133,7 +133,7 @@ export function UautConnectCard({ compact = false, className = '' }: UautConnect
             href="https://www.uautconnect.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-white text-sm font-semibold transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2.5 sm:px-5 sm:py-3 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-white text-sm font-semibold transition-colors"
           >
             <span>Visit UAUT Connect Portal</span>
             <ExternalLink className="w-4 h-4 opacity-70" />
