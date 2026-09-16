@@ -111,7 +111,10 @@
     font-family: var(--font-inter), sans-serif;
     font-feature-settings: 'ss01', 'cv01', 'cv11';
     -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
+    /* NOTE: -webkit-touch-callout intentionally NOT disabled — blocking the
+       iOS long-press menu over-blocked iPhones (no "Open in New Tab" /
+       "Save Image" on long-press). Content protection is PC-only via
+       src/hooks/use-protection.ts. */
     position: relative;
   }
 
@@ -150,7 +153,7 @@
   input, select, textarea { font-size: 16px !important; }
 }
 
-button, a, [role="button"] { min-height: 44px; min-width: 44px; }
+button, [role="button"], .touch-target { min-height: 44px; min-width: 44px; }
 
 .safe-top { padding-top: env(safe-area-inset-top); }
 .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }

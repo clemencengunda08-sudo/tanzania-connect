@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useEffect, useState, useRef } from 'react';
-import { useProtection } from '@/hooks/use-protection';
+import React, { useEffect, useState } from 'react';
+import { isDesktopBrowser, useProtection } from '@/hooks/use-protection';
 
 /**
  * InvisibleWatermark is SSR-safe as it's just static HTML/CSS.
@@ -34,9 +34,11 @@ function InvisibleWatermark() {
 
 export function ProtectionProvider({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+    setIsDesktop(isDesktopBrowser());
   }, []);
 
   // Run protection effects only on client
@@ -51,8 +53,9 @@ export function ProtectionProvider({ children }: { children: React.ReactNode }) 
       {/* These are rendered on both Server and Client to prevent mismatch */}
       <InvisibleWatermark />
 
-      {/* DevTools warning is client-only and only shows after mount if detected */}
-      {mounted && devToolsOpen && (
+      {/* DevTools warning — PC only. Mobile browsers false-positive on
+          window-metric detection, so the monitor never runs on phones. */}
+      {mounted && isDesktop && devToolsOpen && (
         <div style={{
           position: 'fixed', top: 0, left: 0, right: 0, zIndex: 99999,
           background: 'linear-gradient(90deg, #1e40af, #7c3aed)',

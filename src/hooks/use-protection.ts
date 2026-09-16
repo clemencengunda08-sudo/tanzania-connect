@@ -16,6 +16,62 @@ interface ProtectionState {
   rightClickBlocked: number;
 }
 
+/**
+ * Desktop-only gate for the protection suite.
+ *
+ * Mobile browsers (iOS Safari, Android Chrome, Samsung Internet, in-app
+ * webviews, standalone PWAs) report unreliable window metrics —
+ * outerWidth/outerHeight vs innerWidth/innerHeight shift when the URL bar
+ * collapses, the on-screen keyboard opens, or the page zooms — which made
+ * the devtools watchdog fire false positives ("Security Monitor Active"
+ * banner appearing on iPhones with DevTools closed). Blocking long-press /
+ * context menus on phones also breaks native touch UX.
+ *
+ * Returns true only for real desktop-class browsers.
+ */
+export function isDesktopBrowser(): boolean {
+  if (typeof window === 'undefined') return false;
+
+  const nav = window.navigator as Navigator & {
+    userAgentData?: { mobile?: boolean };
+    standalone?: boolean;
+  };
+  const ua = nav.userAgent ?? '';
+
+  // 1) Chromium User-Agent Client Hints — the most reliable signal.
+  if (nav.userAgentData && typeof nav.userAgentData.mobile === 'boolean') {
+    return !nav.userAgentData.mobile;
+  }
+
+  const maxTouchPoints = nav.maxTouchPoints ?? 0;
+
+  // 2) Explicit mobile / tablet UA strings.
+  if (/Android|iPhone|iPod|iPad|IEMobile|BlackBerry|Opera Mini|Mobile Safari/i.test(ua)) {
+    return false;
+  }
+
+  // 3) iPadOS 13+ masquerades as desktop Safari ("Macintosh") — catch it via touch.
+  if (/Macintosh/i.test(ua) && maxTouchPoints > 1) {
+    return false;
+  }
+
+  // 4) Installed PWA (standalone display mode) — common on phones.
+  const standalone =
+    window.matchMedia?.('(display-mode: standalone)')?.matches || nav.standalone === true;
+  if (standalone) {
+    return false;
+  }
+
+  // 5) Touch-first devices (coarse primary pointer, no hover) count as mobile.
+  const coarsePointer = window.matchMedia?.('(pointer: coarse)')?.matches ?? false;
+  const noHover = window.matchMedia?.('(hover: none)')?.matches ?? false;
+  if (coarsePointer && noHover && maxTouchPoints > 0) {
+    return false;
+  }
+
+  return true;
+}
+
 export function useProtection(config: ProtectionConfig = {}): ProtectionState {
   const {
     disableRightClick = true,
@@ -31,12 +87,21 @@ export function useProtection(config: ProtectionConfig = {}): ProtectionState {
     rightClickBlocked: 0,
   });
 
-  const devToolsCheckRef = useRef<NodeJS.Timeout>(null);
+  const devToolsCheckRef = useRef<ReturnType<typeof setInterval>>(null);
   const warningShownRef = useRef(false);
+  const positiveChecksRef = useRef(0);
+  const devToolsOpenRef = useRef(false);
 
   useEffect(() => {
     const isDev = process.env.NODE_ENV === 'development';
     if (isDev) return;
+
+    // 📱 PC-ONLY: the entire protection suite is skipped on phones and
+    // tablets. Mobile browsers shift innerWidth/innerHeight when the URL
+    // bar collapses or the keyboard opens, which made the devtools
+    // watchdog raise false "DevTools detected" positives on iPhones.
+    // Blocking long-press/context menus also breaks native touch UX.
+    if (!isDesktopBrowser()) return;
 
     if (enableConsoleWarning && !warningShownRef.current) {
       warningShownRef.current = true;
@@ -83,18 +148,30 @@ export function useProtection(config: ProtectionConfig = {}): ProtectionState {
     const detectDevTools = () => {
       if (!disableDevTools) return;
       const threshold = 160;
-      const isOpen = (window.outerWidth - window.innerWidth > threshold) || (window.outerHeight - window.innerHeight > threshold);
-      if (isOpen) {
-        setState(prev => {
-          if (!prev.devToolsOpen) {
-            console.clear();
-            console.log('%c🔍 DevTools detected', 'color: #ef4444; font-size: 20px;');
-          }
-          return { ...prev, devToolsOpen: true };
-        });
-      } else {
-        setState(prev => ({ ...prev, devToolsOpen: false }));
+      // Hardened against browser quirks that fake size deltas:
+      // - fullscreen pages/media report stretched inner sizes
+      // - some webviews / kiosk modes report outerWidth/outerHeight as 0
+      const inFullscreen = Boolean(document.fullscreenElement);
+      const zeroMetrics = window.outerWidth === 0 || window.outerHeight === 0;
+      const sizeDelta =
+        window.outerWidth - window.innerWidth > threshold ||
+        window.outerHeight - window.innerHeight > threshold;
+      const isOpen = !inFullscreen && !zeroMetrics && sizeDelta;
+
+      // Require two consecutive positive checks (~2s) — window chrome
+      // animations and zoom changes can briefly fake a delta in some
+      // browsers.
+      positiveChecksRef.current = isOpen ? positiveChecksRef.current + 1 : 0;
+      const confirmed = positiveChecksRef.current >= 2;
+      if (confirmed === devToolsOpenRef.current) return;
+      devToolsOpenRef.current = confirmed;
+      if (confirmed) {
+        console.clear();
+        console.log('%c🔍 DevTools detected', 'color: #ef4444; font-size: 20px;');
       }
+      setState(prev =>
+        prev.devToolsOpen === confirmed ? prev : { ...prev, devToolsOpen: confirmed }
+      );
     };
 
     document.addEventListener('keydown', handleKeyDown, { capture: true });
@@ -105,6 +182,8 @@ export function useProtection(config: ProtectionConfig = {}): ProtectionState {
       document.removeEventListener('keydown', handleKeyDown, { capture: true });
       document.removeEventListener('contextmenu', handleContextMenu);
       if (devToolsCheckRef.current) clearInterval(devToolsCheckRef.current);
+      positiveChecksRef.current = 0;
+      devToolsOpenRef.current = false;
     };
   }, [disableRightClick, disableDevTools, enableConsoleWarning, enableWatermark, disableKeyboardShortcuts]);
 
