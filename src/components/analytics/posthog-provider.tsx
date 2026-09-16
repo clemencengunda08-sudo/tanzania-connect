@@ -2,7 +2,7 @@
 
 import posthog from 'posthog-js';
 import { PostHogProvider as PHProvider } from 'posthog-js/react';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 
 export function PostHogProvider({ children }: { children: React.ReactNode }) {
@@ -36,7 +36,12 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <PHProvider client={posthog}>
-      <PostHogPageView />
+      {/* Suspense boundary is REQUIRED: useSearchParams() bails out of static
+          prerendering — without it, "collecting page data" fails for /_not-found
+          and other statically generated pages. */}
+      <Suspense fallback={null}>
+        <PostHogPageView />
+      </Suspense>
       {children}
     </PHProvider>
   );

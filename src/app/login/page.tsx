@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/firebase";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -11,6 +11,17 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/toast";
 
 export default function PublicLoginPage() {
+  // Suspense boundary is REQUIRED: useSearchParams() (inside LoginContent)
+  // bails out of static prerendering — without it the production build fails
+  // with "useSearchParams() should be wrapped in a suspense boundary".
+  return (
+    <Suspense fallback={null}>
+      <LoginContent />
+    </Suspense>
+  );
+}
+
+function LoginContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirect = searchParams.get("redirect") ?? "/account";
