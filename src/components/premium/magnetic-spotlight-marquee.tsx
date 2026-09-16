@@ -167,6 +167,16 @@ export function MagneticSpotlightMarquee({
     setTimeout(measureGeometry, 200);
     window.addEventListener('resize', measureGeometry);
 
+    let isVisible = false;
+    let isRendering = false;
+
+    const startRender = () => {
+      if (!isRendering && isVisible) {
+        isRendering = true;
+        rafId = requestAnimationFrame(render);
+      }
+    };
+
     const handlePointerMove = (e: MouseEvent) => {
       const rect = spotlightSection.getBoundingClientRect();
       const relativeY = e.clientY - rect.top;
@@ -177,10 +187,13 @@ export function MagneticSpotlightMarquee({
       
       stripTargetY = (clampedNormY - 0.5) * sectionHeight * 0.85;
       hasPointerMoved = true;
+      startRender();
     };
 
     const handlePointerLeave = () => {
       stripTargetY = 0;
+      hasPointerMoved = true;
+      startRender();
     };
 
     spotlightSection.addEventListener('mousemove', handlePointerMove);
@@ -194,6 +207,7 @@ export function MagneticSpotlightMarquee({
       stripPrevY = stripCurrentY;
 
       const stripCenterY = stripRestCenterY + stripCurrentY;
+      let hasPendingMotion = Math.abs(stripTargetY - stripCurrentY) > 0.08 || Math.abs(stripVelocityY) > 0.05;
 
       targets.forEach((line) => {
         const distanceToStrip = line.restCenterY - stripCenterY;
@@ -209,14 +223,37 @@ export function MagneticSpotlightMarquee({
         
         line.currentY += (lineTarget - line.currentY) * config.lineSettleEase;
         gsap.set(line.el, { y: line.currentY });
+
+        if (Math.abs(lineTarget - line.currentY) > 0.08) {
+          hasPendingMotion = true;
+        }
       });
 
-      rafId = requestAnimationFrame(render);
+      if (isVisible && (hasPendingMotion || hasPointerMoved)) {
+        rafId = requestAnimationFrame(render);
+      } else {
+        isRendering = false;
+        hasPointerMoved = false;
+      }
     };
-    rafId = requestAnimationFrame(render);
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible && hasPointerMoved) {
+          startRender();
+        } else if (!isVisible && isRendering) {
+          cancelAnimationFrame(rafId);
+          isRendering = false;
+        }
+      },
+      { threshold: 0.05 }
+    );
+    io.observe(spotlightSection);
 
     return () => {
       window.removeEventListener('resize', measureGeometry);
+      io.disconnect();
       if (spotlightSection) {
         spotlightSection.removeEventListener('mousemove', handlePointerMove);
         spotlightSection.removeEventListener('mouseleave', handlePointerLeave);

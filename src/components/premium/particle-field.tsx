@@ -112,12 +112,31 @@ export function ParticleField({
           }
         }
       }
-      raf = requestAnimationFrame(draw);
+      if (isVisible) {
+        raf = requestAnimationFrame(draw);
+      } else {
+        raf = 0;
+      }
     };
-    draw();
+
+    let isVisible = false;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible && !raf) {
+          raf = requestAnimationFrame(draw);
+        } else if (!isVisible && raf) {
+          cancelAnimationFrame(raf);
+          raf = 0;
+        }
+      },
+      { threshold: 0.05 }
+    );
+    io.observe(canvas);
 
     return () => {
       cancelAnimationFrame(raf);
+      io.disconnect();
       ro.disconnect();
       window.removeEventListener('mousemove', onMove);
       window.removeEventListener('mouseout', onLeave);

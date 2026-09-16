@@ -2,12 +2,8 @@ import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import { ThemeProvider } from "@/components/theme-provider"
-import { InstallPrompt } from '@/components/pwa/InstallPrompt';
 import { Toaster } from "@/components/ui/toaster";
-import { CookieConsent } from '@/components/cookie-consent';
 import { PageTransition } from '@/components/page-transition';
-import { ScrollProgress } from '@/components/scroll-progress';
-import { FirebaseErrorListener } from '@/components/FirebaseErrorListener';
 import { JsonLd } from "@/components/json-ld";
 import { ProtectionProvider } from "@/components/protection-provider";
 import { MobileBottomNav } from '@/components/mobile-bottom-nav';
@@ -17,8 +13,8 @@ import { MaintenanceBanner } from '@/components/maintenance-banner';
 import { DisclaimerBar } from '@/components/disclaimer-bar';
 import { Footer } from '@/components/footer';
 import { GlobalNav } from '@/components/premium/global-nav';
-import { AIChat } from '@/components/portal/ai-chat';
 import { PostHogProvider } from '@/components/analytics/posthog-provider';
+import { ClientWidgets } from '@/components/client-widgets';
 import {
   organizationSchema,
   websiteSchema,
@@ -141,8 +137,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                 <MaintenanceBanner />
                 <DisclaimerBar />
                 <GlobalNav />
-                <ScrollProgress />
-                <FirebaseErrorListener />
                 <div id="main" tabIndex={-1} className="focus:outline-none">
                   <PageTransition>
                     {children}
@@ -151,9 +145,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                 <Footer />
                 <MobileBottomNav />
                 <FloatingActionButton />
-                <InstallPrompt />
-                <CookieConsent />
-                <AIChat />
+                <ClientWidgets />
                 <Toaster />
               </ToastProvider>
             </ProtectionProvider>

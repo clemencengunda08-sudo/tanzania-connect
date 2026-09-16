@@ -119,12 +119,7 @@ export function HeroSection() {
       {/* === Background image === */}
       {heroBg && (
         <div ref={bgRef} className="absolute inset-0 -z-10 bg-parallax">
-          <motion.div
-            initial={{ scale: 1.08, opacity: 0 }}
-            animate={{ scale: 1, opacity: 0.85 }}
-            transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute inset-0"
-          >
+          <div className="absolute inset-0 opacity-85">
             <Image
               src={heroBg.imageUrl}
               alt={heroBg.description}
@@ -133,7 +128,7 @@ export function HeroSection() {
               sizes="100vw"
               className="object-cover"
             />
-          </motion.div>
+          </div>
           {/* Gradient overlay for depth + readability */}
           <div className="absolute inset-0 bg-gradient-to-b from-kilimanjaro-950/70 via-kilimanjaro-950/30 to-kilimanjaro-950/80" />
           <div className="absolute inset-0 bg-gradient-to-tr from-tanzania-900/30 via-transparent to-transparent" />

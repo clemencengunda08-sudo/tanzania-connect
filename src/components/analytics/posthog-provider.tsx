@@ -21,7 +21,7 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
         autocapture: {
           dom_event_allowlist: ['click'], // Minimal touchpoint telemetry
         },
-        disable_session_recording: false, // Captures anonymous interaction to debug crashes
+        disable_session_recording: true, // Disabled to prevent rrweb DOM MutationObserver thrashing with GSAP and animations
         persistence: 'memory', // Avoids intrusive cookies if privacy policy prefers
         loaded: (ph) => {
           if (process.env.NODE_ENV === 'development') {

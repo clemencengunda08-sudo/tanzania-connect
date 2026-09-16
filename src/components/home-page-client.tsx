@@ -8,18 +8,20 @@ import { sectorMetaMap, getAllSectorSlugs } from "@/lib/sector-metadata";
 import { tanzaniaStats, sectors, getSectorUrl } from "@/lib/tanzania-data";
 import { SpotlightCard } from "@/components/premium/spotlight-card";
 import { Marquee } from "@/components/premium/marquee";
-import CurvedLoop from "@/components/premium/curved-loop";
-import SmokyText from "@/components/premium/smoky-text";
 import { BlurText } from "@/components/premium/blur-text";
 import { Stats as StatsBlock } from "@/components/premium/stats";
 import { MagnetButton } from "@/components/premium/magnet-button";
 import { RevealOnScroll } from "@/components/premium/reveal-on-scroll";
-import { ParticleField } from "@/components/premium/particle-field";
 import { ScrollReveal } from "@/components/premium/scroll-reveal";
-import { MagneticSpotlightMarquee } from "@/components/premium/magnetic-spotlight-marquee";
-import { ScrollExpandSection } from "@/components/premium/scroll-expand-section";
-import { ScrollSyncedText } from "@/components/premium/scroll-synced-text";
-import { VerticalColumnsSlider } from "@/components/premium/vertical-columns-slider";
+
+// Defer heavy below-the-fold GSAP & canvas components to keep initial bundle lean
+const CurvedLoop = dynamic(() => import("@/components/premium/curved-loop"), { ssr: false });
+const SmokyText = dynamic(() => import("@/components/premium/smoky-text"), { ssr: false });
+const ParticleField = dynamic(() => import("@/components/premium/particle-field").then((m) => m.ParticleField), { ssr: false });
+const MagneticSpotlightMarquee = dynamic(() => import("@/components/premium/magnetic-spotlight-marquee").then((m) => m.MagneticSpotlightMarquee), { ssr: false });
+const ScrollExpandSection = dynamic(() => import("@/components/premium/scroll-expand-section").then((m) => m.ScrollExpandSection), { ssr: false });
+const ScrollSyncedText = dynamic(() => import("@/components/premium/scroll-synced-text").then((m) => m.ScrollSyncedText), { ssr: false });
+const VerticalColumnsSlider = dynamic(() => import("@/components/premium/vertical-columns-slider").then((m) => m.VerticalColumnsSlider), { ssr: false });
 import {
   ArrowRight,
   ArrowUpRight,
