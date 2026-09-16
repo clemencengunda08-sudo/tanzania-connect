@@ -32,7 +32,7 @@ export function useTypewriter({
   loop = true,
   startDelay = 500,
 }: TypewriterOptions) {
-  const [text, setText] = useState("");
+  const [text, setText] = useState(texts[0] || "");
   const [textIndex, setTextIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [started, setStarted] = useState(false);

@@ -177,14 +177,14 @@ export function HomePageClient() {
               </span>
             </h2>
           </div>
-          <RevealOnScroll delay={0.4}>
+          <RevealOnScroll delay={0.1}>
             <p className="mt-4 max-w-2xl text-base md:text-lg text-kilimanjaro-600 dark:text-tanzania-200 leading-relaxed mb-6">
               We curate licensing requirements, regulations, agency contacts, and timelines so that
               investors, executives, and explorers spend their first 90 days building, not searching.
             </p>
           </RevealOnScroll>
 
-          <RevealOnScroll delay={0.6}>
+          <RevealOnScroll delay={0.2}>
             <div className="border-t border-kilimanjaro-900/10 dark:border-tanzania-50/10 pt-6">
               <StatsBlock
                 stats={[

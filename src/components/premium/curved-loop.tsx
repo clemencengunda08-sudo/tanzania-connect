@@ -123,8 +123,27 @@ export default function CurvedLoop({
         }
     }, [curveAmount]);
 
+    const containerRef = useRef<HTMLDivElement>(null);
+    const [isVisible, setIsVisible] = useState(false);
+
     useEffect(() => {
-        if (!ready) return;
+        const el = containerRef.current;
+        if (!el || typeof IntersectionObserver === "undefined") {
+            setIsVisible(true);
+            return;
+        }
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                setIsVisible(entry.isIntersecting);
+            },
+            { rootMargin: "100px" }
+        );
+        observer.observe(el);
+        return () => observer.disconnect();
+    }, []);
+
+    useEffect(() => {
+        if (!ready || !isVisible) return;
         let raf = 0;
         let last = performance.now();
         const tick = (now: number) => {
@@ -168,7 +187,7 @@ export default function CurvedLoop({
         };
         raf = requestAnimationFrame(tick);
         return () => cancelAnimationFrame(raf);
-    }, [ready, spacing, actualBaseVelocity, calculatedRepeats]);
+    }, [ready, isVisible, spacing, actualBaseVelocity, calculatedRepeats]);
 
     const lastPointerPosition = useRef({ x: 0, y: 0 });
     const handlePointerDown = (e: ReactPointerEvent<SVGTextElement>) => {
@@ -204,6 +223,7 @@ export default function CurvedLoop({
 
     return (
         <div
+            ref={containerRef}
             className={className}
             style={{
                 visibility: ready ? "visible" : "hidden",

@@ -28,8 +28,12 @@ export function HeroSection() {
   }, []);
 
   useGSAP(() => {
-    // 1. Continuous breathing float for the background image
-    if (bgRef.current) {
+    // 1. Continuous breathing float for the background image (desktop fine pointer only)
+    if (
+      bgRef.current &&
+      !window.matchMedia("(pointer: coarse)").matches &&
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
       gsap.to(bgRef.current, {
         scale: 1.04,
         y: -8,
@@ -174,9 +178,9 @@ export function HeroSection() {
 
         {/* CTA Buttons */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.6 }}
+          transition={{ duration: 0.35, ease: "easeOut" }}
           className="flex flex-col sm:flex-row items-center justify-center gap-3"
         >
           <Link href="/guides" className="w-full sm:w-auto">

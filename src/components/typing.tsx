@@ -142,9 +142,9 @@ export function LetterReveal({ text, className = "", staggerDelay = 0.03, immedi
       {letters.map((letter, i) => (
         <motion.span
           key={i}
-          initial={{ opacity: 0, y: 10 }}
+          initial={immediate ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
           animate={shouldShow ? { opacity: 1, y: 0 } : { opacity: 0 }}
-          transition={{ duration: 0.3, delay: i * staggerDelay, ease: "easeOut" }}
+          transition={{ duration: 0.3, delay: immediate ? 0 : i * staggerDelay, ease: "easeOut" }}
           className="inline-block"
           style={{ display: letter === " " ? "inline" : "inline-block" }}
         >
